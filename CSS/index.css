@@ -4,6 +4,13 @@
     
 }
 
+body{
+    min-height: 70vh;
+    background-image: url('/assets/plano-fundo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
 
 
 header{
@@ -17,7 +24,7 @@ li{
 }
 
 a{
-    color: black;
+    color: white;
     text-decoration: none;
     font-size: 25px;
 }
@@ -70,26 +77,14 @@ a{
     transition: all 0.3s ease-in-out;
 }
 
-main{
-    
-}
 
-.image-introduction{
 
-    min-height: 70vh;
-    background-image: url('/assets/plano-fundo.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    
-    
-}
 
 .introduction{
     width: 800px;
     margin-left: 650px;
     font-size: 20px;
-  
+    color: white;
     display: flex;
     align-items: right;
 }
@@ -136,10 +131,10 @@ main{
     .nav-menu{
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 52px;
         gap: 0;
-        border-radius: 0 0 20px 20px;
-        background: #000;
+        border-radius: 0 0 10px 20px;
+        background: #00000090;
         text-align: center;
         flex-direction: column;
         width: 100%;
@@ -147,7 +142,7 @@ main{
     }
 
     .nav-item{
-        margin: 16px 0;
+        margin: 10px 0;
     }
 
     .nav-menu.active{
