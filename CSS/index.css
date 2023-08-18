@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+
+header{
+    
+    border-style: inset ;
+    border-color: #908e8e;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.navbar{
+    min-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 34px;
+}
+
+.divLogo{
+    padding: 5px;
+    width: 100px;
+    height: 8vh;  
+}
+
+.Logo img{
+    width: 100%;
+    height: 100%;
+}
+
+.Logo{
+    font-size: 2rem;
+}
+
+.nav-menu{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.nav-link{
+    transition: 0.5s ease;
+}
+
+.navigation{
+    display: none;
+    cursor: pointer;
+}
+
+.bar{
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    margin: 5px auto;
+    background: white;
+    transition: all 0.3s ease-in-out;
+}
+
+main{
+    
+}
+
+.image-introduction{
+
+    min-height: 70vh;
+    background-image: url('/assets/plano-fundo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    
+    
+}
+
+.introduction{
+    width: 800px;
+    margin-left: 650px;
+    font-size: 20px;
+  
+    display: flex;
+    align-items: right;
+}
+
+#introduction-question{
+    font-size: 40px;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    margin-left: 1100px;
+
+}
+
+.introduction p{
+    margin: auto;
+    padding-left: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+
+
+.introduction img{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    max-width: 250px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+
+
+@media (max-width: 768px){
+    .navigation{
+        display: block;
+    }
+    .navigation.active .bar:nth-child(2){
+        opacity:0;
+    }
+    .navigation.active .bar:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+    .navigation.active .bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
+    }
+  
+    .nav-menu{
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        gap: 0;
+        border-radius: 0 0 20px 20px;
+        background: #000;
+        text-align: center;
+        flex-direction: column;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+    .nav-item{
+        margin: 16px 0;
+    }
+
+    .nav-menu.active{
+        left: 0;
+    }
+}
