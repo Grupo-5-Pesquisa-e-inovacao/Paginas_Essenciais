@@ -6,7 +6,7 @@
 
 body{
     min-height: 70vh;
-    background-image: url('/assets/plano-fundo.jpg');
+    background-image: url('../assets/plano-fundo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
