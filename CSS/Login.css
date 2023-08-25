@@ -10,7 +10,7 @@ body{
     background-image: url('../assets/plano-fundo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    overflow: hidden;
+    overflow: scroll;
     color: white;
     
 }
@@ -87,7 +87,7 @@ a{
     margin: 50px auto;
     border-radius: 20px;
     border-style: outset;
-    background: #0000007d;
+    background: #669bb367;
 }
 
 h1{

@@ -4,21 +4,18 @@
     
 }
 
-body{
-    overflow: hidden;
-}
 
-.image-introduction{
+
+body{
     min-height: 70vh;
-    background-image: url('../assets/plano-fundo.jpg');
+    background-image: url(/assets/plano-fundo.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    overflow-y:scroll ;
+    overflow-y:hidden ;
 }
 
 
 header{
-    
     border-style: inset ;
     border-color: #908e8e;
 }
