@@ -7,20 +7,20 @@ hamburguer.addEventListener("click", () => {
     navMenu.classList.toggle('active');
 })
 
-var formSignin = document.querySelector('#entrar')
-var formSignup = document.querySelector('#cadastro')
+var Entrar = document.querySelector('#entrar')
+var Cadastro = document.querySelector('#cadastro')
 var btnColor = document.querySelector('.button-cor')
 
 document.querySelector('#btnSignin')
   .addEventListener('click', () => {
-    formSignin.style.left = "25px"
-    formSignup.style.left = "450px"
+    Entrar.style.left = "25px"
+    Cadastro.style.left = "450px"
     btnColor.style.left = "0px"
 })
 
 document.querySelector('#btnSignup')
   .addEventListener('click', () => {
-    formSignin.style.left = "-450px"
-    formSignup.style.left = "25px"
+    Entrar.style.left = "-450px"
+    Cadastro.style.left = "25px"
     btnColor.style.left = "110px"
 })
