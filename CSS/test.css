@@ -80,20 +80,20 @@ a{
 main{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content:  center;
     margin-top: 5%;
+    width: 100%;
 }
 
 .bem-vindo{
     width: 30%;
-    height: 63vh;
+    max-width: 400px;
+    height: auto;
     color: white;
-    /*background-color: blue;*/
-    
 }
 .bem-vindo h1{
-    width: 350px;
-    margin-top: 20px;
+    width: 90%;
+    margin-top: 11%;
     font-size: 2rem;
     text-align: center;
 }
@@ -101,15 +101,14 @@ main{
     text-align: center;
     font-size: 1.5rem;
     margin-top: 60px;
-    width: 350px;
-    
-    
+    width: 350px; 
 }
 .container {
   background-color: rgba(245, 245, 245, 0.693);
   padding: 6px;
-  width: 23%;
-  height: 450px;
+  width: 100%;
+  max-width: 350px;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,14 +120,15 @@ main{
 
 form {
   position: absolute;
-  margin-top: 80px;
+  margin-top: 20%;
   transition: .5s;
-  width: 300px;
-  height: 400px;
+  width: 90%;
+  height: auto;
 }
 
 .login-cadastro {
-  margin-top: 40px;
+  margin-top: 12%;
+  margin-bottom: 5%;
   position: relative;
   border-radius: 30px;
 }
@@ -143,7 +143,7 @@ form {
 
 .button-cor {
   position: absolute;
-  width: 108px;
+  width: 45%;
   height: 100%;
   background: linear-gradient(to right, #5956e9, #a963f8);
   border-radius: 30px;
@@ -168,7 +168,7 @@ button[type="submit"] {
   outline: none;
   padding: 8px 0 8px 15px;
   font-size: 15px;
-  margin-top: 40px;
+  margin-top: 12%;
   cursor: pointer;
 }
 
@@ -200,6 +200,8 @@ i {
 }
 
 @media (max-width: 768px){
+
+    
     .navigation{
         display: block;
     }
@@ -233,4 +235,74 @@ i {
     .nav-menu.active{
         left: 0;
     }
+    main{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 50%;
+    }
+    .container{ 
+        width: 60%;
+        height: 250px;
+        padding: 0;
+    }
+    .container input{
+      width: 60%;
+      margin: 5px 0 15px 5px;
+      padding: 0 30px;
+    }
+    .container .iEmail{
+      margin: 0;
+      top: -3px;
+      left: 5px;
+    }
+    .container .iPassword{
+      top: 37px;
+      left: 5px;
+    }
+    .container .passwordConfirmation{
+      top: 77px;
+      left: 5px;
+    }
+    button[type="submit"]{
+      text-align: center;
+      font-size: 9px;
+      padding: 0;
+      margin: 5px 0 0 35px;
+      height: 30px;
+      width: 40%;
+    }
+    .login-cadastro button{
+      padding: 0 10px;
+      left: 10px;
+    }
+    .bem-vindo{
+      width: 30%;
+      height: 63vh;
+      color: white;
+      /*background-color: blue;*/
+      
+  }
+  .bem-vindo{
+    width: 30%;
+    height: 63vh;
+    color: white;
+    background-color: blue;
+    
+}
+  .bem-vindo h1{
+      width: 350px;
+      margin-top: 20px;
+      font-size: 2rem;
+      text-align: center;
+  }
+  .bem-vindo p{
+      text-align: center;
+      font-size: 1.5rem;
+      margin-top: 60px;
+      width: 350px; 
+  }
+    
+
+    
 }
