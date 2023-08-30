@@ -11,7 +11,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-image: url(../assets/Fundo\ Grande\ Cartaz\ De\ Fundo\ De\ Negócios\ De\ Tecnologia\ Azul\ De\ Internet\ Tecnologia\ Azul\ Sentido\ Tecnológico\ Negócio\ Atmosfera\ Dados\ Papel\ de\ Parede\ Para\ Download\ Gratuito\ -\ Pngtree.jpg);
-  backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(7px);
 }
 
 header{
@@ -35,12 +35,14 @@ a{
     justify-content: space-between;
     align-items: center;
     padding: 0 34px;
+    
 }
 
 .divLogo{
     padding: 5px;
     width: 100px;
     height: 8vh;  
+  
 }
 
 .Logo img{
@@ -56,6 +58,7 @@ a{
     display: flex;
     align-items: center;
     gap: 60px;
+    
 }
 
 .nav-link{
@@ -66,6 +69,9 @@ a{
     display: none;
     cursor: pointer;
 }
+
+
+
 
 .bar{
     display: block;
@@ -120,10 +126,14 @@ main{
 
 form {
   position: absolute;
-  margin-top: 20%;
+  margin-top: 25%;
   transition: .5s;
   width: 90%;
   height: auto;
+}
+
+#envelope_email{
+  top: 40px;
 }
 
 .login-cadastro {
@@ -131,6 +141,7 @@ form {
   margin-bottom: 5%;
   position: relative;
   border-radius: 30px;
+  padding: 0.5%;
 }
 
 .login-cadastro button {
@@ -143,7 +154,11 @@ form {
 
 .button-cor {
   position: absolute;
-  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 3px;
+  width: 43.5%;
   height: 100%;
   background: linear-gradient(to right, #5956e9, #a963f8);
   border-radius: 30px;
@@ -172,11 +187,6 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-
-#entrar {
-  left: 25px;
-}
-
 #cadastro {
   left: 450px;
 }
@@ -188,7 +198,7 @@ i {
 }
 
 .iEmail {
-  top: 40px;
+  top: 60px;
 }
 
 .iPassword {
@@ -199,110 +209,135 @@ i {
   top: 190px;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
+  .navigation {
+    display: block;
+  }
+  .navigation.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .navigation.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .navigation.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 
-    
-    .navigation{
-        display: block;
-    }
-    .navigation.active .bar:nth-child(2){
-        opacity:0;
-    }
-    .navigation.active .bar:nth-child(1){
-        transform: translateY(8px) rotate(45deg);
-    }
-    .navigation.active .bar:nth-child(3){
-        transform: translateY(-8px) rotate(-45deg);
-    }
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 52px;
+    gap: 0;
+    border-radius: 0 0 10px 20px;
+    background: #00000090;
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    transition: 0.3s;
+  }
+
+  .nav-item {
+    margin: 10px 0;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  main {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Alterei para 100% para ocupar a largura total da tela */
+  }
+
+  .container {
+    width: 80%; 
+    max-width: 350px; 
+    height: 45vh;
+    padding: 0;
+    margin-bottom: 5%;
+  }
+
+  .container input {
+    width: 90%; 
+  }
+ 
+
+  form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25%;
+    transition: .5s;
+    width: 90%;
+    height: auto;
+  }
+
+  .iEmail {
+    top: 60px;
+    left: 15px;
+  }
   
-    .nav-menu{
-        position: fixed;
-        left: -100%;
-        top: 52px;
-        gap: 0;
-        border-radius: 0 0 10px 20px;
-        background: #00000090;
-        text-align: center;
-        flex-direction: column;
-        width: 100%;
-        transition: 0.3s;
-    }
-
-    .nav-item{
-        margin: 10px 0;
-    }
-
-    .nav-menu.active{
-        left: 0;
-    }
-    main{
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 50%;
-    }
-    .container{ 
-        width: 60%;
-        height: 250px;
-        padding: 0;
-    }
-    .container input{
-      width: 60%;
-      margin: 5px 0 15px 5px;
-      padding: 0 30px;
-    }
-    .container .iEmail{
-      margin: 0;
-      top: -3px;
-      left: 5px;
-    }
-    .container .iPassword{
-      top: 37px;
-      left: 5px;
-    }
-    .container .passwordConfirmation{
-      top: 77px;
-      left: 5px;
-    }
-    button[type="submit"]{
-      text-align: center;
-      font-size: 9px;
-      padding: 0;
-      margin: 5px 0 0 35px;
-      height: 30px;
-      width: 40%;
-    }
-    .login-cadastro button{
-      padding: 0 10px;
-      left: 10px;
-    }
-    .bem-vindo{
-      width: 30%;
-      height: 63vh;
-      color: white;
-      /*background-color: blue;*/
-      
+  .iPassword {
+    top: 114px;
+    left: 15px;
   }
-  .bem-vindo{
-    width: 30%;
-    height: 63vh;
-    color: white;
-    background-color: blue;
-    
+
+  .passwordConfirmation {
+    top: 190px;
+    left: 15px;
+  }
+
+  button[type="submit"] {
+    text-align: center;
+    font-size: 14px;
+    padding: 10px; 
+    margin: 5px 0 0 0; 
+    width: 92%; 
+    margin-top: 11%;
+  }
+
+  
+.login-cadastro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin-top: 12%;
+  margin-bottom: 5%;
+  position: relative;
+  border-radius: 30px;
+  padding: 0.5%;
 }
-  .bem-vindo h1{
-      width: 350px;
-      margin-top: 20px;
-      font-size: 2rem;
-      text-align: center;
-  }
-  .bem-vindo p{
-      text-align: center;
-      font-size: 1.5rem;
-      margin-top: 60px;
-      width: 350px; 
-  }
-    
 
-    
+  #button-login-entrar{
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+
+  .bem-vindo {
+    width: 70%; /* Alterei para ocupar a largura total da tela */
+    height: 20%; /* Alterei para altura automática para se adaptar ao conteúdo */
+    color: white;
+    text-align: center; /* Centralizei o texto */
+    padding: 1%;
+    margin-bottom: 7%;
+  }
+
+  .bem-vindo h1 {
+    width: 100%; /* Alterei para ocupar a largura total da tela */
+    margin-top: 20px;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .bem-vindo p {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 20px; /* Reduzi a margem superior para melhorar o espaçamento */
+    width: 100%; /* Alterei para ocupar a largura total da tela */
+  }
 }
