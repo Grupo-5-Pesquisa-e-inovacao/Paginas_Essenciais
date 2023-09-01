@@ -12,6 +12,25 @@ body {
   height: 100vh;
   background-image: url(../assets/Fundo\ Grande\ Cartaz\ De\ Fundo\ De\ Negócios\ De\ Tecnologia\ Azul\ De\ Internet\ Tecnologia\ Azul\ Sentido\ Tecnológico\ Negócio\ Atmosfera\ Dados\ Papel\ de\ Parede\ Para\ Download\ Gratuito\ -\ Pngtree.jpg);
   backdrop-filter: blur(7px);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background: #02002a;
+}
+
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3e1cff;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0f0064;
 }
 
 header{
@@ -121,14 +140,16 @@ main{
   position: relative;
   overflow: hidden;
   border-radius: 10px;
+  transition: .3s;
   box-shadow: rgba(46, 124, 240, 0.4) 5px 5px, rgba(46, 124, 240, 0.3) 10px 10px, rgba(46, 124, 240, 0.2) 15px 15px, rgba(46, 124, 240, 0.1) 20px 20px, rgba(46, 124, 240, 0.05) 25px 25px;
+  margin-bottom: 5%;
 }
 
 form {
   position: absolute;
   margin-top: 25%;
   transition: .5s;
-  width: 90%;
+  width: 85%;
   height: auto;
 }
 
@@ -255,9 +276,10 @@ i {
   .container {
     width: 80%; 
     max-width: 350px; 
-    height: 45vh;
+    height: 30vh;
     padding: 0;
     margin-bottom: 5%;
+    transition: .3s;
   }
 
   .container input {
@@ -272,7 +294,7 @@ i {
     align-items: center;
     margin-top: 25%;
     transition: .5s;
-    width: 90%;
+    width: 85%;
     height: auto;
   }
 
