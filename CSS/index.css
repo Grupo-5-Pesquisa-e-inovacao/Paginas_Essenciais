@@ -3,10 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     width: 100%;
     height: 100vh;
 }
+
+
+
 
 header {
     border-style: inset;
@@ -111,7 +115,6 @@ a {
     display: flex;
     font-size: 20px;
     align-items: center;
-    justify-content: space-between;
     background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -122,7 +125,10 @@ a {
     height: 60vh;
     background: #0000007a;
 }
-.information img{
+
+/*background: #0000007a;*/
+
+.information img {
     width: 20%;
 }
 
@@ -136,42 +142,36 @@ a {
     padding-left: 10px;
     font-size: 1em;
 }
-.mision .ajuste p{
+
+.mision .ajuste p {
     margin-top: 200px;
 }
-.mision p{
+
+.mision p {
     margin-top: 2%;
 }
-.mision_imagem{
+
+.mision_imagem {
     width: 300px;
     margin-top: 0;
 }
-.mision_imagem img{
+
+.mision_imagem img {
     width: 100%;
 }
 
 
-.container2_image {
-    display: flex;
-    align-items: center;
-    width: auto;
-    margin-left: 1%;
-}
-
-.container2_image img {
-    width: 800px;
-    height: auto;
-}
 
 .help {
-    padding-top: 2% ;
+    padding-top: 2%;
     padding-left: 13%;
     width: 100%;
     height: 90vh;
     display: flex;
     color: white;
 }
-.help h1{
+
+.help h1 {
     font-weight: bold;
 }
 
@@ -204,47 +204,59 @@ a {
     display: flex;
     justify-content: space-between;
 }
-.fone h3{
+
+.fone h3 {
     background: white;
 }
-.fone p{
+
+.fone p {
     margin-top: 10%;
     width: 60%;
     height: 5vh;
 }
+
 .fone img {
     width: 50%;
 }
-.time_oparation h3{
+
+.time_oparation h3 {
     background: white;
 }
-.time_oparation p{
+
+.time_oparation p {
     margin-top: 10%;
     width: 60%;
     height: 5vh;
 }
+
 .time_oparation img {
     width: 60%;
 }
-.adress h3{
+
+.adress h3 {
     background: white;
 }
-.adress p{
+
+.adress p {
     margin-top: 10%;
     width: 60%;
     height: 5vh;
 }
+
 .adress img {
     width: 60%;
 }
-.reclamacao_fundo{
+
+.reclamacao_fundo {
     background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
     background-size: cover;
 }
-.help_opcidade{
+
+.help_opcidade {
     background: #00000067;
 }
-.reclamacao{
+
+.reclamacao {
     color: white;
     margin: 0 5%;
     height: 80vh;
@@ -254,27 +266,31 @@ a {
     border-top-left-radius: 19px;
     background: #00000052;
 }
-.reclamacao h1{
+
+.reclamacao h1 {
     text-align: center;
     margin-top: 6%;
     margin-bottom: 5%;
 }
-#dados{
+
+#dados {
     width: 50%;
-    height: 4vh;    
+    height: 4vh;
     margin: 3.5% 3%;
     padding: 3% 1%;
     border-radius: 10px;
     background: rgba(128, 128, 128, 0.433);
 }
-#descricao{
+
+#descricao {
     width: 100%;
     height: 35vh;
     margin-top: 2.9%;
     max-width: 596px;
     background: rgba(128, 128, 128, 0.433);
-    
+
 }
+
 
 @media (max-width: 768px) {
     .navigation {
@@ -312,5 +328,429 @@ a {
 
     .nav-menu.active {
         left: 0;
+    }
+
+    .inicio {
+        display: flex;
+        height: 40vh;
+    }
+
+    .text-inicio {
+        color: white;
+        width: 100%;
+        height: 40vh;
+        position: absolute;
+        background: #00000082;
+    }
+
+    .text-inicio h1 {
+        font-size: 3rem;
+        text-align: center;
+        margin: 7% 0;
+    }
+
+    .text-inicio span {
+        width: 60%;
+        margin: 0 19%;
+        display: flex;
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .container2 {
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        font-size: 20px;
+        align-items: center;
+        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .container2_image {
+        display: flex;
+        align-items: center;
+        width: auto;
+        margin: 6%;
+    }
+
+    .container2_image img {
+        width: 300px;
+        height: auto;
+    }
+
+    .information {
+        width: 50%;
+        height: 30vh;
+        background: #0000007a;
+    }
+
+    .information img {
+        width: 13%;
+        padding-top: 2%;
+        height: 60px;
+    }
+
+    .mision {
+        color: white;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        max-width: 1000px;
+        padding-top: 3%;
+        padding-left: 10px;
+        font-size: 0.9rem;
+    }
+
+    #solucao {
+        margin-top: 3%;
+    }
+
+    .mision .ajuste p {
+        margin-top: 200px;
+    }
+
+    .mision p {
+        margin-top: 2%;
+        margin-left: 2%;
+    }
+
+    .mision_imagem {
+        width: 300px;
+
+    }
+
+    .mision_imagem img {
+        width: 100%;
+    }
+
+    .help {
+        padding-top: 7%;
+        padding-left: 13%;
+        width: 100%;
+        height: 60vh;
+        display: flex;
+        color: white;
+    }
+
+    .help h1 {
+        font-weight: bold;
+    }
+
+    .our_information {
+        background: #00000052;
+        width: 100%;
+        height: 50vh;
+        max-width: 500px;
+        padding-left: 5%;
+        padding-top: 6%;
+        border-radius: 20px;
+    }
+
+    .our_information h1 {
+        font-size: 1.5rem;
+    }
+
+    .our_information div {
+        padding: 1% 0;
+    }
+
+    .imagem {
+        width: 60%;
+        height: 90px;
+    }
+
+    .our_information img {
+        width: 100%;
+    }
+
+    .adress, .fone, .time_oparation {
+        width: 100%;
+        max-width: 300px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .fone p {
+        margin-top: 7%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .fone img {
+        padding-top: 2%;
+        width: 50%;
+    }
+
+    .time_oparation p {
+        margin-top: 10%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .time_oparation img {
+        padding-top: 15%;
+        width: 60%;
+    }
+
+    .adress p {
+        margin-top: 10%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .adress img {
+        width: 60%;
+    }
+
+    .reclamacao_fundo {
+        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-size: cover;
+    }
+
+    .help_opcidade {
+        background: #00000067;
+    }
+
+    .reclamacao {
+        color: white;
+        margin: 0 5%;
+        height: 50vh;
+        width: 100%;
+        max-width: 600px;
+        border-top-right-radius: 19px;
+        border-top-left-radius: 19px;
+        background: #00000052;
+    }
+
+    .reclamacao h1 {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-top: 14%;
+        margin-bottom: 14%;
+    }
+
+    #dados {
+        width: 80%;
+        height: 4vh;
+        margin: 3.5% 3%;
+        padding: 3% 1%;
+        border-radius: 10px;
+        background: rgba(128, 128, 128, 0.433);
+    }
+
+    #descricao {
+        width: 100%;
+        height: 20vh;
+        margin-top: 17%;
+        max-width: 596px;
+        background: rgba(128, 128, 128, 0.433);
+
+    }
+}
+
+@media (min-width: 992px) {
+
+
+    .container2 {
+        width: 100%;
+        height: 60vh;
+        display: flex;
+        font-size: 20px;
+        align-items: center;
+        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .information {
+        width: 70%;
+        height: 60vh;
+        background: #0000007a;
+    }
+
+    /*background: #0000007a;*/
+
+    .information img {
+        padding-top: 2%;
+        width: 10%;
+        height: 10vh;
+    }
+
+    .mision {
+        color: white;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        max-width: 800px;
+        padding-top: 3%;
+        padding-left: 10px;
+        font-size: 0.9em;
+    }
+
+    .mision .ajuste p {
+        margin-top: 200px;
+    }
+
+    .mision p {
+        margin-top: 2%;
+    }
+
+    .mision_imagem {
+        width: 50px;
+    }
+
+    .mision_imagem img {
+
+        width: 100%;
+    }
+
+
+    .container2_image {
+        display: flex;
+        align-items: center;
+        width: auto;
+        margin-left: 1%;
+    }
+
+    .container2_image img {
+        width: 340px;
+        height: auto;
+    }
+
+    .help {
+        padding-top: 7%;
+        padding-left: 13%;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        color: white;
+    }
+
+    .help h1 {
+        font-weight: bold;
+    }
+
+    .our_information {
+        background: #00000052;
+        width: 100%;
+        height: 75vh;
+        max-width: 500px;
+        padding-left: 5%;
+        padding-top: 4%;
+        border-radius: 20px;
+    }
+
+    .our_information h1 {
+        font-size: 1.3rem;
+    }
+
+    .our_information div {
+        padding: 1% 0;
+    }
+
+    .imagem {
+        width: 60%;
+        height: 90px;
+    }
+
+    .our_information img {
+        width: 100%;
+    }
+
+    .adress, .fone, .time_oparation {
+        width: 100%;
+        max-width: 300px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .fone p {
+        margin-top: 7%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .fone img {
+        padding-top: 2%;
+        width: 50%;
+    }
+
+    .time_oparation p {
+        margin-top: 10%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .time_oparation img {
+        padding-top: 15%;
+        width: 60%;
+    }
+
+    .adress p {
+        margin-top: 10%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .adress img {
+        width: 60%;
+    }
+
+    .reclamacao_fundo {
+        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-size: cover;
+    }
+
+    .help_opcidade {
+        background: #00000067;
+    }
+
+    .reclamacao {
+        color: white;
+        margin: 0 5%;
+        height: 75vh;
+        width: 100%;
+        max-width: 600px;
+        border-top-right-radius: 19px;
+        border-top-left-radius: 19px;
+        background: #00000052;
+    }
+
+    .reclamacao h1 {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-top: 14%;
+        margin-bottom: 14%;
+    }
+
+    #dados {
+        width: 80%;
+        height: 4vh;
+        margin: 3.5% 3%;
+        padding: 3% 1%;
+        border-radius: 10px;
+        background: rgba(128, 128, 128, 0.433);
+    }
+
+    #descricao {
+        width: 100%;
+        height: 20vh;
+        margin-top: 17%;
+        max-width: 596px;
+        background: rgba(128, 128, 128, 0.433);
+
+    }
+
+    
+}
+
+@media (min-width: 600px){
+
+   
+    .camel img{
+        width: 200%;
     }
 }
