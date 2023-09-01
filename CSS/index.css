@@ -1,36 +1,31 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    
+    box-sizing: border-box;
 }
-
-
-
 body{
-    min-height: 70vh;
-    background-image: url(../assets/plano-fundo.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    overflow-y:hidden ;
+    width: 100%;
+    height: 100vh;
 }
 
-
-header{
-    border-style: inset ;
+header {
+    border-style: inset;
     border-color: #908e8e;
+    background-image: url(../assets/internet-1.jpg);
+
 }
 
-li{
+li {
     list-style: none;
 }
 
-a{
+a {
     color: white;
     text-decoration: none;
     font-size: 25px;
 }
 
-.navbar{
+.navbar {
     min-height: 50px;
     display: flex;
     justify-content: space-between;
@@ -38,37 +33,37 @@ a{
     padding: 0 34px;
 }
 
-.divLogo{
+.divLogo {
     padding: 5px;
     width: 100px;
-    height: 8vh;  
+    height: 8vh;
 }
 
-.Logo img{
+.Logo img {
     width: 100%;
     height: 100%;
 }
 
-.Logo{
+.Logo {
     font-size: 2rem;
 }
 
-.nav-menu{
+.nav-menu {
     display: flex;
     align-items: center;
     gap: 60px;
 }
 
-.nav-link{
+.nav-link {
     transition: 0.5s ease;
 }
 
-.navigation{
+.navigation {
     display: none;
     cursor: pointer;
 }
 
-.bar{
+.bar {
     display: block;
     width: 28px;
     height: 3px;
@@ -78,58 +73,227 @@ a{
     transition: all 0.3s ease-in-out;
 }
 
-
-
-
-.introduction{
-    width: 800px;
-    margin-left: 650px;
-    font-size: 20px;
-    color: white;
+.inicio {
     display: flex;
-    align-items: right;
+    height: 80vh;
 }
 
-#introduction-question{
-    font-size: 40px;
-    padding-top: 30px;
-    padding-bottom: 15px;
-    margin-left: 1100px;
-
+.inicio img {
+    width: 100%;
 }
 
-.introduction p{
+.text-inicio {
+    color: white;
+    width: 100%;
+    height: 80vh;
+    position: absolute;
+    background: #00000082;
+}
+
+.text-inicio h1 {
+    font-size: 4rem;
+    text-align: center;
+    margin: 7% 0;
+}
+
+.text-inicio span {
+    width: 50%;
+    margin: 0 27%;
+    display: flex;
+    text-align: center;
+    font-size: 30.3px;
+}
+
+
+.container2 {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.information {
+    width: 50%;
+    height: 60vh;
+    background: #0000007a;
+}
+.information img{
+    width: 20%;
+}
+
+.mision {
+    color: white;
+    width: 100%;
     margin: auto;
+    display: flex;
+    max-width: 800px;
+    padding-top: 3%;
     padding-left: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-
+    font-size: 1em;
+}
+.mision .ajuste p{
+    margin-top: 200px;
+}
+.mision p{
+    margin-top: 2%;
+}
+.mision_imagem{
+    width: 300px;
+    margin-top: 0;
+}
+.mision_imagem img{
+    width: 100%;
 }
 
 
-.introduction img{
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    max-width: 250px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+.container2_image {
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin-left: 1%;
 }
 
+.container2_image img {
+    width: 800px;
+    height: auto;
+}
 
+.help {
+    padding-top: 2% ;
+    padding-left: 13%;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    color: white;
+}
+.help h1{
+    font-weight: bold;
+}
 
-@media (max-width: 768px){
-    .navigation{
+.our_information {
+    background: #00000052;
+    width: 100%;
+    height: 80vh;
+    max-width: 500px;
+    padding-left: 5%;
+    padding-top: 6%;
+    border-radius: 20px;
+}
+
+.our_information div {
+    padding: 1.8% 0;
+}
+
+.imagem {
+    width: 60%;
+    height: 90px;
+}
+
+.our_information img {
+    width: 100%;
+}
+
+.adress, .fone, .time_oparation {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+.fone h3{
+    background: white;
+}
+.fone p{
+    margin-top: 10%;
+    width: 60%;
+    height: 5vh;
+}
+.fone img {
+    width: 50%;
+}
+.time_oparation h3{
+    background: white;
+}
+.time_oparation p{
+    margin-top: 10%;
+    width: 60%;
+    height: 5vh;
+}
+.time_oparation img {
+    width: 60%;
+}
+.adress h3{
+    background: white;
+}
+.adress p{
+    margin-top: 10%;
+    width: 60%;
+    height: 5vh;
+}
+.adress img {
+    width: 60%;
+}
+.reclamacao_fundo{
+    background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+    background-size: cover;
+}
+.help_opcidade{
+    background: #00000067;
+}
+.reclamacao{
+    color: white;
+    margin: 0 5%;
+    height: 80vh;
+    width: 100%;
+    max-width: 600px;
+    border-top-right-radius: 19px;
+    border-top-left-radius: 19px;
+    background: #00000052;
+}
+.reclamacao h1{
+    text-align: center;
+    margin-top: 6%;
+    margin-bottom: 5%;
+}
+#dados{
+    width: 50%;
+    height: 4vh;    
+    margin: 3.5% 3%;
+    padding: 3% 1%;
+    border-radius: 10px;
+    background: rgba(128, 128, 128, 0.433);
+}
+#descricao{
+    width: 100%;
+    height: 35vh;
+    margin-top: 2.9%;
+    max-width: 596px;
+    background: rgba(128, 128, 128, 0.433);
+    
+}
+
+@media (max-width: 768px) {
+    .navigation {
         display: block;
     }
-    .navigation.active .bar:nth-child(2){
-        opacity:0;
+
+    .navigation.active .bar:nth-child(2) {
+        opacity: 0;
     }
-    .navigation.active .bar:nth-child(1){
+
+    .navigation.active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
-    .navigation.active .bar:nth-child(3){
+
+    .navigation.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
-  
-    .nav-menu{
+
+    .nav-menu {
         position: fixed;
         left: -100%;
         top: 52px;
@@ -142,11 +306,11 @@ a{
         transition: 0.3s;
     }
 
-    .nav-item{
+    .nav-item {
         margin: 10px 0;
     }
 
-    .nav-menu.active{
+    .nav-menu.active {
         left: 0;
     }
 }
