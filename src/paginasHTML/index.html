@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
-    <link rel="stylesheet" href="./CSS/index.css">
+    <link rel="stylesheet" href="../public/CSS/index.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
             <div class="divLogo">
 
                 <a href="#" class="Logo">
-                    <img src="./assets/logo - 415 x 358.png" alt="">
+                    <img src="../public/assets/logo - 85x50.png" alt="">
                 </a>
             </div>
 
@@ -41,7 +41,7 @@
 
     <main>
         <div class="inicio">
-            <img src="./assets/internet-1.jpg" alt="">
+            <img src="../public/assets/internet-1.jpg" alt="">
             <div class="text-inicio">
                 <h1>
                     Transformando <br>Conexões
@@ -58,17 +58,17 @@
         <div class="container2">
 
             <div class="container2_image">
-                <img id="camel" src="./assets/Logo-Camel (1).png" alt="" >
+                <img id="camel" src="../public/assets/Logo-Camel (1).png" alt="">
             </div>
 
             <div class="information">
 
 
-                <div class="mision">
+                <div class="mision1">
 
-               
-                        <img src="./assets/icone_-_missão-removebg-preview.png">
-                  
+
+                    <img src="../public/assets/icone_-_missão-removebg-preview.png">
+
 
                     <p>
                         Nossa missão é elevar a qualidade das conexões oferecidas aos clientes por meio da implementação
@@ -77,18 +77,22 @@
                     </p>
                 </div>
 
-                <div class="mision">
-                    
-                    <img id="solucao" src="./assets/icone_-_valores-removebg-preview.png" alt="">
+                <div class="mision2">
+
+                    <img id="solucao" src="../public/assets/icone_-_valores-removebg-preview.png" alt="">
                     <p>
-                        Nossa solução integra tecnologias de ponta, incluindo  dispositivos de monitoramento, que serão estrategicamente implantados em nossa infraestrutura de rede. Isso permitirá a coleta contínua de dados vitais sobre o funcionamento dos equipamentos e a saúde da rede.
+                        Nossa solução integra tecnologias de ponta, incluindo dispositivos de monitoramento, que serão
+                        estrategicamente implantados em nossa infraestrutura de rede. Isso permitirá a coleta contínua
+                        de dados vitais sobre o funcionamento dos equipamentos e a saúde da rede.
                     </p>
                 </div>
 
                 <div class="mision ajuste">
-                    <img id="solucao2" src="./assets/icone_-_visão_geral-removebg-preview.png" alt="">
+                    <img id="solucao2" src="../public/assets/icone_-_visão_geral-removebg-preview.png" alt="">
                     <p>
-                        Compromisso com a Qualidade: Estamos dedicados a fornecer produtos e serviços de alta qualidade. Nossos processos rigorosos garantem que cada aspecto do nosso trabalho atenda ou exceda os padrões mais elevados.
+                        Compromisso com a Qualidade: Estamos dedicados a fornecer produtos e serviços de alta qualidade.
+                        Nossos processos rigorosos garantem que cada aspecto do nosso trabalho atenda ou exceda os
+                        padrões mais elevados.
 
                     </p>
                 </div>
@@ -110,7 +114,7 @@
                             <div class="adress">
 
                                 <div class="imagem">
-                                    <img src="./assets/location2.png" alt="">
+                                    <img src="../public/assets/location.png" alt="">
                                 </div>
 
                                 <p>
@@ -127,7 +131,7 @@
                             <div class="fone">
 
                                 <div class="imagem">
-                                    <img src="./assets/fone.png" alt="">
+                                    <img src="../public/assets/fone.png" alt="">
                                 </div>
 
                                 <p>
@@ -144,7 +148,7 @@
                             <div class="time_oparation">
 
                                 <div class="imagem">
-                                    <img src="./assets/hour.png" alt="">
+                                    <img src="../public/assets/hour.png" alt="">
                                 </div>
 
                                 <p>
@@ -181,7 +185,18 @@
 
     </main>
 
-    <script src="./js/index.js"></script>
+    <script>
+        const hamburguer = document.querySelector(".navigation");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburguer.addEventListener("click", () => {
+            hamburguer.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        })
+
+    </script>
+
+    
 
 </body>
 

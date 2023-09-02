@@ -12,7 +12,7 @@ body {
 header {
     border-style: inset;
     border-color: #908e8e;
-    background-image: url(../assets/internet-1.jpg);
+    background-image: url(/src/public/assets/internet-1.jpg);
 
 }
 
@@ -74,230 +74,12 @@ a {
     transition: all 0.3s ease-in-out;
 }
 
-.inicio {
-    display: flex;
-    height: 80vh;
-}
 
-.inicio img {
-    width: 100%;
-}
-
-.text-inicio {
-    color: white;
-    width: 100%;
-    height: 80vh;
-    position: absolute;
-    background: #00000082;
-}
-
-.text-inicio h1 {
-    font-size: 4rem;
-    text-align: center;
-    margin: 7% 0;
-}
-
-.text-inicio span {
-    width: 50%;
-    margin: 0 27%;
-    display: flex;
-    text-align: center;
-    font-size: 30.3px;
-}
-
-
-.container2 {
-    width: 100%;
-    height: 60vh;
-    display: flex;
-    font-size: 20px;
-    align-items: center;
-    background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-#camel{
-    width: 450px;
-}
-
-.information {
-    width: 50%;
-    height: 60vh;
-    background: #0000007a;
-}
-
-/*background: #0000007a;*/
-
-.information img {
-    width: 20%;
-}
-
-.mision {
-    color: white;
-    width: 100%;
-    margin: auto;
-    display: flex;
-    max-width: 800px;
-    padding-top: 3%;
-    padding-left: 10px;
-    font-size: 1em;
-}
-
-.mision .ajuste p {
-    margin-top: 200px;
-}
-
-.mision p {
-    margin-top: 2%;
-}
-
-.mision_imagem {
-    width: 300px;
-    margin-top: 0;
-}
-
-.mision_imagem img {
-    width: 100%;
-}
-
-
-
-.help {
-    padding-top: 2%;
-    padding-bottom: 3%;
-    padding-left: 13%;
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    color: white;
-}
-
-.help h1 {
-    font-weight: bold;
-}
-
-.our_information {
-    background: #00000052;
-    width: 100%;
-    height: 80vh;
-    max-width: 500px;
-    padding-left: 5%;
-    padding-top: 6%;
-    border-radius: 20px;
-}
-
-.our_information div {
-    padding: 1.8% 0;
-}
-
-.imagem {
-    width: 60%;
-    height: 90px;
-}
-
-.our_information img {
-    width: 100%;
-}
-
-.adress, .fone, .time_oparation {
-    width: 100%;
-    max-width: 300px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.fone h3 {
-    background: white;
-}
-
-.fone p {
-    margin-top: 10%;
-    width: 60%;
-    height: 5vh;
-}
-
-.fone img {
-    width: 50%;
-}
-
-.time_oparation h3 {
-    background: white;
-}
-
-.time_oparation p {
-    margin-top: 10%;
-    width: 60%;
-    height: 5vh;
-}
-
-.time_oparation img {
-    width: 60%;
-}
-
-.adress h3 {
-    background: white;
-}
-
-.adress p {
-    margin-top: 10%;
-    width: 60%;
-    height: 5vh;
-}
-
-.adress img {
-    width: 60%;
-}
-
-.reclamacao_fundo {
-    background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
-    background-size: cover;
-}
-
-.help_opcidade {
-    background: #00000067;
-}
-
-.reclamacao {
-    color: white;
-    margin: 0 5%;
-    height: 80vh;
-    width: 100%;
-    max-width: 600px;
-    border-top-right-radius: 19px;
-    border-top-left-radius: 19px;
-    background: #00000052;
-}
-
-.reclamacao h1 {
-    text-align: center;
-    margin-top: 6%;
-    margin-bottom: 5%;
-}
-
-#dados {
-    width: 50%;
-    height: 4vh;
-    margin: 3.5% 3%;
-    padding: 3% 1%;
-    border-radius: 10px;
-    background: rgba(128, 128, 128, 0.433);
-}
-
-#descricao {
-    width: 100%;
-    height: 35vh;
-    margin-top: 2.9%;
-    max-width: 596px;
-    background: rgba(128, 128, 128, 0.433);
-
-}
-
-@media (min-width: 1200px) {
+@media only screen and(min-width: 1200px) {
     header {
         border-style: inset;
         border-color: #908e8e;
-        background-image: url(../assets/internet-1.jpg);
+        background-image: url(/src/public/assets/internet-1.jpg);
 
     }
 
@@ -361,7 +143,7 @@ a {
 
     .inicio {
         display: flex;
-        height: 80vh;
+        height: 50vh;
     }
 
     .inicio img {
@@ -371,7 +153,7 @@ a {
     .text-inicio {
         color: white;
         width: 100%;
-        height: 80vh;
+        height: 50vh;
         position: absolute;
         background: #00000082;
     }
@@ -393,19 +175,24 @@ a {
 
     .container2 {
         width: 100%;
-        height: 60vh;
+        height: 70vh;
         display: flex;
         font-size: 20px;
         align-items: center;
-        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-image: url(/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
         background-size: cover;
         background-repeat: no-repeat;
     }
+    .container2_image img{
+        width: 100%;
+    }
 
-
+    #camel{
+        width: 460px;
+    }
     .information {
-        width: 50%;
-        height: 60vh;
+        width: 100%;
+        height: 100%;
         background: #0000007a;
     }
 
@@ -420,7 +207,6 @@ a {
         width: 100%;
         margin: auto;
         display: flex;
-        max-width: 800px;
         padding-top: 3%;
         padding-left: 10px;
         font-size: 1em;
@@ -532,7 +318,7 @@ a {
     }
 
     .reclamacao_fundo {
-        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-image: url(/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
         background-size: cover;
     }
 
@@ -576,7 +362,235 @@ a {
     }
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 992px) {
+
+    .inicio {
+        display: flex;
+        height: 40vh;
+    }
+    .inicio img{
+        width: 100%;
+    }
+
+    .text-inicio {
+        color: white;
+        width: 100%;
+        height: 40vh;
+        position: absolute;
+        background: #00000082;
+    }
+
+    .text-inicio h1 {
+        font-size: 4rem;
+        text-align: center;
+        margin: 7% 0;
+    }
+
+    .text-inicio span {
+        width: 60%;
+        margin: 0 19%;
+        display: flex;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    .container2 {
+        width: 100%;
+        height: 35vh;
+        display: flex;
+        font-size: 1.12rem;
+        align-items: center;
+        background-image: url(/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .container2_image {
+        display: flex;
+        align-items: center;
+        width: auto;
+        width: 450px;
+    }
+
+    .container2_image img {
+        width:100%;
+        height: auto;
+    }
+    .information {
+        width: 100%;
+        height: 35vh;
+        padding-top: 2%;
+        background: #0000007a;
+    }
+
+    /*background: #0000007a;*/
+
+    .information img {
+        width: 10%;
+        height: 7vh;
+    }
+
+    .mision1, .mision2, .mision {
+        color: white;
+        width: 100%;
+        margin: 2% 0;
+        display: flex;
+        max-width: 800px;
+        padding-top: 3%;
+        font-size: 0.9em;
+    }
+    .mision1 img{
+        margin-top: -0.8%;
+        height: 4%;
+    }
+    .mision2 img{
+        margin-top: 2%;
+        height: 4vh;
+    }
+    .mision img{
+        margin-top: -0.3%;
+        width: 130px;
+        height: 5vh;
+    }
+
+  
+
+    .mision_imagem {
+        width: 50px;
+    }
+
+    .mision_imagem img {
+        width: 100%;
+    }
+
+
+    
+
+    .help {
+        width: 100%;
+        height: 70vh;
+        display: flex;
+        color: white;
+        padding-top: 7%;
+        padding-left: 5%;
+    }
+
+    .help h1 {
+        font-weight: bold;
+    }
+
+    .our_information {
+        width: 100%;
+        height: 55vh;
+        padding: 7% 0 0 9%;
+        border-radius: 20px;
+        background: #00000052;
+    }
+
+    .our_information h1 {
+        font-size: 1.5em;
+    }
+
+    .our_information div {
+        padding: 1% 0;
+    }
+
+    .imagem {
+        width: 60%;
+        height: 90px;
+    }
+
+    .our_information img {
+        width: 100%;
+    }
+
+    .adress, .fone, .time_oparation {
+        width: 100%;
+        max-width: 300px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .fone p {
+        margin-top: 7%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .fone img {
+        padding-top: 2%;
+        width: 50%;
+    }
+
+    .time_oparation p {
+        margin-top: 10%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .time_oparation img {
+        padding-top: 15%;
+        width: 60%;
+    }
+
+    .adress p {
+        margin-top: 10%;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .adress img {
+        width: 60%;
+    }
+
+    .reclamacao_fundo {
+        background-image: url(/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-size: cover;
+    }
+
+    .help_opcidade {
+        background: #00000067;
+    }
+
+    .reclamacao {
+        color: white;
+        margin: 0 5%;
+        height: 55vh;
+        width: 100%;
+        border-top-right-radius: 19px;
+        border-top-left-radius: 19px;
+        background: #00000052;
+    }
+
+    .reclamacao h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-top: 14%;
+        margin-bottom: 14%;
+    }
+
+    #dados {
+        width: 80%;
+        height: 4vh;
+        margin: 3.5% 3%;
+        padding: 3% 1%;
+        border-radius: 10px;
+        background: rgba(128, 128, 128, 0.433);
+    }
+
+    #descricao {
+        width: 100%;
+        height: 20vh;
+        margin-top: 10%;
+        max-width: 596px;
+        background: rgba(128, 128, 128, 0.433);
+
+    }
+
+
+}
+
+
+@media only screen and (max-width: 768px) {
     .navigation {
         display: block;
     }
@@ -596,14 +610,15 @@ a {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 52px;
+        top: 85px;
         gap: 0;
         border-radius: 0 0 10px 20px;
-        background: #00000090;
+        background: #000000;
         text-align: center;
         flex-direction: column;
-        width: 100%;
+        width: 20%;
         transition: 0.3s;
+
     }
 
     .nav-item {
@@ -618,6 +633,9 @@ a {
         display: flex;
         height: 40vh;
     }
+    .inicio img{
+        width: 100%;
+    }
 
     .text-inicio {
         color: white;
@@ -628,7 +646,7 @@ a {
     }
 
     .text-inicio h1 {
-        font-size: 3rem;
+        font-size: 4rem;
         text-align: center;
         margin: 7% 0;
     }
@@ -638,7 +656,7 @@ a {
         margin: 0 19%;
         display: flex;
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .container2 {
@@ -647,7 +665,7 @@ a {
         display: flex;
         font-size: 20px;
         align-items: center;
-        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-image: url(/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
         background-size: cover;
         background-repeat: no-repeat;
     }
@@ -665,7 +683,7 @@ a {
     }
 
     .information {
-        width: 50%;
+        width: 100%;
         height: 30vh;
         background: #0000007a;
     }
@@ -675,43 +693,32 @@ a {
         padding-top: 2%;
         height: 60px;
     }
-
-    .mision {
+    .mision1, .mision2, .mision {
         color: white;
         width: 100%;
         margin: auto;
         display: flex;
-        max-width: 1000px;
-        padding-top: 3%;
-        padding-left: 10px;
-        font-size: 0.9rem;
+        max-width: 800px;
+        padding: 5% 0;
+        font-size: 0.6em;
     }
-
-    #solucao {
-        margin-top: 3%;
+    
+    .mision1 img{
+        margin-top: -2%;
+        height: 4vh;
     }
-
-    .mision .ajuste p {
-        margin-top: 200px;
+    .mision2 img{
+        padding-top: 2%;
+        height: 5vh;
     }
-
-    .mision p {
-        margin-top: 2%;
-        margin-left: 2%;
-    }
-
-    .mision_imagem {
-        width: 300px;
-
-    }
-
-    .mision_imagem img {
-        width: 100%;
+    .mision img{
+        margin-top: -2%;
+        height: 5vh;
     }
 
     .help {
         padding-top: 7%;
-        padding-left: 13%;
+        padding-left: 6%;
         width: 100%;
         height: 60vh;
         display: flex;
@@ -726,14 +733,13 @@ a {
         background: #00000052;
         width: 100%;
         height: 50vh;
-        max-width: 500px;
         padding-left: 5%;
         padding-top: 6%;
         border-radius: 20px;
     }
 
     .our_information h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .our_information div {
@@ -780,7 +786,7 @@ a {
     }
 
     .adress p {
-        margin-top: 10%;
+        margin-top: 2%;
         width: 60%;
         height: 5vh;
     }
@@ -790,7 +796,7 @@ a {
     }
 
     .reclamacao_fundo {
-        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-image: url(/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
         background-size: cover;
     }
 
@@ -811,7 +817,7 @@ a {
 
     .reclamacao h1 {
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.9rem;
         margin-top: 14%;
         margin-bottom: 14%;
     }
@@ -819,7 +825,7 @@ a {
     #dados {
         width: 80%;
         height: 4vh;
-        margin: 3.5% 3%;
+        margin: 2% 3%;
         padding: 3% 1%;
         border-radius: 10px;
         background: rgba(128, 128, 128, 0.433);
@@ -827,88 +833,151 @@ a {
 
     #descricao {
         width: 100%;
-        height: 20vh;
-        margin-top: 17%;
-        max-width: 596px;
+        height: 18vh;
         background: rgba(128, 128, 128, 0.433);
 
     }
 }
 
-@media (min-width: 992px) {
+@media only screen and (max-width: 600px) {
 
+    .navigation {
+        display: block;
+    }
+
+    .navigation.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navigation.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .navigation.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 85px;
+        gap: 0;
+        border-radius: 0 0 10px 20px;
+        background: #000000;
+        text-align: center;
+        flex-direction: column;
+        width: 20%;
+        height: 30vh;
+        transition: 0.3s;
+
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+
+    .inicio {
+        display: flex;
+        height: 30vh;
+    }
+    .inicio img{
+        width: 100%;
+    }
+
+    .text-inicio {
+        color: white;
+        width: 100%;
+        height: 30vh;
+        position: absolute;
+        background: #00000082;
+    }
+
+    .text-inicio h1 {
+        font-size: 2em;
+        text-align: center;
+        margin: 7% 0;
+    }
+
+    .text-inicio span {
+        width: 60%;
+        margin: 0 19%;
+        display: flex;
+        text-align: center;
+        font-size: 1.2em;
+    }
 
     .container2 {
         width: 100%;
-        height: 60vh;
+        height: 23vh;
         display: flex;
         font-size: 20px;
         align-items: center;
-        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-image: url(/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
         background-size: cover;
         background-repeat: no-repeat;
     }
+    .container2_image {
+        display: flex;
+        align-items: center;
+        width: auto;
+        width: 350px;
+        height: 200px;;
+    }
 
+    .container2_image img {
+        width:100%;
+        height: 100%;
+        height: auto;
+    }
     .information {
-        width: 70%;
-        height: 60vh;
+        width: 100%;
+        height: 23vh;
+        padding-top: 2%;
         background: #0000007a;
     }
 
     /*background: #0000007a;*/
 
     .information img {
-        padding-top: 2%;
         width: 10%;
-        height: 10vh;
+        height: 7vh;
     }
 
-    .mision {
+    .mision1, .mision2, .mision {
         color: white;
         width: 100%;
         margin: auto;
         display: flex;
         max-width: 800px;
-        padding-top: 3%;
-        padding-left: 10px;
-        font-size: 0.9em;
+        padding: 3% 0;
+        font-size: 0.6em;
     }
-
-    .mision .ajuste p {
-        margin-top: 200px;
+    
+    .mision1 img{
+        height: 4vh;
     }
-
-    .mision p {
-        margin-top: 2%;
+    .mision2 img{
+        padding-top: 2%;
+        height: 5vh;
     }
-
-    .mision_imagem {
-        width: 50px;
+    .mision img{
+        height: 5vh;
     }
-
-    .mision_imagem img {
-
-        width: 100%;
-    }
+    
 
 
-    .container2_image {
-        display: flex;
-        align-items: center;
-        width: auto;
-        margin-left: 1%;
-    }
-
-    .container2_image img {
-        width: 340px;
-        height: auto;
-    }
+    
 
     .help {
         padding-top: 7%;
         padding-left: 13%;
         width: 100%;
-        height: 100vh;
+        height: 57vh;
         display: flex;
         color: white;
     }
@@ -916,19 +985,21 @@ a {
     .help h1 {
         font-weight: bold;
     }
+    .help_opcidade {
+        background: #00000067;
+    }
 
     .our_information {
         background: #00000052;
         width: 100%;
-        height: 75vh;
-        max-width: 500px;
-        padding-left: 5%;
+        height: 44vh;
+        padding-left: 2%;
         padding-top: 4%;
         border-radius: 20px;
     }
 
     .our_information h1 {
-        font-size: 1.3rem;
+        font-size: 1em;
     }
 
     .our_information div {
@@ -946,15 +1017,15 @@ a {
 
     .adress, .fone, .time_oparation {
         width: 100%;
-        max-width: 300px;
+        font-size: 0.8rem;
         display: flex;
-        justify-content: space-between;
     }
 
     .fone p {
         margin-top: 7%;
         width: 60%;
         height: 5vh;
+        
     }
 
     .fone img {
@@ -984,20 +1055,16 @@ a {
     }
 
     .reclamacao_fundo {
-        background-image: url(../assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-image: url(/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
         background-size: cover;
     }
 
-    .help_opcidade {
-        background: #00000067;
-    }
-
+    
     .reclamacao {
         color: white;
         margin: 0 5%;
-        height: 75vh;
+        height: 44vh;
         width: 100%;
-        max-width: 600px;
         border-top-right-radius: 19px;
         border-top-left-radius: 19px;
         background: #00000052;
@@ -1005,14 +1072,14 @@ a {
 
     .reclamacao h1 {
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.1em;
         margin-top: 14%;
         margin-bottom: 14%;
     }
 
     #dados {
         width: 80%;
-        height: 4vh;
+        height: 3vh;
         margin: 3.5% 3%;
         padding: 3% 1%;
         border-radius: 10px;
@@ -1027,23 +1094,9 @@ a {
         background: rgba(128, 128, 128, 0.433);
 
     }
-
-
 }
 
-@media (min-width: 600px) {
 
-    .container2{
-        justify-content: space-between;
-    }
-    
-    
-    .container2_image img{
-        width: 100%;
-    }
-    .information {
-        width: 60%;
-        height: 30vh;
-        background: #0000007a;
-    }
-}
+
+
+

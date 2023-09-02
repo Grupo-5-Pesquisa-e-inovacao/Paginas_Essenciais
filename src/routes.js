@@ -9,13 +9,13 @@ server.get('/teste', (req, res) =>{
 });
 
 server.get('/home', (req, res) =>{
-    res.sendFile(__dirname + 'caminho relativo do arquivo home')
+    res.sendFile(__dirname + '/paginasHTML/index.html')
 });
 
-server.get('/login-cadastro', (req, res) =>{
-    res.sendFile(__dirname + 'caminho relativo do arquivo login e cadastro')
+server.get('/cadastro', (req, res) =>{
+    res.sendFile(__dirname + '/paginasHTML/loginCadastro.html')
 });
 
 server.listen(porta,() => {
-    console.log(`Servidor rodando na porta http://localhost:${porta}!!!`)
+    console.log(`Servidor rodando na porta http://localhost:${porta}/home !!!`)
 })
