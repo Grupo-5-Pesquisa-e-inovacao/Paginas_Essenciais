@@ -273,7 +273,7 @@ i {
   .container {
     width: 80%; 
     max-width: 350px; 
-    height: 30vh;
+    height: 35vh;
     padding: 0;
     margin-bottom: 5%;
     transition: .3s;
@@ -360,3 +360,5 @@ i {
     width: 100%; /* Alterei para ocupar a largura total da tela */
   }
 }
+
+
