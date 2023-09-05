@@ -175,7 +175,7 @@ a {
 
 .help {
     width: 100%;
-    height: 90vh;
+    height: 60vh;
     display: flex;
     color: white;
     padding-top: 3%;
@@ -191,7 +191,7 @@ a {
 
 .our_information {
     width: 100%;
-    height: 70vh;
+    height: 50vh;
     max-width: 400px;
     background: #00000052;
     padding-left: 3%;
@@ -269,7 +269,7 @@ a {
 .reclamacao {
     color: white;
     margin: 0 5%;
-    height: 70vh;
+    height: 50vh;
     width: 100%;
     max-width: 350px;
     border-top-right-radius: 19px;
@@ -294,7 +294,7 @@ a {
 
 #descricao {
     width: 100%;
-    height: 30vh;
+    height: 20vh;
     margin-top: 9.5%;
     background: rgba(128, 128, 128, 0.433);
 
@@ -783,7 +783,7 @@ a {
 
     #descricao {
         width: 100%;
-        height: 20vh;
+        height: 18vh;
         margin-top: 10%;
         max-width: 596px;
         background: rgba(128, 128, 128, 0.433);
@@ -815,12 +815,13 @@ a {
         position: fixed;
         left: -100%;
         top: 85px;
-        gap: 0;
+        gap: 1rem;
         border-radius: 0 0 10px 20px;
         background: #000000;
         text-align: center;
         flex-direction: column;
         width: 20%;
+        height: 30vh;
         transition: 0.3s;
 
     }
@@ -1043,7 +1044,7 @@ a {
 
     #descricao {
         width: 100%;
-        height: 14vh;
+        height: 16vh;
         background: rgba(128, 128, 128, 0.433);
 
     }
@@ -1071,7 +1072,7 @@ a {
         position: fixed;
         left: -100%;
         top: 85px;
-        gap: 0;
+        gap: 1rem;
         border-radius: 0 0 10px 20px;
         background: #000000;
         text-align: center;
