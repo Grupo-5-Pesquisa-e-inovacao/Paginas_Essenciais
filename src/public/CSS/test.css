@@ -10,7 +10,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  background-image: url(../assets/Fundo\ Grande\ Cartaz\ De\ Fundo\ De\ Negócios\ De\ Tecnologia\ Azul\ De\ Internet\ Tecnologia\ Azul\ Sentido\ Tecnológico\ Negócio\ Atmosfera\ Dados\ Papel\ de\ Parede\ Para\ Download\ Gratuito\ -\ Pngtree.jpg);
+  background-image: url(./Fundo\ Grande.jpg);
   backdrop-filter: blur(7px);
   overflow-x: hidden;
 }
