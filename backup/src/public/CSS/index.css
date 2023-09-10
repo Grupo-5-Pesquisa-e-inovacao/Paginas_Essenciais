@@ -322,7 +322,9 @@ a {
     border-radius: 10px;
     background: rgba(128, 128, 128, 0.433);
 }
-
+.descricao h1{
+    display: none;
+}
 #descricao {
     width: 100%;
     height: 25vh;
@@ -600,7 +602,9 @@ a {
         border-radius: 10px;
         background: rgba(128, 128, 128, 0.433);
     }
-
+    .descricao h1{
+        display: none;
+    }
     #descricao {
         width: 100%;
         height: 25vh;
@@ -826,7 +830,9 @@ a {
         border-radius: 10px;
         background: rgba(128, 128, 128, 0.433);
     }
-
+    .descricao h1{
+        display: none;
+    }
     #descricao {
         width: 100%;
         height: 18vh;
@@ -1092,7 +1098,9 @@ a {
         border-radius: 10px;
         background: rgba(128, 128, 128, 0.433);
     }
-
+    .descricao h1{
+        display: none;
+    }
     #descricao {
         width: 100%;
         height: 16vh;
@@ -1355,7 +1363,9 @@ a {
         border-radius: 10px;
         background: rgba(128, 128, 128, 0.433);
     }
-
+    .descricao h1{
+        display: none;
+    }
     #descricao {
         width: 100%;
         height: 10vh;
@@ -1635,6 +1645,7 @@ a {
         width: 50%;
     }
     .descricao h1{
+        display: block;
         font-size: 1.5rem;
     }
     #descricao {
