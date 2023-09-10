@@ -8,21 +8,22 @@ body {
     width: 100%;
     height: 100vh;
 }
+
 ::-webkit-scrollbar {
     width: 7px;
     background: #02002a;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: #3e1cff;
     border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #0f0064;
-  }
+}
 
 
 
@@ -115,7 +116,7 @@ a {
     width: 50%;
     margin: 0 27%;
     display: flex;
-    text-align: center; 
+    text-align: center;
     font-size: 2rem;
 }
 
@@ -131,12 +132,14 @@ a {
     background-size: cover;
     background-repeat: no-repeat;
 }
-.container2_image{
+
+.container2_image {
     width: 30%;
     height: 400px;
     margin: 0 auto;
 }
-.container2_image img{
+
+.container2_image img {
     width: 100%;
     height: 100%;
 }
@@ -178,21 +181,24 @@ a {
     padding-top: 3%;
     font-size: 1.3rem;
 }
-.mision1 img{
+
+.mision1 img {
     margin-top: -0.8%;
     width: 13%;
     height: 8vh;
 }
-.mision2 img{
+
+.mision2 img {
     margin-top: 1%;
     width: 12%;
     height: 8vh;
 }
-.mision3 img{
+
+.mision3 img {
     margin-top: -2%;
     width: 15%;
     height: 130px;
-}     
+}
 
 .help {
     width: 100%;
@@ -206,6 +212,7 @@ a {
 .help h1 {
     font-weight: bold;
 }
+
 .help_opcidade {
     background: #00000067;
 }
@@ -219,8 +226,9 @@ a {
     padding-top: 3%;
     border-radius: 20px;
 }
-.our_information h1{
-    font-size:1.5rem;
+
+.our_information h1 {
+    font-size: 1.5rem;
 }
 
 .our_information div {
@@ -254,6 +262,7 @@ a {
     width: 60%;
     height: 12vh;
 }
+
 .fone p {
     width: 100%;
     height: 10vh;
@@ -266,6 +275,7 @@ a {
     width: 60%;
     height: 12vh;
 }
+
 .time_oparation p {
     width: 100%;
     height: 10vh;
@@ -320,8 +330,8 @@ a {
     background: rgba(128, 128, 128, 0.433);
 
 }
-  
-  @media only screen and (max-width: 1200px){
+
+@media only screen and (max-width: 1200px) {
     header {
         border-style: inset;
         border-color: #908e8e;
@@ -425,20 +435,24 @@ a {
         background-size: cover;
         background-repeat: no-repeat;
     }
-    .container2_image{
+
+    .container2_image {
         width: 800px;
         height: 450px;
     }
-    .container2_image img{
+
+    .container2_image img {
         width: 100%;
         height: 100%;
     }
+
     .information {
         width: 100%;
         height: 100%;
         background: #0000007a;
     }
-   .mision1, .mision2, .mision3 {
+
+    .mision1, .mision2, .mision3 {
         color: white;
         width: 100%;
         margin: 6% 0;
@@ -446,14 +460,17 @@ a {
         max-width: 800px;
         font-size: 1em;
     }
-    .mision1 img{
+
+    .mision1 img {
         height: 4%;
     }
-    .mision2 img{
+
+    .mision2 img {
         width: 150px;
         height: 65px;
     }
-    .mision3 img{
+
+    .mision3 img {
         margin-top: -2%;
         width: 150px;
         height: 100px;
@@ -600,7 +617,8 @@ a {
         display: flex;
         height: 40vh;
     }
-    .inicio img{
+
+    .inicio img {
         width: 100%;
     }
 
@@ -636,6 +654,7 @@ a {
         background-size: cover;
         background-repeat: no-repeat;
     }
+
     .container2_image {
         display: flex;
         align-items: center;
@@ -644,9 +663,10 @@ a {
     }
 
     .container2_image img {
-        width:100%;
+        width: 100%;
         height: auto;
     }
+
     .information {
         width: 100%;
         height: 35vh;
@@ -670,22 +690,25 @@ a {
         padding-top: 3%;
         font-size: 0.9em;
     }
-    .mision1 img{
+
+    .mision1 img {
         margin-top: -0.8%;
         height: 4%;
     }
-    .mision2 img{
+
+    .mision2 img {
         margin-top: 2%;
         height: 4vh;
     }
-    .mision3 img{
+
+    .mision3 img {
         margin-top: -0.3%;
         width: 130px;
         height: 5vh;
     }
 
 
-    
+
 
     .help {
         width: 100%;
@@ -731,6 +754,7 @@ a {
         display: flex;
         justify-content: space-between;
     }
+
     .adress p {
         width: 80%;
         height: 10vh;
@@ -742,6 +766,7 @@ a {
         width: 60%;
         height: 10vh;
     }
+
     .fone p {
         width: 100%;
         height: 8vh;
@@ -765,7 +790,7 @@ a {
         height: 8vh;
     }
 
-    
+
 
     .reclamacao_fundo {
         background-image: url(/backup/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
@@ -859,7 +884,8 @@ a {
         display: flex;
         height: 40vh;
     }
-    .inicio img{
+
+    .inicio img {
         width: 100%;
     }
 
@@ -919,6 +945,7 @@ a {
         padding-top: 2%;
         height: 60px;
     }
+
     .mision1, .mision2, .mision3 {
         color: white;
         width: 100%;
@@ -928,16 +955,18 @@ a {
         padding: 5% 0;
         font-size: 0.6em;
     }
-    
-    .mision1 img{
+
+    .mision1 img {
         margin-top: -2%;
         height: 4vh;
     }
-    .mision2 img{
+
+    .mision2 img {
         padding-top: 2%;
         height: 5vh;
     }
-    .mision3 img{
+
+    .mision3 img {
         margin-top: -2%;
         height: 5vh;
     }
@@ -999,6 +1028,7 @@ a {
         width: 60%;
         height: 8vh;
     }
+
     .fone p {
         margin-top: 7%;
         width: 60%;
@@ -1012,7 +1042,7 @@ a {
     }
 
     .time_oparation p {
-        margin:  0 ;
+        margin: 0;
         width: 60%;
         height: 8vh;
         font-size: 1rem;
@@ -1025,7 +1055,7 @@ a {
         height: 8vh;
     }
 
-    
+
 
     .reclamacao_fundo {
         background-image: url(/backup/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
@@ -1113,11 +1143,13 @@ a {
     }
 
 
+
     .inicio {
         display: flex;
         height: 30vh;
     }
-    .inicio img{
+
+    .inicio img {
         width: 100%;
     }
 
@@ -1153,19 +1185,22 @@ a {
         background-size: cover;
         background-repeat: no-repeat;
     }
+
     .container2_image {
         display: flex;
         align-items: center;
         width: auto;
         width: 350px;
-        height: 200px;;
+        height: 200px;
+        ;
     }
 
     .container2_image img {
-        width:100%;
+        width: 100%;
         height: 100%;
         height: auto;
     }
+
     .information {
         width: 100%;
         height: 23vh;
@@ -1175,7 +1210,7 @@ a {
 
     /*background: #0000007a;*/
 
-    
+
 
     .mision1, .mision2, .mision {
         color: white;
@@ -1186,25 +1221,27 @@ a {
         padding: 3% 0;
         font-size: 0.5em;
     }
-    
-    .mision1 img{
+
+    .mision1 img {
         height: 4vh;
     }
-    .mision2 img{
+
+    .mision2 img {
         padding: 0;
         margin: 0;
         padding-top: 2%;
         height: 5vh;
     }
-    .mision img{
+
+    .mision img {
         padding: 0;
         margin: 0;
         height: 5vh;
     }
-    
 
 
-    
+
+
 
     .help {
         padding-top: 7%;
@@ -1218,6 +1255,7 @@ a {
     .help h1 {
         font-weight: bold;
     }
+
     .help_opcidade {
         background: #00000067;
     }
@@ -1248,14 +1286,14 @@ a {
         width: 100%;
     }
 
-   
+
 
     .fone p {
         margin-top: 7%;
         width: 70%;
         height: 5vh;
         font-size: 0.9rem;
-        
+
     }
 
     .fone img {
@@ -1291,7 +1329,7 @@ a {
         background-size: cover;
     }
 
-    
+
     .reclamacao {
         color: white;
         margin: 0 5%;
@@ -1329,6 +1367,280 @@ a {
 }
 
 
+@media only screen and (max-width: 360px) {
+
+    .navigation {
+        display: block;
+    }
+
+    .navigation.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navigation.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .navigation.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 90px;
+        gap: 1rem;
+        border-radius: 0 0 10px 20px;
+        background: #000000;
+        text-align: center;
+        flex-direction: column;
+        width: 20%;
+        height: 20vh;
+        transition: 0.3s;
+
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    li {
+        list-style: none;
+    }
 
 
 
+
+
+    .divLogo {
+        padding: 5px;
+        width: 90px;
+        height: 8vh;
+    }
+
+
+
+
+
+    .inicio {
+        display: flex;
+        height: 30vh;
+    }
+
+    .inicio img {
+        width: 100%;
+    }
+
+    .text-inicio {
+        color: white;
+        width: 100%;
+        height: 30vh;
+        position: absolute;
+        background: #00000082;
+    }
+
+    .text-inicio h1 {
+        font-size: 1.7rem;
+        text-align: center;
+        margin: 7% 0;
+    }
+
+    .text-inicio span {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+
+    .container2 {
+        width: 100%;
+        height: 20vh;
+        display: flex;
+        align-items: center;
+        background-image: url(/backup/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .container2_image {
+        width: auto;
+        height: auto;
+    }
+
+    .container2_image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .information {
+        width: 100%;
+        height: 100%;
+        background: #0000007a;
+    }
+
+    .mision1, .mision2, .mision3 {
+        color: white;
+        width: 100%;
+        margin: 3% 0;
+        display: flex;
+        font-size: 0.3rem;
+    }
+
+    .mision1 img {
+  
+        width: 65px;
+        height: 25px;
+    }
+
+    .mision2 img {
+        width: 100px;
+        height: 25px;
+    }
+
+    .mision3 img {
+        width: 100px;
+        height: 30px;
+    }
+
+
+
+    .help {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: auto;
+        display: block;
+        color: white;
+    }
+
+    .help h1 {
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
+
+
+    .our_information {
+        width: 100%;
+        height: auto;
+        padding-top: 6%;
+        border-radius: 0;
+        background: #00000052;
+    }
+
+    .our_information h1 {
+        font-size: 1.5rem;
+    }
+
+
+    .imagem {
+        width: 70px;
+        height: 70px;
+    }
+
+    .our_information img {
+        width: 100%;
+    }
+
+    .adress, .fone, .time_oparation {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .fone p {
+        margin-top: 1%;
+        width: 60%;
+        height: 8vh;
+        font-size: 1rem;
+    }
+
+    .fone img {
+        width: 100%;
+
+    }
+
+    .time_oparation p {
+        margin: 0;
+        font-size: 1rem;
+        width: 60%;
+        height: 5vh;
+    }
+
+    .time_oparation img {
+        padding: 0;
+        width: 100%;
+        height: 70px;
+    }
+
+    .adress p {
+
+        margin: 0;
+        width: 60%;
+        height: 10vh;
+        font-size: 1rem;
+    }
+
+    .adress img {
+        width: 100%;
+    }
+
+    .reclamacao_fundo {
+        background-image: url(/backup/src/public/assets/fundo-tecnico-abstrato-azul_588409-355.jpg);
+        background-size: cover;
+    }
+
+    .help_opcidade {
+        background: #00000067;
+    }
+
+    .reclamacao {
+        color: white;
+        height: 40vh;
+        width: 100%;
+        display: flex;
+        max-width: 400px;
+        padding: 0;
+        margin: 0;
+        border-top-right-radius: 19px;
+        border-top-left-radius: 19px;
+    }
+
+    .reclamacao h1 {
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+
+    .dados{
+        height: 40vh;
+    }
+    #dados {
+        width: 90%;
+        height: 4vh;
+        margin: 3.5% 3%;
+        padding: 3% 1%;
+        border-radius: 10px;
+        background: rgba(128, 128, 128, 0.433);
+    }
+
+    .descricao{
+        width: 50%;
+    }
+    .descricao h1{
+        font-size: 1.5rem;
+    }
+    #descricao {
+        width: 100%;
+        height: 20vh;
+        margin-top: 20%;
+        background: rgba(128, 128, 128, 0.433);
+    }
+}
