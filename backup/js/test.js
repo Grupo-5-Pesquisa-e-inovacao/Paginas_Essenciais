@@ -1,6 +1,7 @@
 
 const hamburguer = document.querySelector(".navigation");
 const navMenu = document.querySelector(".nav-menu");
+const main = document.querySelector("#main")
 
 hamburguer.addEventListener("click", () => {
     hamburguer.classList.toggle('active');
@@ -11,6 +12,9 @@ const Entrar = document.querySelector('#entrar')
 const Cadastro = document.querySelector('#cadastro')
 const btnColor = document.querySelector('.button-cor')
 const container = document.querySelector('.container');
+const bem_vindo = document.querySelector('.bem-vindo')
+
+
 
 
 function clicarEntrar() {
@@ -43,18 +47,13 @@ document.querySelector('#btnSignin').addEventListener('click', clicarEntrar);
 document.querySelector('#btnSignup').addEventListener('click', clicarCadastrar);
 
 
-window.addEventListener('resize', () => {
-  
-  if (window.innerWidth > 768) {
-    clicarEntrar();
-  } else {
-    clicarCadastrar(); 
-  }
-});
-
-
 if (window.innerWidth > 768) {
   clicarEntrar(); 
 } else {
   clicarCadastrar(); 
 }
+
+if (window.innerHeight == 880 && window.innerWidth == 360) {
+  container.style.height = "72vh"
+}
+

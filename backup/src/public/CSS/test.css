@@ -8,10 +8,8 @@
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  background-image: url(../assets/Fundo\ Grande\ Cartaz\ De\ Fundo\ De\ Negócios\ De\ Tecnologia\ Azul\ De\ Internet\ Tecnologia\ Azul\ Sentido\ Tecnológico\ Negócio\ Atmosfera\ Dados\ Papel\ de\ Parede\ Para\ Download\ Gratuito\ -\ Pngtree.jpg);
-  backdrop-filter: blur(7px);
+  background-image: url(https://wallpaperaccess.com/full/210912.jpg);
+  backdrop-filter: blur(4px);
   overflow-x: hidden;
 }
 
@@ -33,10 +31,6 @@ body {
   background: #0f0064;
 }
 
-header{
-    border-style: inset ;
-    border-color: #908e8e;
-}
 
 li{
     list-style: none;
@@ -54,7 +48,7 @@ a{
     justify-content: space-between;
     align-items: center;
     padding: 0 34px;
-    
+    font-style: italic;
 }
 
 .divLogo{
@@ -63,6 +57,12 @@ a{
     height: 8vh;  
   
 }
+
+.divLogo a{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-style: normal;
+}
+
 
 .Logo img{
     width: 100%;
@@ -82,6 +82,10 @@ a{
 
 .nav-link{
     transition: 0.5s ease;
+}
+
+a:hover{
+  color: #93e2ff;
 }
 
 .navigation{
@@ -108,10 +112,15 @@ main{
 }
 
 .bem-vindo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
     width: 30%;
     max-width: 400px;
     height: auto;
     color: white;
+    margin-right: 4.5%;
 }
 .bem-vindo h1{
     width: 90%;
@@ -140,6 +149,7 @@ main{
   transition: .3s;
   box-shadow: rgba(46, 124, 240, 0.4) 5px 5px, rgba(46, 124, 240, 0.3) 10px 10px, rgba(46, 124, 240, 0.2) 15px 15px, rgba(46, 124, 240, 0.1) 20px 20px, rgba(46, 124, 240, 0.05) 25px 25px;
   margin-bottom: 5%;
+  margin-left: 4.5%;
 }
 
 form {
@@ -168,19 +178,18 @@ form {
   border: none;
   position: relative;
   padding: 10px 29px;
+  font-style: italic;
 }
 
 .button-cor {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   left: 3px;
   width: 43.5%;
   height: 100%;
-  background: linear-gradient(to right, #5956e9, #a963f8);
+  background: linear-gradient(to right, #5956e9, #5233ff);
   border-radius: 30px;
-  transition: .3s;
+  transition: .3s ease-out;
+  box-shadow: #02002a2d 1.5px 1.5px 1.5px 1.5px;
 }
 
 input[type="text"], input[type="password"] {
@@ -190,10 +199,12 @@ input[type="text"], input[type="password"] {
   padding: 8px 0 8px 35px;
   outline: none;
   width: 100%;
+  box-shadow: #02002a2a 1.5px 1.5px 1.5px 1.5px;
+  font-style: italic;
 }
 
 button[type="submit"] {
-  background: #660fc8;
+  background: #000e78;
   color: white;
   border-radius: 30px;
   width: 100%;
@@ -203,6 +214,7 @@ button[type="submit"] {
   font-size: 15px;
   margin-top: 12%;
   cursor: pointer;
+  box-shadow: #02002a65 1.5px 1.5px 1.5px 1.5px;
 }
 
 #cadastro {
@@ -215,16 +227,33 @@ i {
   padding: 10px 10px;
 }
 
-.iEmail {
-  top: 60px;
+.input-1{
+  top: 38px;
 }
 
-.iPassword {
+
+.input-2 {
   top: 114px;
+  
 }
 
-.passwordConfirmation {
+.input-3 {
   top: 190px;
+  
+}
+
+
+.input-4 {
+  top: 265px;
+  
+}
+
+.input-5{
+  top: 342px;
+}
+
+.input-6{
+  top: 420px;
 }
 
 @media (max-width: 768px) {
@@ -246,17 +275,20 @@ i {
     left: -100%;
     top: 52px;
     gap: 0;
-    border-radius: 0 0 10px 20px;
-    background: #00000090;
+    border-radius: 5px;
+    background: #05002f59;
     text-align: center;
     flex-direction: column;
     width: 100%;
     transition: 0.3s;
+
   }
 
   .nav-item {
     margin: 10px 0;
   }
+
+  
 
   .nav-menu.active {
     left: 0;
@@ -271,12 +303,13 @@ i {
   }
 
   .container {
-    width: 80%; 
+    width: 100%; 
     max-width: 350px; 
     height: 35vh;
     padding: 0;
     margin-bottom: 5%;
     transition: .3s;
+    margin-left: 0;
   }
 
   .container input {
@@ -294,19 +327,38 @@ i {
     width: 85%;
     height: auto;
   }
-
-  .iEmail {
-    top: 60px;
+  .input-1{
+    top: 38px;
+    left: 15px;  
+  }
+  
+  
+  .input-2 {
+    top: 114px;
+    left: 15px;
+    
+  }
+  
+  .input-3 {
+    top: 190px;
+    left: 15px;
+    
+  }
+  
+  
+  .input-4 {
+    top: 265px;
+    left: 15px;
+    
+  }
+  
+  .input-5{
+    top: 342px;
     left: 15px;
   }
   
-  .iPassword {
-    top: 114px;
-    left: 15px;
-  }
-
-  .passwordConfirmation {
-    top: 190px;
+  .input-6{
+    top: 420px;
     left: 15px;
   }
 
@@ -344,6 +396,7 @@ i {
     text-align: center; /* Centralizei o texto */
     padding: 1%;
     margin-bottom: 7%;
+    margin-right: 0;
   }
 
   .bem-vindo h1 {
@@ -353,12 +406,6 @@ i {
     text-align: center;
   }
 
-  .bem-vindo p {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-top: 20px; /* Reduzi a margem superior para melhorar o espaçamento */
-    width: 100%; /* Alterei para ocupar a largura total da tela */
-  }
+  
 }
-
 
