@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../public/CSS/test.css">
+    <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+
+            <div class="divLogo">
+
+                <a href="./index.html" class="Logo">
+                    Div.
+                </a>
+            </div>
+
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+            </ul>
+
+            <div class="navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+        </nav>
+    </header>
+    <main>
+        <div class="bem-vindo">
+            <h1>Come make part of our soluction!</h1>
+            <p>
+                Register now and be more agile in indenting problems, which can case large damage
+            </p>
+        </div>
+        <div class="container">
+            <div class="login-cadastro">
+                <div class="button-cor"></div>
+                <button id="btnSignin">Login</button>
+                <button id="btnSignup">Cadastro</button>
+            </div>
+
+            <form id="entrar">
+                <input type="text" placeholder="Email" required />
+                <i class="fas fa-envelope iEmail" id="envelope_email"></i>
+                <input type="password" placeholder="Password" required />
+                <i class="fas fa-lock iPassword"></i>
+
+                <button type="submit" id="button-login-entrar">Entrar</button>
+            </form>
+
+            <form id="cadastro">
+                <input type="text" placeholder="Email" required />
+                <i class="fas fa-envelope iEmail" id="envelope_email"></i>
+                <input type="password" placeholder="Password" required />
+                <i class="fas fa-lock iPassword"></i>
+                <input type="password" placeholder="Password" required />
+                <i class="fas fa-lock passwordConfirmation"></i>
+                <input type="password" placeholder="Password" required />
+                <i></i>
+                <input type="password" placeholder="Password" required />
+                <i></i>
+                <input type="password" placeholder="Password" required />
+                <i></i>
+
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+
+        const hamburguer = document.querySelector(".navigation");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburguer.addEventListener("click", () => {
+            hamburguer.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        })
+
+        const Entrar = document.querySelector('#entrar')
+        const Cadastro = document.querySelector('#cadastro')
+        const btnColor = document.querySelector('.button-cor')
+        const container = document.querySelector('.container');
+
+
+        function clicarEntrar() {
+            Entrar.style.left = "25px";
+            Cadastro.style.left = "450px";
+            btnColor.style.left = "0px";
+            
+            if (window.innerWidth > 768) {
+                container.style.height = "62vh";
+            } else {
+                container.style.height = "35vh";
+            }
+            if (window.innerHeight < 1000) {
+                container.style.height = "62vh"
+            }
+        }
+
+
+
+
+        function clicarCadastrar() {
+            Entrar.style.left = "-450px";
+            Cadastro.style.left = "25px";
+            btnColor.style.left = "110px";
+            if (window.innerWidth > 768) {
+                container.style.height = "92vh";
+            } else {
+                container.style.height = "63vh";
+            }
+            if (window.innerHeight < 1000) {
+                container.style.height = "92vh"
+            }
+        }
+
+
+        document.querySelector('#btnSignin').addEventListener('click', clicarEntrar);
+        document.querySelector('#btnSignup').addEventListener('click', clicarCadastrar);
+
+
+        
+
+
+        if (window.innerWidth > 768) {
+            clicarEntrar();
+        } else {
+            clicarCadastrar();
+        }
+
+    </script>
+</body>
+
+</html>

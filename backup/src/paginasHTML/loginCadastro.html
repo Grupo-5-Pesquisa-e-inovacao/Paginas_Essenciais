@@ -43,47 +43,118 @@
             </p>
         </div>
         <div class="container">
-            <div class="login-cadastro">
-                <div class="button-cor"></div>
-                <button id="btnSignin" translate="no">Login</button>
-                <button id="btnSignup" translate="no">Cadastro</button>
+            <div class="flip-container">
+                <div class="flipper">
+                    <div class="front">
+
+                        
+
+                        <form class="formulario">
+                            <div class="cabecalhoLogin">
+                                <h1>Login</h1>
+                            </div>
+                            <span class="tipo_campo">Email</span>
+                            <div class="container-icon">
+                                <div class="icon">
+                                    <i><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg></i>
+                                    <div class="seta"></div>
+
+                                </div>
+                                <input id="emailInput" type="text" placeholder="Email coorporativo" maxlength="30">
+                                <div class="resultado_invalido" id="resultado_"></div>
+                            </div>
+
+                            <span class="tipo_campo">Senha</span>
+                            <div class="container-icon">
+                                <div class="icon">
+                                    <i><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg></i>
+
+                                    <div class="seta"></div>
+                                </div>
+                                <input id="senhaInput" type="password" placeholder="Senha">
+                            </div>
+
+                            <button type="submit" id="button-login-entrar">Entrar</button>
+
+                            <h6>Cadastre-se <b id="rotacionarCard">aqui!</b></h6>
+                        </form>
+
+                    </div>
+                    <div class="middle">
+                        <form class="formulario">
+                            <div class="cabecalhoLogin">
+                                <h1>Cadastro</h1>
+                            </div>
+                            <span class="tipo_campo">Razão Social</span>
+                            <div class="container-icon">
+                                <div class="icon">
+                                    <i><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16z"/></svg></i>
+                                    <div class="seta"></div>
+
+                                </div>
+                                <input id="razaoSocial_input" type="text" placeholder="Nome da Empresa" maxlength="30">
+                                <div class="resultado_invalido" id="resultado_"></div>
+                            </div>
+
+                            <span class="tipo_campo">CNPJ da Empresa</span>
+                            <div class="container-icon">
+                                <div class="icon">
+                                    <i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-buildings-fill" viewBox="0 0 16 16">
+                                        <path d="M15 .5a.5.5 0 0 0-.724-.447l-8 4A.5.5 0 0 0 6 4.5v3.14L.342 9.526A.5.5 0 0 0 0 10v5.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V14h1v1.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V.5ZM2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-1 2v1H2v-1h1Zm1 0h1v1H4v-1Zm9-10v1h-1V3h1ZM8 5h1v1H8V5Zm1 2v1H8V7h1ZM8 9h1v1H8V9Zm2 0h1v1h-1V9Zm-1 2v1H8v-1h1Zm1 0h1v1h-1v-1Zm3-2v1h-1V9h1Zm-1 2h1v1h-1v-1Zm-2-4h1v1h-1V7Zm3 0v1h-1V7h1Zm-2-2v1h-1V5h1Zm1 0h1v1h-1V5Z"/>
+                                      </svg></i>
+
+                                    <div class="seta"></div>
+                                </div>
+                                <input id="cnpj_input" type="text" placeholder="XX. XXX. XXX/0001-XX">
+                            </div>
+
+
+                            <span class="tipo_campo">Email corporativo para contato</span>
+                            <div class="container-icon">
+                                <div class="icon">
+                                    <i><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg></i>
+
+                                    <div class="seta"></div>
+                                </div>
+                                <input id="email_input" type="text" placeholder="empresa@email.com" maxlength="40">
+                            </div>
+
+
+
+                            <span class="tipo_campo">Telefone corporativo para contato</span>
+                            <div class="container-icon">
+                                <div class="icon">
+                                    <i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                                      </svg></i>
+
+                                    <div class="seta"></div>
+                                </div>
+                                <input id="telefone_input" type="text" placeholder="(DDD) XXXX-XXXX">
+                            </div>
+
+
+
+
+
+                            <div class="prosseguir">
+                                <h6>Próximo formulário </h6>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                    <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                  </svg>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
             </div>
 
-            <form id="entrar">
-                <input type="text" placeholder="Nome de usuário" required />
-                <i class="input-1"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg></i>
-                <input type="password" placeholder="Senha" required />
-                <i class="fas fa-lock input-2"></i>
-
-                <button type="submit" id="button-login-entrar">Entrar</button>
-            </form>
-            
-            <form id="cadastro">
-                
-                <input type="text" placeholder="Nome de usuário" required />
-                <i  class="input-1"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg></i>
-
-                <input type="text" placeholder="Nome fantasia" required />
-                <i class="input-2" ><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M288 64C64 64 0 160 0 272S80 448 176 448h8.4c24.2 0 46.4-13.7 57.2-35.4l23.2-46.3c4.4-8.8 13.3-14.3 23.2-14.3s18.8 5.5 23.2 14.3l23.2 46.3c10.8 21.7 33 35.4 57.2 35.4H400c96 0 176-64 176-176s-64-208-288-208zM96 256a64 64 0 1 1 128 0A64 64 0 1 1 96 256zm320-64a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg></i>
-
-                <input type="text" placeholder="CNPJ" required />
-                <i class="input-3"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h96c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H48zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm112-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM80 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V112zM272 96h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16z"/></svg></i>
-
-                <input type="text" placeholder="Razão social" required />
-                <i class="input-4"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V428.7c-2.7 1.1-5.4 2-8.2 2.7l-60.1 15c-3 .7-6 1.2-9 1.4c-.9 .1-1.8 .2-2.7 .2H240c-6.1 0-11.6-3.4-14.3-8.8l-8.8-17.7c-1.7-3.4-5.1-5.5-8.8-5.5s-7.2 2.1-8.8 5.5l-8.8 17.7c-2.9 5.9-9.2 9.4-15.7 8.8s-12.1-5.1-13.9-11.3L144 381l-9.8 32.8c-6.1 20.3-24.8 34.2-46 34.2H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h8.2c7.1 0 13.3-4.6 15.3-11.4l14.9-49.5c3.4-11.3 13.8-19.1 25.6-19.1s22.2 7.8 25.6 19.1l11.6 38.6c7.4-6.2 16.8-9.7 26.8-9.7c15.9 0 30.4 9 37.5 23.2l4.4 8.8h8.9c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7L384 203.6V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM549.8 139.7c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM311.9 321c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L512.1 262.7l-71-71L311.9 321z"/></svg></i>
-
-                <input type="password" placeholder="Senha" required />
-                <i class="fas fa-lock input-5"></i>
-
-                <input type="password" placeholder="Confirmação de senha" required />
-                <i class="fas fa-lock input-6"></i>
-                
-                
-              
 
 
-                <button type="submit">Cadastrar</button>
-            </form>
+
+
         </div>
     </main>
 
@@ -91,66 +162,38 @@
 
         const hamburguer = document.querySelector(".navigation");
         const navMenu = document.querySelector(".nav-menu");
-        
+
 
         hamburguer.addEventListener("click", () => {
             hamburguer.classList.toggle('active');
             navMenu.classList.toggle('active');
-        
+
         })
 
-        const Entrar = document.querySelector('#entrar')
-        const Cadastro = document.querySelector('#cadastro')
-        const btnColor = document.querySelector('.button-cor')
         const container = document.querySelector('.container');
+        const flipper = document.querySelector('.flipper')
+        const cardCadastro = document.querySelector('#rotacionarCard');
+        const prosseguir = document.querySelector('.prosseguir');
 
 
-        function clicarEntrar() {
-            Entrar.style.left = "25px";
-            Cadastro.style.left = "450px";
-            btnColor.style.left = "0px";
-            if (window.innerWidth > 768) {
-                container.style.height = "62vh";
-            } else {
-                container.style.height = "35vh";
-            }
-            if (window.innerHeight < 1000) {
-                container.style.height = "62vh"
-            }
-        }
+        cardCadastro.addEventListener('click', () => {
+            flipper.classList.toggle('rotacao');
+            container.classList.add('brilhoContainer')
+            setTimeout(() => {
+                container.classList.remove('brilhoContainer');
+            }, 200);
+        });
 
-
-
-
-        function clicarCadastrar() {
-            Entrar.style.left = "-450px";
-            Cadastro.style.left = "25px";
-            btnColor.style.left = "110px";
-            if (window.innerWidth > 768) {
-                container.style.height = "92vh";
-            } else {
-                container.style.height = "63vh";
-            }
-            if (window.innerHeight < 1000) {
-                container.style.height = "92vh"
-            }
-        }
-
-
-        document.querySelector('#btnSignin').addEventListener('click', clicarEntrar);
-        document.querySelector('#btnSignup').addEventListener('click', clicarCadastrar);
+        prosseguir.addEventListener('click', () => {
+            
+        })
 
 
 
-        if (window.innerWidth > 768) {
-            clicarEntrar();
-        } else {
-            clicarCadastrar();
-        }
 
-        if (window.innerHeight == 880 && window.innerWidth == 360) {
-            container.style.marginBottom = "20px";
-        }
+
+
+       
 
     </script>
 </body>

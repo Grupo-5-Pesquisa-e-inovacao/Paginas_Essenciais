@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 
 * {
   margin: 0;
@@ -137,9 +140,8 @@ main{
 .container {
   background-color: rgba(245, 245, 245, 0.693);
   padding: 6px;
-  width: 100%;
-  max-width: 350px;
-  height: 60vh;
+  width: 28%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,6 +152,8 @@ main{
   box-shadow: rgba(46, 124, 240, 0.4) 5px 5px, rgba(46, 124, 240, 0.3) 10px 10px, rgba(46, 124, 240, 0.2) 15px 15px, rgba(46, 124, 240, 0.1) 20px 20px, rgba(46, 124, 240, 0.05) 25px 25px;
   margin-bottom: 5%;
   margin-left: 4.5%;
+  transition: 500ms;
+  min-width: 500px;
 }
 
 form {
@@ -160,25 +164,46 @@ form {
   height: auto;
 }
 
-#envelope_email{
-  top: 40px;
+
+
+
+.cabecalhoLogin{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-family: 'Inter';
+  margin-bottom: 10%;
 }
 
-.login-cadastro {
-  margin-top: 12%;
-  margin-bottom: 5%;
+
+.container-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   position: relative;
-  border-radius: 30px;
-  padding: 0.5%;
+  right: 1;
 }
 
-.login-cadastro button {
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  position: relative;
-  padding: 10px 29px;
-  font-style: italic;
+.icon {
+  position: absolute;
+  left: 0;
+  margin-left: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+
+}
+
+.seta {
+  display: flex;
+  align-items: flex-start;
+  margin-right: 30%;
+  margin-bottom: 10%;
+  width: 28px;
+  height: 0px;
+  border: 0.5px solid #908e8e;
+  transform: rotate(90deg);
 }
 
 .button-cor {
@@ -192,16 +217,100 @@ form {
   box-shadow: #02002a2d 1.5px 1.5px 1.5px 1.5px;
 }
 
-input[type="text"], input[type="password"] {
-  border: none;
-  margin-top: 40px;
-  border-radius: 60px;
-  padding: 8px 0 8px 35px;
-  outline: none;
-  width: 100%;
-  box-shadow: #02002a2a 1.5px 1.5px 1.5px 1.5px;
-  font-style: italic;
+.formulario .tipo_campo {
+  font-size: 16px;
+  display: flex;
+  font-family: 'Inter';
 }
+
+.formulario {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2.5vh;
+  perspective: 1000px;
+}
+
+.formulario b{
+  color: #3e1cff;
+  cursor: pointer;
+}
+
+.formulario b:hover{
+  text-decoration: underline;
+}
+
+.formulario h6{
+  margin-top: 8%;
+}
+
+.brilhoContainer{
+  box-shadow: rgba(46, 124, 240, 0.7) 5px 5px, rgba(46, 124, 240, 0.6) 10px 10px, rgba(46, 124, 240, 0.4) 15px 15px, rgba(46, 124, 240, 0.3) 20px 20px, rgba(46, 124, 240, 0.2) 25px 25px;
+  transition: 500ms;
+}
+
+
+	/* feito com o hover */
+	
+
+.flip-container, .front, .middle {
+	width: 320px;
+	height: 480px;
+}
+
+/* velocidade da animação */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+/* esconder parte de trás do painel durante a troca */
+.front, .middle {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* coloca o painel frontal acima */
+.front {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+.rotacao{
+  transform: rotateY(180deg);
+
+}
+
+/* painel de volta, inicialmente escondido */
+.middle {
+  display: flex;
+  justify-content: center;
+	transform: rotateY(180deg);
+}
+
+.formulario input {
+  margin: 5px 0 15px 0;
+  border: 1px solid #000000;
+  padding: 1.5vh;
+  border-radius: 12px;
+  line-height: 0;
+  outline-color: #000e78;
+  font-family: 'Inter', FontAwesome;
+  line-height: 0;
+  width: 43vh;
+  padding-inline-start: 10vh;
+}
+
+
 
 button[type="submit"] {
   background: #000e78;
@@ -217,44 +326,10 @@ button[type="submit"] {
   box-shadow: #02002a65 1.5px 1.5px 1.5px 1.5px;
 }
 
-#cadastro {
-  left: 450px;
-}
-
-i {
-  position: absolute;
-  left: 0;
-  padding: 10px 10px;
-}
-
-.input-1{
-  top: 38px;
-}
 
 
-.input-2 {
-  top: 114px;
-  
-}
-
-.input-3 {
-  top: 190px;
-  
-}
 
 
-.input-4 {
-  top: 265px;
-  
-}
-
-.input-5{
-  top: 342px;
-}
-
-.input-6{
-  top: 420px;
-}
 
 @media (max-width: 768px) {
   .navigation {
@@ -296,20 +371,20 @@ i {
 
   main {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Alterei para 100% para ocupar a largura total da tela */
+    width: 95%; /* Alterei para 100% para ocupar a largura total da tela */
   }
 
   .container {
-    width: 100%; 
-    max-width: 350px; 
-    height: 35vh;
+    width: 90%;
+    height: 100%;
     padding: 0;
     margin-bottom: 5%;
     transition: .3s;
     margin-left: 0;
+    min-width: 400px;
   }
 
   .container input {
@@ -327,48 +402,29 @@ i {
     width: 85%;
     height: auto;
   }
-  .input-1{
-    top: 38px;
-    left: 15px;  
+
+
+  .formulario input {
+    margin: 5px 0 15px 0;
+    border: 1px solid #000000;
+    padding: 1.5vh;
+    border-radius: 12px;
+    line-height: 0;
+    outline-color: #000e78;
+    font-family: 'Inter', FontAwesome;
+    line-height: 0;
+    width: 38vh;
+    padding-inline-start: 10vh;
   }
-  
-  
-  .input-2 {
-    top: 114px;
-    left: 15px;
-    
-  }
-  
-  .input-3 {
-    top: 190px;
-    left: 15px;
-    
-  }
-  
-  
-  .input-4 {
-    top: 265px;
-    left: 15px;
-    
-  }
-  
-  .input-5{
-    top: 342px;
-    left: 15px;
-  }
-  
-  .input-6{
-    top: 420px;
-    left: 15px;
-  }
+
 
   button[type="submit"] {
     text-align: center;
     font-size: 14px;
     padding: 10px; 
     margin: 5px 0 0 0; 
-    width: 92%; 
-    margin-top: 11%;
+    width: 39vh; 
+    margin-top: 30%;
   }
 
   
@@ -409,3 +465,32 @@ i {
   
 }
 
+@media (max-width: 610px){
+  .container {
+    width: 90%;
+    height: 100%;
+    padding: 0;
+    margin-bottom: 5%;
+    transition: .3s;
+    margin-left: 0;
+    min-width: 525px;
+    min-height: 650px;
+  }
+
+  .cabecalhoLogin{
+    margin-bottom: 20%;
+  }
+
+  .formulario input {
+    margin: 5px 0 15px 0;
+    border: 1px solid #000000;
+    padding: 1.5vh;
+    border-radius: 12px;
+    line-height: 0;
+    outline-color: #000e78;
+    font-family: 'Inter', FontAwesome;
+    line-height: 0;
+    width: 38vh;
+    padding-inline-start: 10vh;
+  }
+}

@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Rubik";
+    overflow: hidden;
+}
+
+.maedetodos {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-color: white;
+}
+
+.nav-lateral {
+    display: flex;
+    background-color: #030227;
+    width: 20%;
+    height: 100%;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    position: fixed;
+}
+
+.logo {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.container-mae {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.nav-list {
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.nav-list li {
+    display: flex;
+    align-items: center;
+    width: 94%;
+    height: 40px;
+    padding-left: 1rem;
+}
+
+.maq {
+    background-color: rgba(46, 124, 240, 0.4);
+}
+
+
+.nav-list a {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    gap: 1rem;
+    width: 100%;
+}
+
+.nav-list li:hover {
+    cursor: pointer;
+    box-shadow: rgba(46, 124, 240, 0.7) 1px 1px, rgba(46, 124, 240, 0.6) 2px 2px, rgba(46, 124, 240, 0.4) 3px 3px, rgba(46, 124, 240, 0.3) 4px 4px, rgba(46, 124, 240, 0.2) 5px 5px;
+    background-color: rgba(46, 124, 240, 0.4);
+    scale: 1.01 ;
+    transition: .3s ease-in-out;
+}
+
+
+
+
+
+
+
+
