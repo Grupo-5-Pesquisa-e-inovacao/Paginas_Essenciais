@@ -160,6 +160,12 @@ body::-webkit-scrollbar {
     background-image: radial-gradient(circle at 62.62% 50%, #433986 0, #272652 50%, #272652 100%);
 }
 
+.logoFundo{
+    position: absolute;
+    z-index: 0;
+    opacity: 0.05;
+}
+
 .nav-lateral {
     display: flex;
     background-color: #030227;
@@ -296,6 +302,7 @@ main {
     height: 45vh;
     margin: 1%;
     box-shadow: #0000002d 2px 2px 2px 2px;
+    z-index: 2;
 }
 
 .opcoes_escondidas {
@@ -305,6 +312,7 @@ main {
     height: 100%;
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.247);
+    z-index: 3;
 }
 
 .opcoes_escolha {
