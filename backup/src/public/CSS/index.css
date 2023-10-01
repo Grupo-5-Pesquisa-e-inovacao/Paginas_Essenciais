@@ -174,7 +174,6 @@ a:hover{
     text-align: center;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
     border-radius: 5%;
     background-color:#d9d9d9;
     padding: 1%;
@@ -496,7 +495,6 @@ a:hover{
     text-align: center;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
     border-radius: 5%;
     background-color:#d9d9d9;
     padding: 1%;
@@ -817,7 +815,6 @@ a:hover{
     text-align: center;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
     border-radius: 5%;
     background-color:#d9d9d9;
     padding: 1%;
@@ -1150,7 +1147,6 @@ a:hover{
     text-align: center;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
     border-radius: 5%;
     background-color:#d9d9d9;
     padding: 1%;
@@ -1483,7 +1479,6 @@ a:hover{
     margin: 1%;
     text-align: center;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     border-radius: 5%;
     background-color:#d9d9d9;
@@ -1565,6 +1560,7 @@ footer{
     border-radius: 10px;
     transition: .3s;
     box-shadow: rgba(46, 124, 240, 0.4) 5px 5px, rgba(46, 124, 240, 0.3) 10px 10px, rgba(46, 124, 240, 0.2) 15px 15px, rgba(46, 124, 240, 0.1) 20px 20px, rgba(46, 124, 240, 0.05) 25px 25px;
+
     text-align: center;
   }
 
