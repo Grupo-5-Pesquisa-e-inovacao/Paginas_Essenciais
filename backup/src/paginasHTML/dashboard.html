@@ -10,8 +10,10 @@
 </head>
 
 <body>
-  
+
   <div class="maedetodos">
+
+
     <div class="opcoes_escondidas">
       <div class="opcoes_escolha">
         <div class="sair_opcoes">
@@ -123,7 +125,7 @@
         </div>
       </div>
     </div>
-    
+
 
 
     <nav class="nav-lateral">
@@ -134,7 +136,7 @@
       <div class="container-mae">
         <ul class="nav-list">
           <li class="maq">
-            <a href="#">
+            <a href="#" onclick="VisaoGeral()">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu"
                 viewBox="0 0 16 16">
                 <path
@@ -142,8 +144,8 @@
               </svg> Visão geral
             </a>
           </li>
-          <li onclick="ExibirMaquinas()">
-            <a href="#">
+          <li>
+            <a href="#" onclick="ExibirMaquinas()">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-pc-display" viewBox="0 0 16 16">
                 <path
@@ -152,7 +154,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="#" onclick="addMaquina()">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                 <path
@@ -228,13 +230,104 @@
           </div>
         </div> <!-- Você precisa adicionar esta linha para fechar a div graficos_container_baixo -->
 
-        </div>
-
-
-
       </div>
 
-    </main>
+
+
+  </div>
+
+  </main>
+
+  <main class="main_cadastro">
+
+    <div class="imgMonitorar">
+      <img src="../public/assets/monitorar.png" alt="">
+    </div>
+
+    <div class="maquina">
+
+      <h1>Nova Maquina</h1>
+
+      <div class="ajustando_dados">
+        <div class="dados">
+          <span>Resposavel</span>
+          <input type="text" name="" id="" placeholder="Pessoa responsavel">
+        </div>
+        <div class="dados">
+          <span>Numero de registro</span>
+          <input type="text" name="" id="" placeholder="identificação maquina">
+        </div>
+      </div>
+
+      <div class="SO">
+        <div class="SOpcoes">
+          <span><br> Sistema Operacional </span>
+
+          <select name="" required="required" size="4">
+
+            <option value="Microsoft Windows">Microsoft Windows</option>
+            <option value="Mac OS X">Mac OS X</option>
+            <option value="Linux">Linux</option>
+            <option value="Outros">Outros</option>
+            <option value="Debian">Debian</option>
+            <option value="Manjaro">Manjaro</option>
+            <option value="Ubuntu">Ubuntu</option>
+            <option value="Outros">Outros</option>
+
+          </select>
+        </div>
+        <div class="outro">
+          <span> <b>OUTROS</b></span>
+          <input type="text" name="" id="SOpcional" placeholder="Sistema Operacional">
+        </div>
+      </div>
+
+      <div class="monitorar">
+        <h6>Informações dos Hardwares</h6>
+        <div class="opcoes">
+
+          <div>
+            <div id="min_max" class="informacao1">
+              <p>Processador</p><br>
+              <div class="div_min_max">
+                <span>Min:</span>
+                <input type="text" name="" id="" placeholder="%">
+                <span>Max:</span>
+                <input type="text" name="" id="" placeholder="%">
+              </div>
+            </div>
+            <div class="informacao1">
+              <p>Disco</p><br>
+              <div class="div_min_max">
+                <span>Min:</span>
+                <input type="text" name="" id="" placeholder="%">
+                <span>Max:</span>
+                <input type="text" name="" id="" placeholder="%">
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div id="min_max" class="informacao1">
+              <p> RAM</p><br>
+              <div class="div_min_max">
+                <span>Min:</span>
+                <input type="text" name="" id="" placeholder="%">
+                <span>Max:</span>
+                <input type="text" name="" id="" placeholder="%">
+              </div>
+            </div>
+            <div class="informacao">
+              <p>Rede</p><br>
+              <input type="text" name="" id="" placeholder="Velocidade da Rede">
+            </div>
+
+          </div>
+        </div>
+        <button type="submit">Adicionar</button>
+      </div>
+    </div>
+  </main>
 
   </div>
 
@@ -251,14 +344,36 @@
   const exit_opcoes = document.querySelector('#exit_opcoes');
   const main = document.querySelector('main');
   const maedetodos = document.querySelector('.maedetodos');
+  const cadastroMaquina = document.querySelector('.main_cadastro')
+  const cabecalho = document.querySelector(".cabecalho_propriedades")
+  const graficos = document.querySelector(".graficos")
+
+  function VisaoGeral() {
+    cabecalho.style.display = 'flex'
+    graficos.style.display = 'flex'
+    cadastroMaquina.style.display = 'none';
+  }
 
   function ExibirMaquinas() {
-    opcoes_escondidas.style.display = 'block';
+    if (opcoes_escondidas.style.display == 'none') {
+      opcoes_escondidas.style.display = 'flex';
+    } else {
+      opcoes_escondidas.style.display = 'none'
+    }
+  }
+
+  function addMaquina() {
+    cabecalho.style.display = 'none'
+    opcoes_escondidas.style.display = 'none'
+    graficos.style.display = 'none'
+    cadastroMaquina.style.display = 'flex';
   }
 
   function SairExibirMaquinas() {
     opcoes_escondidas.style.display = 'none';
   }
+
+
 
   const ctx = document.getElementById('myChart');
   const ctx1 = document.getElementById('myChart2');
@@ -510,7 +625,7 @@
   }
   );
 
-  
+
 
 
 
