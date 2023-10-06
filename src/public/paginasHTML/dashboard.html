@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../CSS/dash.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="maedetodos">
+
+
+    <div class="opcoes_escondidas">
+      <div class="opcoes_escolha">
+        <div class="sair_opcoes">
+          <i id="exit_opcoes" onclick="SairExibirMaquinas()"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+              height="24" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+            </svg></i>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Alto</h5>
+              <div class="status_maquina_alto_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Médio</h5>
+              <div class="status_maquina_medio_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Alto</h5>
+              <div class="status_maquina_alto_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Alto</h5>
+              <div class="status_maquina_alto_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Baixo</h5>
+              <div class="status_maquina_baixo_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Médio</h5>
+              <div class="status_maquina_medio_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Alto</h5>
+              <div class="status_maquina_alto_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Alto</h5>
+              <div class="status_maquina_alto_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Alto</h5>
+              <div class="status_maquina_alto_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+        <div class="opcao_escolha">
+          <h5>Máquina: <h4 id="nome_maquina">x</h4>Dono: <h4 id="dono_maquina">x</h4>
+            <div class="status_maquina">
+              <b>Desempenho: </b>
+              <h5>Alto</h5>
+              <div class="status_maquina_alto_desempenho">
+                <h6>.</h6>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <nav class="nav-lateral">
+      <div class="logo">
+        <a href="../paginasHTML/index.html"><img src="../assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
+      </div>
+
+      <div class="container-mae">
+        <ul class="nav-list">
+          <li class="maq" href="#" onclick="VisaoGeral()" onclick="trocarMaq(1)" id="label1">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu"
+                viewBox="0 0 16 16">
+                <path
+                  d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+              </svg> Visão geral
+            </a>
+          </li>
+          <li href="#" onclick="ExibirMaquinas()" onclick="trocarMaq(2)" id="label2">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pc-display" viewBox="0 0 16 16">
+                <path
+                  d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z" />
+              </svg> Máquinas
+            </a>
+          </li>
+          <li href="#" onclick="addMaquina()" onclick="trocarMaq(3)" id="label3">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+              </svg>
+              Adicionar máquina
+            </a>
+          </li>
+          <li onclick="limparSessao()" onclick="trocarMaq(4)" id="label4">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+                <path
+                  d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+              </svg> Sair
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <div class="cabecalho_propriedades">
+        <div class="atributo_propriedade_nome">
+          <h6>Máquina: <h5>Nome</h5>
+          </h6>
+        </div>
+        <div class="atributo_propriedade_dono">
+          <h6>Dono: <h5>Nome</h5>
+          </h6>
+        </div>
+        <div class="atributo_propriedade_status">
+          <h6>Status: </h6>
+          <div class="status_maquina_alto_desempenho">
+            <h6>
+
+            </h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="graficos">
+        <div class="logoFundo">
+          <img src="../public/assets/logo - 415 x 358.png" alt="">
+        </div>
+        <div class="graficos_container_cima">
+          <div class="containerDash">
+            <h1 style="color: white;">CPU</h1>
+            <div class="grafico">
+              <canvas id="myChart"></canvas>
+            </div>
+
+
+          </div>
+          <div class="containerDash">
+            <h1 style="color: white;">RAM</h1>
+            <div class="grafico">
+              <canvas id="myChart2"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="graficos_container_baixo">
+          <div class="containerDash">
+            <h1 style="color: white;">Disco</h1>
+            <div class="grafico">
+              <canvas id="myChart3"></canvas>
+            </div>
+          </div>
+          <div class="containerDash">
+            <h1 style="color: white;">Rede</h1>
+            <div class="grafico">
+              <canvas id="myChart4"></canvas>
+            </div>
+          </div>
+        </div> <!-- Você precisa adicionar esta linha para fechar a div graficos_container_baixo -->
+
+      </div>
+
+
+
+  </div>
+
+  </main>
+
+  <section>
+    <div class="maedetodos2">
+      <div class="filhoDaMae">
+        <div class="formularioCadastro">
+          <h1>Nova Maquina</h1>
+          <div class="topoFormularioCadastro">
+            <div class="label">
+              <span class="tipo_campo">Responsavel</span>
+              <div class="container-icon">
+                <div class="icon">
+                  <i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
+                      class="bi bi-person-badge-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z" />
+                    </svg></i>
+                  <div class="seta"></div>
+
+                </div>
+                <input id="responsavel_input" type="text" placeholder="Responsavel" maxlength="30">
+                <div class="resultado_invalido" id="resultado_"></div>
+              </div>
+            </div>
+            <div class="label">
+              <span class="tipo_campo">Número de registro</span>
+              <div class="container-icon">
+                <div class="icon">
+                  <i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
+                      class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5ZM9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8Zm1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5Zm-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96c.026-.163.04-.33.04-.5ZM7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
+                    </svg></i>
+                  <div class="seta"></div>
+
+                </div>
+                <input id="responsavel_input" type="text" placeholder="Registro" maxlength="30">
+                <div class="resultado_invalido" id="resultado_"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="meioFormularioCadastro">
+            <div class="labelSelectSo">
+              <div>
+                Sistema operacional
+              </div>
+              <select name="sistemas" id="sistemaOperacional">
+                <option value="Microsoft Windows">Microsoft Windows</option>
+                <option value="Mac OS X">Mac OS X</option>
+                <option value="Linux">Linux</option>
+                <option value="Debian">Debian</option>
+                <option value="Manjaro">Manjaro</option>
+                <option value="Ubuntu">Ubuntu</option>
+                <option value="Outros" id="outros">Outro</option>
+              </select>
+            </div>
+            <div class="inputOutros">
+
+            </div>
+            
+
+          </div>
+
+        </div>
+        <div class="imgMonitorar">
+          <img src="../public/assets/monitorar.png" alt="">
+        </div>
+      </div>
+
+    </div>
+
+
+  </section>
+
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+
+<script>
+  const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
+  const exit_opcoes = document.querySelector('#exit_opcoes');
+  const main = document.querySelector('main');
+  const maedetodos = document.querySelector('.maedetodos');
+  
+  const cabecalho = document.querySelector(".cabecalho_propriedades")
+  const graficos = document.querySelector(".graficos")
+  const sectiona = document.querySelectorAll(".maedetodos2")
+  const section = document.querySelector("section")
+
+  function VisaoGeral() {
+  cabecalho.style.display = 'flex';
+  graficos.style.display = 'flex';
+  opcoes_escondidas.style.display = 'none';
+  section.style.display = 'none';
+
+}
+  function ExibirMaquinas() {
+      opcoes_escondidas.style.display = 'flex'; 
+  }
+
+  function addMaquina() {
+    cabecalho.style.display = 'none'
+    opcoes_escondidas.style.display = 'none'
+    graficos.style.display = 'none'
+    section.style.display = 'flex'
+  }
+
+  function SairExibirMaquinas() {
+    opcoes_escondidas.style.display = 'none';
+  }
+
+
+
+  const ctx = document.getElementById('myChart');
+  const ctx1 = document.getElementById('myChart2');
+  const ctx2 = document.getElementById('myChart3');
+  const ctx3 = document.getElementById('myChart4');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['12:00:00', '12:01:00', '12:02:00', '12:03:00', '12:04:00',
+        '12:05:00', '12:06:00', '12:07:00', '12:08:00', '12:09:00',
+        '12:10:00', '12:11:00', '12:12:00', '12:13:00', '12:14:00',
+        '12:15:00', '12:16:00', '12:17:00', '12:18:00', '12:19:00',
+        '12:20:00', '12:21:00', '12:22:00', '12:23:00', '12:24:00',
+
+      ], // Rótulos de tempo
+      datasets: [{
+        label: '%',
+        data: [5, 10, 15, 20, 25,
+          30, 35, 40, 45, 50,
+          55, 60, 65, 70, 75,
+          80, 85, 90, 95, 100,
+          90, 80, 70, 60, 50,], // Uso da CPU ao longo do tempo
+        borderWidth: 2,
+        borderColor: '#7900c5', // Cor da linha
+        fill: true, // Preencher a área sob a linha
+        backgroundColor: 'rgba(121, 0, 197, 0.5)'
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Uso da CPU em %',
+          color: 'white' // Define a cor do título do gráfico
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100, // isso é a barra lateral que mostra a porcentagem
+          stepSize: 5,
+          ticks: {
+            callback: function (value) {
+              return value + '%'; // pra mostrar p dado em porcentagem
+            }
+          },
+          grid: {
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          }
+        },
+        x: {
+          grid: {
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          }
+        }
+      }
+    }
+  }
+  );
+
+
+  new Chart(ctx1, {
+    type: 'line',
+    label: '%',
+    data: {
+      labels: ['12:00:00', '12:01:00', '12:02:00', '12:03:00', '12:04:00',
+        '12:05:00', '12:06:00', '12:07:00', '12:08:00', '12:09:00',
+        '12:10:00', '12:11:00', '12:12:00', '12:13:00', '12:14:00',
+        '12:15:00', '12:16:00', '12:17:00', '12:18:00', '12:19:00',
+        '12:20:00', '12:21:00', '12:22:00', '12:23:00', '12:24:00',
+
+      ], // Rótulos de tempo
+      datasets: [{
+        label: '%',
+        data: [3, 7, 12, 17, 22,
+          27, 32, 37, 30, 50,
+          55, 60, 65, 70, 75,
+          80, 85, 90, 95, 100,
+          90, 80, 70, 60, 50,], // Uso da RAM ao longo do tempo
+        borderWidth: 2,
+        borderColor: '#7900c5', // Cor da linha
+        fill: true, // Preencher a área sob a linha
+        backgroundColor: 'rgba(121, 0, 197, 0.5)'
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Uso da RAM em %',
+          color: 'white' // Define a cor do título do gráfico
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          stepSize: 5,
+          ticks: {
+            callback: function (value) {
+              return value + '%';
+            }
+          },
+          grid: {
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          }
+        },
+        x: {
+          grid: {
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          }
+        }
+      }
+    }
+  });
+
+  new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: ['12:00:00', '12:01:00', '12:02:00', '12:03:00', '12:04:00',
+        '12:05:00', '12:06:00', '12:07:00', '12:08:00', '12:09:00',
+        '12:10:00', '12:11:00', '12:12:00', '12:13:00', '12:14:00',
+        '12:15:00', '12:16:00', '12:17:00', '12:18:00', '12:19:00',
+        '12:20:00', '12:21:00', '12:22:00', '12:23:00', '12:24:00',
+
+      ], // Rótulos de tempo
+      datasets: [{
+        label: '%',
+        data: [5, 10, 15, 20, 25,
+          30, 35, 40, 45, 50,
+          55, 60, 65, 70, 75,
+          80, 85, 90, 95, 100,
+          90, 80, 70, 60, 50,], // Uso da CPU ao longo do tempo
+        borderWidth: 2,
+        borderColor: '#7900c5', // Cor da linha
+        fill: true, // Preencher a área sob a linha
+        backgroundColor: 'rgba(121, 0, 197, 0.5)'
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Uso da CPU em %',
+          color: 'white' // Define a cor do título do gráfico
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100, // isso é a barra lateral que mostra a porcentagem
+          stepSize: 5,
+          ticks: {
+            callback: function (value) {
+              return value + '%'; // pra mostrar p dado em porcentagem
+            }
+          },
+          grid: {
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          }
+        },
+        x: {
+          grid: {
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          }
+        }
+      }
+    }
+  }
+  );
+
+  new Chart(ctx3, {
+    type: 'line',
+    data: {
+      labels: ['12:00:00', '12:01:00', '12:02:00', '12:03:00', '12:04:00',
+        '12:05:00', '12:06:00', '12:07:00', '12:08:00', '12:09:00',
+        '12:10:00', '12:11:00', '12:12:00', '12:13:00', '12:14:00',
+        '12:15:00', '12:16:00', '12:17:00', '12:18:00', '12:19:00',
+        '12:20:00', '12:21:00', '12:22:00', '12:23:00', '12:24:00',
+
+      ], // Rótulos de tempo
+      datasets: [{
+        label: '%',
+        data: [5, 10, 15, 20, 25,
+          30, 35, 40, 45, 50,
+          55, 60, 65, 70, 75,
+          80, 85, 90, 95, 100,
+          90, 80, 70, 60, 50,], // Uso da CPU ao longo do tempo
+        borderWidth: 2,
+        borderColor: '#7900c5', // Cor da linha
+        fill: true, // Preencher a área sob a linha
+        backgroundColor: 'rgba(121, 0, 197, 0.5)'
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Uso da CPU em %',
+          color: 'white' // Define a cor do título do gráfico
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100, // isso é a barra lateral que mostra a porcentagem
+          stepSize: 5,
+          ticks: {
+            callback: function (value) {
+              return value + '%'; // pra mostrar p dado em porcentagem
+            }
+          },
+          grid: {
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          }
+        },
+        x: {
+          grid: {
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          }
+        }
+      }
+    }
+  }
+  );
+
+
+
+
+
+
+  var selectElement = document.getElementById("sistemaOperacional");
+  var elementoPai = document.querySelector(".inputOutros");
+
+
+  selectElement.addEventListener("change", function () {
+
+    var selectedValue = selectElement.value;
+    if (selectedValue == "Outros") {
+      var input = document.createElement("input");
+      input.setAttribute("type", "text");
+      input.setAttribute("placeholder", "Outro");
+      input.setAttribute("id", "outroSO");
+      elementoPai.appendChild(input);
+    }
+    else {
+      var input = document.getElementById("outroSO");
+      if (input != null) {
+        elementoPai.removeChild(input);
+      }
+    }
+  });
+
+  const label1 = document.querySelector('#label1');
+      const label2 = document.querySelector('#label2');
+      const label3 = document.querySelector('#label3');
+      const label4 = document.querySelector('#label4');
+      
+  function trocarMaq(NumerodaLabel){
+    
+   
+
+    if (NumerodaLabel == 1) {
+      
+      label1.classList.add('maq');
+      label2.classList.remove('maq');
+      label3.classList.remove('maq');
+      label4.classList.remove('maq');
+    }
+    if (NumerodaLabel == 2) {
+      label1.classList.remove('maq');
+      label2.classList.add('maq');
+      label3.classList.remove('maq');
+      label4.classList.remove('maq');
+    }
+    if (NumerodaLabel == 3) {
+      label1.classList.remove('maq');
+      label2.classList.remove('maq');
+      label3.classList.add('maq');
+      label4.classList.remove('maq');
+    }
+    if (NumerodaLabel == 4) {
+      label1.classList.remove('maq');
+      label2.classList.remove('maq');
+      label3.classList.remove('maq');
+      label4.classList.add('maq');
+    }
+  }
+
+
+
+
+
+
+
+
+
+</script>
