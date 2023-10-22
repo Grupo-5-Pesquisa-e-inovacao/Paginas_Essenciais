@@ -197,329 +197,318 @@
 
         </div>
     </body>
-</html></div></body><script>const ctx = document.getElementById('myChart');
-const ctx1 = document.getElementById('myChart2');
+</html></div></body>
 
-const ctx3 = document.getElementById('myChart4');
+<script>
+
+var id = 1;
 
 
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [
-            '12:00:00',
-            '12:01:00',
-            '12:02:00',
-            '12:03:00',
-            '12:04:00',
-            '12:05:00',
-            '12:06:00',
-            '12:07:00',
-            '12:08:00',
-            '12:09:00',
-            '12:10:00',
-            '12:11:00',
-            '12:12:00',
-            '12:13:00',
-            '12:14:00',
-            '12:15:00',
-            '12:16:00',
-            '12:17:00',
-            '12:18:00',
-            '12:19:00',
-            '12:20:00',
-            '12:21:00',
-            '12:22:00',
-            '12:23:00',
-            '12:24:00',
-
-        ], // Rótulos de tempo
-        datasets: [
-            {
-                label: '%',
-                data: [
-                    5,
-                    10,
-                    15,
-                    20,
-                    25,
-                    30,
-                    35,
-                    40,
-                    45,
-                    50,
-                    55,
-                    60,
-                    65,
-                    70,
-                    75,
-                    80,
-                    85,
-                    90,
-                    95,
-                    100,
-                    90,
-                    80,
-                    70,
-                    60,
-                    50,
-                ], // Uso da CPU ao longo do tempo
-                borderWidth: 2,
-                borderColor: '#7900c5', // Cor da linha
-                fill: true, // Preencher a área sob a linha
-                backgroundColor: 'rgba(121, 0, 197, 0.5)'
+function atualizarGrafico (){
+    fetch(`http://localhost:3000/dadosMaquina/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data.result);      
+            for (const key in data.result){
+                if (data.result.hasOwnProperty.call(data.result, key)) {
+                    totalRam = data.result[key].totalRam;
+                    emUsoRam = data.result[key].emUsoRam;
+                    tamanhoDisco = data.result[key].tamanhoDisco;
+                    usoDisco = data.result[key].usoDisco;
+                    qtdEmUso = data.result[key].qtdEmUso;
+                    frequencia = data.result[key].frequencia;
+                }
             }
-        ]
-    },
-    options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Uso da CPU em %',
-                color: 'white' // Define a cor do título do gráfico
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100, // isso é a barra lateral que mostra a porcentagem
-                stepSize: 5,
-                ticks: {
-                    callback: function (value) {
-                        return value + '%'; // pra mostrar p dado em porcentagem
+            console.log(frequencia);
+            var livreDisco = (tamanhoDisco - usoDisco); 
+            var porcentagemUsoRam = (emUsoRam / totalRam) * 100
+            var porcentagemUsoRede = (emUsoRam / totalRam) * 100
+            var porcentagemUsoCPU = (emUsoRam / totalRam) * 100
+
+
+            const ctx = document.getElementById('myChart');
+            const ctx1 = document.getElementById('myChart2');
+            const ctx3 = document.getElementById('myChart4');
+
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [
+                        '12:00:00',
+                        '12:01:00',
+                        '12:02:00',
+                        '12:03:00',
+                        '12:04:00',
+                        '12:05:00',
+                        '12:06:00',
+                        '12:07:00',
+                        '12:08:00',
+                        '12:09:00',
+                        '12:10:00',
+                        '12:11:00',
+                        '12:12:00',
+                        '12:13:00',
+                        '12:14:00',
+                        '12:15:00',
+                        '12:16:00',
+                        '12:17:00',
+                        '12:18:00',
+                        '12:19:00',
+                        '12:20:00',
+                        '12:21:00',
+                        '12:22:00',
+                        '12:23:00',
+                        '12:24:00',
+
+                    ], // Rótulos de tempo
+                    datasets: [
+                        {
+                            label: '%',
+                            data: [qtdEmUso], // Uso da CPU ao longo do tempo
+                            borderWidth: 2,
+                            borderColor: '#7900c5', // Cor da linha
+                            fill: true, // Preencher a área sob a linha
+                            backgroundColor: 'rgba(121, 0, 197, 0.5)'
+                        }
+                    ]
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Uso da CPU em %',
+                            color: 'white' // Define a cor do título do gráfico
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100, // isso é a barra lateral que mostra a porcentagem
+                            stepSize: 5,
+                            ticks: {
+                                callback: function (value) {
+                                    return value + '%'; // pra mostrar p dado em porcentagem
+                                }
+                            },
+                            grid: {
+                                color: 'white'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'white'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        }
                     }
-                },
-                grid: {
-                    color: 'white'
-                },
-                ticks: {
-                    color: 'white'
                 }
-            },
-            x: {
-                grid: {
-                    color: 'white'
-                },
-                ticks: {
-                    color: 'white'
-                }
-            }
-        }
-    }
-});
+            });
 
 
-new Chart(ctx1, {
-    type: 'line',
-    label: '%',
-    data: {
-        labels: [
-            '12:00:00',
-            '12:01:00',
-            '12:02:00',
-            '12:03:00',
-            '12:04:00',
-            '12:05:00',
-            '12:06:00',
-            '12:07:00',
-            '12:08:00',
-            '12:09:00',
-            '12:10:00',
-            '12:11:00',
-            '12:12:00',
-            '12:13:00',
-            '12:14:00',
-            '12:15:00',
-            '12:16:00',
-            '12:17:00',
-            '12:18:00',
-            '12:19:00',
-            '12:20:00',
-            '12:21:00',
-            '12:22:00',
-            '12:23:00',
-            '12:24:00',
-
-        ], // Rótulos de tempo
-        datasets: [
-            {
+            new Chart(ctx1, {
+                type: 'line',
                 label: '%',
-                data: [
-                    3,
-                    7,
-                    12,
-                    17,
-                    22,
-                    27,
-                    32,
-                    37,
-                    30,
-                    50,
-                    55,
-                    60,
-                    65,
-                    70,
-                    75,
-                    80,
-                    85,
-                    90,
-                    95,
-                    100,
-                    90,
-                    80,
-                    70,
-                    60,
-                    50,
-                ], // Uso da RAM ao longo do tempo
-                borderWidth: 2,
-                borderColor: '#7900c5', // Cor da linha
-                fill: true, // Preencher a área sob a linha
-                backgroundColor: 'rgba(121, 0, 197, 0.5)'
-            }
-        ]
-    },
-    options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Uso da RAM em %',
-                color: 'white' // Define a cor do título do gráfico
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100,
-                stepSize: 5,
-                ticks: {
-                    callback: function (value) {
-                        return value + '%';
+                data: {
+                    labels: [
+                        '12:00:00',
+                        '12:01:00',
+                        '12:02:00',
+                        '12:03:00',
+                        '12:04:00',
+                        '12:05:00',
+                        '12:06:00',
+                        '12:07:00',
+                        '12:08:00',
+                        '12:09:00',
+                        '12:10:00',
+                        '12:11:00',
+                        '12:12:00',
+                        '12:13:00',
+                        '12:14:00',
+                        '12:15:00',
+                        '12:16:00',
+                        '12:17:00',
+                        '12:18:00',
+                        '12:19:00',
+                        '12:20:00',
+                        '12:21:00',
+                        '12:22:00',
+                        '12:23:00',
+                        '12:24:00',
+
+                    ], // Rótulos de tempo
+                    datasets: [
+                        {
+                            label: '%',
+                            data: [porcentagemUsoRam], // Uso da RAM em % ao longo do tempo
+                            borderWidth: 2,
+                            borderColor: '#7900c5', // Cor da linha
+                            fill: true, // Preencher a área sob a linha
+                            backgroundColor: 'rgba(121, 0, 197, 0.5)'
+                        }
+                    ]
+                },
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Uso da RAM em %',
+                            color: 'white' // Define a cor do título do gráfico
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            stepSize: 5,
+                            ticks: {
+                                callback: function (value) {
+                                    return value + '%';
+                                }
+                            },
+                            grid: {
+                                color: 'white'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'white'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        }
                     }
-                },
-                grid: {
-                    color: 'white'
-                },
-                ticks: {
-                    color: 'white'
                 }
-            },
-            x: {
-                grid: {
-                    color: 'white'
+            });
+
+
+            new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: [
+                        '12:00:00',
+                        '12:01:00',
+                        '12:02:00',
+                        '12:03:00',
+                        '12:04:00',
+                        '12:05:00',
+                        '12:06:00',
+                        '12:07:00',
+                        '12:08:00',
+                        '12:09:00',
+                        '12:10:00',
+                        '12:11:00',
+                        '12:12:00',
+                        '12:13:00',
+                        '12:14:00',
+                        '12:15:00',
+                        '12:16:00',
+                        '12:17:00',
+                        '12:18:00',
+                        '12:19:00',
+                        '12:20:00',
+                        '12:21:00',
+                        '12:22:00',
+                        '12:23:00',
+                        '12:24:00',
+
+                    ], // Rótulos de tempo
+                    datasets: [
+                        {
+                            label: 'Hz',
+                            data: [frequencia / 1000], // Uso da CPU ao longo do tempo
+                            borderWidth: 2,
+                            borderColor: '#7900c5', // Cor da linha
+                            fill: true, // Preencher a área sob a linha
+                            backgroundColor: 'rgba(121, 0, 197, 0.5)'
+                        }
+                    ]
                 },
-                ticks: {
-                    color: 'white'
-                }
-            }
-        }
-    }
-});
-
-
-new Chart(ctx3, {
-    type: 'line',
-    data: {
-        labels: [
-            '12:00:00',
-            '12:01:00',
-            '12:02:00',
-            '12:03:00',
-            '12:04:00',
-            '12:05:00',
-            '12:06:00',
-            '12:07:00',
-            '12:08:00',
-            '12:09:00',
-            '12:10:00',
-            '12:11:00',
-            '12:12:00',
-            '12:13:00',
-            '12:14:00',
-            '12:15:00',
-            '12:16:00',
-            '12:17:00',
-            '12:18:00',
-            '12:19:00',
-            '12:20:00',
-            '12:21:00',
-            '12:22:00',
-            '12:23:00',
-            '12:24:00',
-
-        ], // Rótulos de tempo
-        datasets: [
-            {
-                label: '%',
-                data: [
-                    5,
-                    10,
-                    15,
-                    20,
-                    25,
-                    30,
-                    35,
-                    40,
-                    45,
-                    50,
-                    55,
-                    60,
-                    65,
-                    70,
-                    75,
-                    80,
-                    85,
-                    90,
-                    95,
-                    100,
-                    90,
-                    80,
-                    70,
-                    60,
-                    50,
-                ], // Uso da CPU ao longo do tempo
-                borderWidth: 2,
-                borderColor: '#7900c5', // Cor da linha
-                fill: true, // Preencher a área sob a linha
-                backgroundColor: 'rgba(121, 0, 197, 0.5)'
-            }
-        ]
-    },
-    options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Uso da rede',
-                color: 'white' // Define a cor do título do gráfico
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100, // isso é a barra lateral que mostra a porcentagem
-                stepSize: 5,
-                ticks: {
-                    callback: function (value) {
-                        return value + '%'; // pra mostrar p dado em porcentagem
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Uso da rede',
+                            color: 'white' // Define a cor do título do gráfico
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 5, // isso é a barra lateral que mostra a porcentagem
+                            stepSize: 1,
+                            ticks: {
+                                callback: function (value) {
+                                    return value + '%'; // pra mostrar p dado em porcentagem
+                                }
+                            },
+                            grid: {
+                                color: 'white'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'white'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        }
                     }
-                },
-                grid: {
-                    color: 'white'
-                },
-                ticks: {
-                    color: 'white'
                 }
-            },
-            x: {
-                grid: {
-                    color: 'white'
-                },
-                ticks: {
-                    color: 'white'
-                }
-            }
-        }
-    }
-});
+            });
+
+            
+            var data = {
+                labels: [
+                    'Em uso', 'Livre'
+                ],
+                datasets: [
+                    {
+                        data: [
+                            usoDisco, livreDisco
+                        ], // Substitua com suas porcentagens reais
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)', '#006eff'
+                            // Cor para Máquinas Boas
+                            // Cor para Outras Máquinas
+                        ],
+                        borderWidth: 0
+                    }
+                ]
+            };
+
+            var ctx2 = document.getElementById('myPieChart').getContext('2d');
+
+            // Cria o gráfico de pizza
+            var myPieChart = new Chart(ctx2, {
+                type: 'pie',
+                data: data,
+                options: options
+            });
+
+            setInterval(atualizarGrafico, 3000);
+
+        })
+        .catch((error) => {
+            console.error("Ocorreu um erro na solicitação:", error);
+        });
+}
+
+atualizarGrafico();
 
 const chart = document.getElementById('myChartTudo').getContext('2d');
 const semanas = ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'];
@@ -584,40 +573,12 @@ new Chart(chart, {
     }
 });
 
-var data = {
-    labels: [
-        'Em uso', 'Livre'
-    ],
-    datasets: [
-        {
-            data: [
-                73, 27
-            ], // Substitua com suas porcentagens reais
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)', '#006eff'
-                // Cor para Máquinas Boas
-                // Cor para Outras Máquinas
-            ],
-            borderWidth: 0
-        }
-    ]
-};
-
 
 // Configurações do gráfico
 var options = {
     responsive: true,
     maintainAspectRatio: false
 };
-
-var ctx2 = document.getElementById('myPieChart').getContext('2d');
-
-// Cria o gráfico de pizza
-var myPieChart = new Chart(ctx2, {
-    type: 'pie',
-    data: data,
-    options: options
-});
 
 function atualizarConteudoTodas() {
 

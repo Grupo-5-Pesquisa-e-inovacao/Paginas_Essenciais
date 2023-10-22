@@ -41,7 +41,9 @@ server.get('/telaUnidade', function(req,res){
     res.sendFile(__dirname + '/paginasHTML/telaUnidade.html')
 })
 
-
+server.get('/cadastroUnidadesFirtLogin', function(req,res){
+    res.sendFile(__dirname + '/paginasHTML/cadastroUnidadesFirtLogin.html')
+})
 
 
 
