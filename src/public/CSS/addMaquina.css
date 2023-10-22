@@ -2,7 +2,7 @@
 
 
 
-.main_cadastro{
+.main_cadastro{ 
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
