@@ -17,7 +17,7 @@ server.get('/', function(req,res){
     res.sendFile(__dirname + '/paginasHTML/index.html')
 })
 
-server.get('/cadastro', function(req,res){
+server.get('/loginCadastro', function(req,res){
     res.sendFile(__dirname + '/paginasHTML/loginCadastro.html')
 })
 
@@ -40,7 +40,6 @@ server.get('/telaMaquina', function(req,res){
 server.get('/telaUnidade', function(req,res){
     res.sendFile(__dirname + '/paginasHTML/telaUnidade.html')
 })
-
 
 
 
