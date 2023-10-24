@@ -49,6 +49,8 @@ server.get('/cadastroUnidadesFirtLogin', function(req,res){
 
 server.get('/dadosMaquina/:codigo',MaquinaController.buscarTudo);
 
+server.get('/allDadosMaquinas',MaquinaController.buscarAllDados);
+
 server.get('/dadosRamMaquina/:codigo',MaquinaController.buscarRam);
 
 server.get('/dadosCPUMaquina/:codigo',MaquinaController.buscarCPU);

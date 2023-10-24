@@ -35,6 +35,37 @@ module.exports = {
             }
     },
 
+    buscarAllDados: async (req, res) => {
+        try {
+            const maquinas = await MaquinaService.buscarAllDados();
+
+            const json = {
+                error: null,
+                result: maquinas.map(maquina => ({ 
+                    codigo: maquina.codigo,
+                    totalRam: maquina.totalRam, 
+                    emUsoRam: maquina.emUsoRam, 
+                    nomeProcessador: maquina.nomeProcessador, 
+                    usoDisco: maquina.usoDisco, 
+                    tamanhoDisco: maquina.tamanhoDisco, 
+                    nomeDisco: maquina.nomeDisco, 
+                    rede: maquina.rede, 
+                    qtdEmUso: maquina.qtdEmUso, 
+                    frequencia: maquina.frequencia, 
+                    hostName: maquina.hostName, 
+                    numIpv4: maquina.numIpv4, 
+                    bytesRecebidos: maquina.bytesRecebidos, 
+                    bytesEnviados: maquina.bytesEnviados, 
+                }))
+            };
+
+            res.json(json);
+        } catch (error) {
+            // Trata os erros apropriadamente;
+            res.status(500).json({ error: 'Ocorreu um erro ao buscar as máquinas.' }); 
+            }
+    },
+
     buscarRam: async (req, res) => {
         try {
             const codigo = req.params.codigo; 
