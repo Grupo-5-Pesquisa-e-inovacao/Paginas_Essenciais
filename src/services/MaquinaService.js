@@ -31,12 +31,12 @@ module.exports = {
 
     buscarAllDados: () => {
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM dadosHardware ORDER BY id DESC LIMIT 7', (error, results) => {
+            db.query('SELECT * FROM dadosHardware ORDER BY idDadosHardware DESC limit 7', (error, results) => {
                 if (error) {
                     reject(error);
                 } else {
                     if (results.length > 0) {
-                        resolve(results[0]); // Resolver a promessa com os resultados
+                        resolve(results); // Resolver a promessa com os resultados
                     } else {
                         resolve(null);
                     }
