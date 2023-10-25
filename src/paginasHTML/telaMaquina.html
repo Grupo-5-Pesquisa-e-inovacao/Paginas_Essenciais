@@ -202,13 +202,122 @@
 <script>
 
 var id = 180;
+var livreDisco;
+var porcentagemUsoRam;
+var porcentagemUsoRede;
+var porcentagemUsoCPU;
+var frequenciaFormatada;
+var usoDisco;
+
+var emUsoRam1;
+var emUsoRam2;
+var emUsoRam3;
+var emUsoRam4;
+var emUsoRam5;
+var emUsoRam6;
+var emUsoRam6;
+
+var frequencia1;
+var frequencia2;
+var frequencia3;
+var frequencia4;
+var frequencia5;
+var frequencia6;
+var frequencia7;
+
+var usoDisco1
+var usoDisco1
+var usoDisco1
+var usoDisco1
+var usoDisco1
+var usoDisco1
+var usoDisco1
+
+var frequenciaFormatada1;
+var frequenciaFormatada2;
+var frequenciaFormatada3;
+var frequenciaFormatada4;
+var frequenciaFormatada5;
+var frequenciaFormatada6;
+var frequenciaFormatada7;
+
+var tamanhoDisco1;
+var tamanhoDisco2;
+var tamanhoDisco3;
+var tamanhoDisco4;
+var tamanhoDisco5;
+var tamanhoDisco6;
+var tamanhoDisco7;  
+
+
 
 
 // function atualizarGrafico (){
     fetch(`http://localhost:3000/allDadosMaquinas`)
         .then((res) => res.json())
         .then((data) => {
-            console.log(data.result);      
+            console.log(data.result[0].emUsoRam);
+            console.log(data.result) 
+
+            
+            emUsoRam1 = data.result[0].emUsoRam
+            emUsoRam2 = data.result[1].emUsoRam
+            emUsoRam3 = data.result[2].emUsoRam
+            emUsoRam4 = data.result[3].emUsoRam
+            emUsoRam5 = data.result[4].emUsoRam
+            emUsoRam6 = data.result[5].emUsoRam
+            emUsoRam7 = data.result[6].emUsoRam
+            console.log(emUsoRam1)
+            console.log(emUsoRam2)
+            console.log(emUsoRam3)
+            console.log(emUsoRam4)
+            console.log(emUsoRam5)
+            console.log(emUsoRam6)
+            console.log(emUsoRam7)
+
+                        
+            frequencia1 = data.result[0].frequencia
+            frequencia2 = data.result[1].frequencia
+            frequencia3 = data.result[2].frequencia
+            frequencia4 = data.result[3].frequencia
+            frequencia5 = data.result[4].frequencia
+            frequencia6 = data.result[5].frequencia
+            frequencia7 = data.result[6].frequencia
+
+            var usoDisco1 = data.result[0].usoDisco
+            var usoDisco2 = data.result[1].usoDisco
+            var usoDisco3 = data.result[2].usoDisco
+            var usoDisco4 = data.result[3].usoDisco
+            var usoDisco5 = data.result[4].usoDisco
+            var usoDisco6 = data.result[5].usoDisco
+            var usoDisco7 = data.result[6].usoDisco
+
+            var tamanhoDisco1 = data.result[0].tamanhoDisco
+            var tamanhoDisco2 = data.result[1].tamanhoDisco
+            var tamanhoDisco3 = data.result[2].tamanhoDisco
+            var tamanhoDisco4 = data.result[3].tamanhoDisco
+            var tamanhoDisco5 = data.result[4].tamanhoDisco
+            var tamanhoDisco6 = data.result[5].tamanhoDisco
+            var tamanhoDisco7 = data.result[6].tamanhoDisco
+
+            console.log(usoDisco1)
+            console.log(usoDisco2)
+            console.log(usoDisco3)
+            console.log(usoDisco4)
+            console.log(usoDisco5)
+            console.log(usoDisco6)
+            console.log(usoDisco7)    
+
+            console.log(tamanhoDisco1)
+            console.log(tamanhoDisco2)
+            console.log(tamanhoDisco3)
+            console.log(tamanhoDisco4)
+            console.log(tamanhoDisco5)
+            console.log(tamanhoDisco6)
+            console.log(tamanhoDisco7)        
+
+            
+            
             for (const key in data.result){
                 if (data.result.hasOwnProperty.call(data.result, key)) {
                     totalRam = data.result[key].totalRam;
@@ -217,13 +326,31 @@ var id = 180;
                     usoDisco = data.result[key].usoDisco;
                     qtdEmUso = data.result[key].qtdEmUso;
                     frequencia = data.result[key].frequencia;
-                }
+                }  
             }
+            
             // console.log(frequencia);
-            var livreDisco = (tamanhoDisco - usoDisco); 
-            var porcentagemUsoRam = (emUsoRam / totalRam) * 100
-            var porcentagemUsoRede = (emUsoRam / totalRam) * 100
-            var porcentagemUsoCPU = (emUsoRam / totalRam) * 100
+            livreDisco = (tamanhoDisco - usoDisco); 
+            porcentagemUsoRam = (emUsoRam / totalRam) * 100;
+            porcentagemUsoRede = (emUsoRam / totalRam) * 100;
+            porcentagemUsoCPU = (emUsoRam / totalRam) * 100;
+            
+            frequenciaFormatada1 = frequencia1 / 1000000000;            
+            frequenciaFormatada2 = frequencia2 / 1000000000;
+            frequenciaFormatada3 = frequencia3 / 1000000000;
+            frequenciaFormatada4 = frequencia4 / 1000000000;
+            frequenciaFormatada5 = frequencia5 / 1000000000;
+            frequenciaFormatada6 = frequencia6 / 1000000000;
+            frequenciaFormatada7 = frequencia7 / 1000000000;
+
+            console.log(frequenciaFormatada1)
+            console.log(frequenciaFormatada2)
+            console.log(frequenciaFormatada3)
+            console.log(frequenciaFormatada4)
+            console.log(frequenciaFormatada5)
+            console.log(frequenciaFormatada6)
+            console.log(frequenciaFormatada7)
+
 
 
             const ctx = document.getElementById('myChart');
@@ -235,19 +362,19 @@ var id = 180;
                 type: 'line',
                 data: {
                     labels: [
-                        '12:00:00',
-                        '12:04:00',                        
-                        '12:08:00',
-                        '12:12:00',                
-                        '12:16:00',
-                        '12:20:00',                                
-                        '12:24:00',
+                    '1',
+                    '2',                        
+                    '3',
+                    '4',                
+                    '5',
+                    '6',                                
+                    '7',
 
                     ], // Rótulos de tempo
                     datasets: [
                         {
                             label: '%',
-                            data: [qtdEmUso], // Uso da CPU ao longo do tempo
+                            data: 1, // Uso da Rede ao longo do tempo
                             borderWidth: 2,
                             borderColor: '#7900c5', // Cor da linha
                             fill: true, // Preencher a área sob a linha
@@ -298,19 +425,19 @@ var id = 180;
                 label: '%',
                 data: {
                     labels: [
-                        '12:00:00',
-                        '12:04:00',                        
-                        '12:08:00',
-                        '12:12:00',                
-                        '12:16:00',
-                        '12:20:00',                                
-                        '12:24:00',
+                        '1',
+                        '2',                        
+                        '3',
+                        '4',                
+                        '5',
+                        '6',                                
+                        '7',
 
                     ], // Rótulos de tempo
                     datasets: [
                         {
-                            label: '%',
-                            data: [50], // Uso da RAM em % ao longo do tempo
+                            label: '',
+                            data: emUsoRam1,emUsoRam2,emUsoRam3,emUsoRam4,emUsoRam5,emUsoRam6,emUsoRam7, // Uso da RAM ao longo do tempo
                             borderWidth: 2,
                             borderColor: '#7900c5', // Cor da linha
                             fill: true, // Preencher a área sob a linha
@@ -322,19 +449,19 @@ var id = 180;
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Uso da RAM em %',
+                            text: 'Uso da RAM',
                             color: 'white' // Define a cor do título do gráfico
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 100,
+                            max: totalRam,
                             stepSize: 5,
                             ticks: {
-                                callback: function (value) {
-                                    return value + '%';
-                                }
+                            //    callback: function (value) {
+                            //        return value + '%';
+                            //    }
                             },
                             grid: {
                                 color: 'white'
@@ -360,19 +487,19 @@ var id = 180;
                 type: 'line',
                 data: {
                     labels: [
-                        '12:00:00',
-                        '12:04:00',                        
-                        '12:08:00',
-                        '12:12:00',                
-                        '12:16:00',
-                        '12:20:00',                                
-                        '12:24:00',
+                        '1',
+                        '2',                        
+                        '3',
+                        '4',                
+                        '5',
+                        '6',                                
+                        '7',
 
                     ], // Rótulos de tempo
                     datasets: [
                         {
-                            label: 'Hz',
-                            data: [frequencia / 1000], // Uso da CPU ao longo do tempo
+                            label: 'Hertz',
+                            data: [frequenciaFormatada1,frequenciaFormatada2,frequenciaFormatada3,frequenciaFormatada4,frequenciaFormatada5,frequenciaFormatada6,frequenciaFormatada7], // Uso da CPU ao longo do tempo
                             borderWidth: 2,
                             borderColor: '#7900c5', // Cor da linha
                             fill: true, // Preencher a área sob a linha
@@ -432,7 +559,7 @@ var id = 180;
                             // Cor para Máquinas Boas
                             // Cor para Outras Máquinas
                         ],
-                        borderWidth: 0
+                        borderWidth: 1
                     }
                 ]
             };
@@ -446,7 +573,7 @@ var id = 180;
                 options: options
             });
 
-            setInterval(atualizarGrafico, 5000);
+            // setInterval(atualizarGrafico, 5000);
 
         })
         .catch((error) => {
