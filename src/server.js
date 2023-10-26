@@ -45,7 +45,11 @@ server.get('/cadastroUnidadesFirtLogin', function(req,res){
     res.sendFile(__dirname + '/paginasHTML/cadastroUnidadesFirtLogin.html')
 })
 
+const arquivoExe = '/home/ubuntu/testeServer/CamelLooca.exe';
 
+server.get('/downloads/CamelLooca.exe', (req, res) => {
+    res.download(arquivoExe);
+});
 
 
 server.get('/dadosMaquina/:codigo',MaquinaController.buscarTudo);
