@@ -252,7 +252,7 @@ var tamanhoDisco7;
 
 
 
-// function atualizarGrafico (){
+function atualizarGrafico (){
     fetch(`http://localhost:3000/allDadosMaquinas`)
         .then((res) => res.json())
         .then((data) => {
@@ -437,7 +437,7 @@ var tamanhoDisco7;
                     datasets: [
                         {
                             label: '',
-                            data: emUsoRam1,emUsoRam2,emUsoRam3,emUsoRam4,emUsoRam5,emUsoRam6,emUsoRam7, // Uso da RAM ao longo do tempo
+                            data: [emUsoRam7,emUsoRam6,emUsoRam5,emUsoRam4,emUsoRam3,emUsoRam2,emUsoRam1], // Uso da RAM ao longo do tempo
                             borderWidth: 2,
                             borderColor: '#7900c5', // Cor da linha
                             fill: true, // Preencher a área sob a linha
@@ -573,15 +573,17 @@ var tamanhoDisco7;
                 options: options
             });
 
-            // setInterval(atualizarGrafico, 5000);
+            setInterval(function() {
+                location.reload();
+            }, 35000); // 35 segundos em milissegundos
 
         })
         .catch((error) => {
             console.error("Ocorreu um erro na solicitação:", error);
         });
-// }
+}
 
-// atualizarGrafico();
+atualizarGrafico();
 
 const chart = document.getElementById('myChartTudo').getContext('2d');
 const semanas = ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'];
