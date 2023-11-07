@@ -92,12 +92,16 @@
         </div>
 
       </div>
-      <div class="maquinas">
-        <div class="opcao_escolha">
-          <h5>Máquina</h5> <h4>Dono</h4> <h4>Status</h4>
-           
+      <!-- Maquina chumbada -->
+      <a href="/telaMaquina">
+        <div class="maquinas">
+            <div class="opcao_escolha">
+            
+                <h5>Máquina: {xxx}</h5> <h4>Dono: {xxx}</h4> <h4>Status {xxx}</h4>
+                
+            </div>
         </div>
-      </div>
+      </a>
     </div>
 
 
@@ -424,14 +428,14 @@ maquinas.innerHTML = `
 }
 
 function addUnidade() {
-    window.location.href = "/telaUnidade";
+    window.location.href = "/addUnidadePadrao";
 }
   function limparSessao() {
     window.location.href = "/";
   }
 
   function addMaquina() {
-    window.location.href = "/CadastroMaquinas";
+    window.location.href = "/cadastroMaquina";
   }
 
   function limparSessao() {

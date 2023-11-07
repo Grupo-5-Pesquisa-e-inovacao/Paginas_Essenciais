@@ -21,6 +21,10 @@ server.get('/loginCadastro', function(req,res){
     res.sendFile(__dirname + '/paginasHTML/loginCadastro.html')
 })
 
+server.get('/addUnidadePadrao', function(req,res){
+    res.sendFile(__dirname + '/paginasHTML/addUnidadePadrao.html')
+})
+
 server.get('/dashboard', function(req,res){
     res.sendFile(__dirname + '/paginasHTML/dashboard.html')
 })
@@ -42,7 +46,7 @@ server.get('/telaUnidade', function(req,res){
 })
 
 server.get('/cadastroUnidadesFirtLogin', function(req,res){
-    res.sendFile(__dirname + '/paginasHTML/cadastroUnidadesFirtLogin.html')
+    res.sendFile(__dirname + '/paginasHTML/cadastroUnidadesFirstLogin.html') 
 })
 
 const arquivoExe = '/home/ubuntu/testeServer/CamelLooca.exe';

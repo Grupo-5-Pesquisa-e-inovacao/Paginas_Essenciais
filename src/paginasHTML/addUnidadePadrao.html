@@ -83,12 +83,15 @@
                 </div>
 
             </div>
-            <div class="maquinas">
-              <div class="opcao_escolha">
-                <h5>Máquina</h5> <h4>Dono</h4> <h4>Status</h4>
-                 
+            <a href="/telaMaquina">
+              <div class="maquinas">
+                  <div class="opcao_escolha">
+                  
+                      <h5>Máquina: {xxx}</h5> <h4>Dono: {xxx}</h4> <h4>Status {xxx}</h4>
+                      
+                  </div>
               </div>
-            </div>
+            </a>
         </div>
 
 
@@ -173,7 +176,7 @@
                 <h6>
                     Unidades cadastradas
                 </h6>
-                <div class="unidade">São Bernardo</div>
+                <div class="unidade" onclick="unidade1()">Unidade 1</div>
                 <div class="unidade">São Caetano</div>
                 <div class="unidade">Mauá</div>
                 <div class="unidade">Santo André</div>
@@ -189,7 +192,14 @@
             </div>
         </div>
     </body>
-</html></div></body></html><script>function irParaDash() {
+</html></div></body></html>
+<script>
+
+function unidade1(){
+  window.location.href = "/"
+}
+  
+function irParaDash() {
     window.location.href = "/dashboard";
 }
 
@@ -198,11 +208,11 @@ function VisaoGeral() {
 }
 
 function addMaquina() {
-    window.location.href = "/CadastroMaquinas";
+    window.location.href = "/cadastroMaquina";
 }
 
 function addUnidade() {
-    window.location.href = "/telaUnidade";
+    window.location.href = "/addUnidadePadrao";
 }
 
 function limparSessao() {
@@ -385,19 +395,19 @@ function atualizarConteudoCriticas() {
 
 
 function addUnidade() {
-    window.location.href = "/telaUnidade";
+    window.location.href = "/addUnidadePadrao";
 }
   function limparSessao() {
     window.location.href = "/";
   }
 
   function addMaquina() {
-    window.location.href = "/CadastroMaquinas";
+    window.location.href = "/cadastroMaquina";
   }
 
   function limparSessao() {
     sessionStorage.clear();
-    window.location.href = "/home";
+    window.location.href = "/";
   }
   
 

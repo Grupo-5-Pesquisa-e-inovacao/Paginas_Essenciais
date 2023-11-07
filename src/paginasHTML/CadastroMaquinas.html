@@ -82,12 +82,16 @@
             </div>
 
         </div>
+        <!-- Maquina chumbada -->
+      <a href="/telaMaquina">
         <div class="maquinas">
-          <div class="opcao_escolha">
-            <h5>Máquina</h5> <h4>Dono</h4> <h4>Status</h4>
-             
-          </div>
+            <div class="opcao_escolha">
+            
+                <h5>Máquina: {xxx}</h5> <h4>Dono: {xxx}</h4> <h4>Status {xxx}</h4>
+                
+            </div>
         </div>
+      </a>
     </body>
 </html></div><nav class="nav-lateral">
 <div class="logo">
@@ -226,7 +230,7 @@ function addMaquina() {
 }
 
 function addUnidade() {
-    window.location.href = "/telaUnidade";
+    window.location.href = "/addUnidadePadrao";
 }
 
 function VisaoGeral() {
@@ -405,14 +409,14 @@ maquinas.innerHTML = `
 
 
 function addUnidade() {
-    window.location.href = "/telaUnidade";
+    window.location.href = "/addUnidadePadrao";
 }
   function limparSessao() {
     window.location.href = "/";
   }
 
   function addMaquina() {
-    window.location.href = "/CadastroMaquinas";
+    window.location.href = "/cadastroMaquina";
   }
 
   function limparSessao() {
