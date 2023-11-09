@@ -1,16 +1,16 @@
 const connection = require('../db');
 const db = require('../db');
 
-function cadastrar( email, senha, nomeFantasia,razaoSocial) {
+function cadastrar( razaoSocial, email, senha, cnpj) {
 
-    console.log("function cadastrar():",  email, senha,nomeFantasia,razaoSocial);
+    console.log("function cadastrar():",  razaoSocial, email, senha, cnpj);
   
-    var instrucaoUsuario = `INSERT INTO provedora (email,senha,nomeFantasia,razaoSocial) VALUES (?,?,?,?)`;
+    var instrucaoUsuario = `INSERT INTO provedora (razaoSocial,email,senha,cnpj) VALUES (?,?,?,?)`;
   
     console.log("Executando a instrução SQL:");
   
     return new Promise((resolve, reject) => {
-      connection.query(instrucaoUsuario, [email,senha,nomeFantasia,razaoSocial], (error, results) => {
+      connection.query(instrucaoUsuario, [razaoSocial,email,senha,cnpj], (error, results) => {
         if (error) {
           console.log(error);
           console.log("\nHouve um erro ao realizar o cadastro! Erro: ", error.sqlMessage);

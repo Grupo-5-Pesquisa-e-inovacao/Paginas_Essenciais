@@ -1,7 +1,7 @@
 require('dotenv').config({path:'variaveis.env'})
 
 const express = require('express');
-const port = process.env.PORT || 3306;
+const port = process.env.PORT || 3300;
 const server = express();
 const MaquinaController = require('./controllers/MaquinaController.js');
 const ProvedoraController = require('./controllers/ProvedoraController.js');
@@ -61,9 +61,9 @@ server.post("/logar", function (req, res) {
     ProvedoraController.cadastrar(req, res);
   });  
 
-  server.get("/", function (req,res){
-    res.sendFile(__dirname + '/testeexecucao.html')
-  });
+//   server.get("/", function (req,res){
+//     res.sendFile(__dirname + '/testeexecucao.html')
+//   });
 
   server.delete('/deletar/:id', function (req,res){
     ProvedoraController.excluir(req,res)

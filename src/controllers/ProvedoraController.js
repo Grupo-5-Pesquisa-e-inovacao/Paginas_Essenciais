@@ -38,14 +38,15 @@ function entrar(req, res) {
   function cadastrar(req, res) {
     var email = req.body.email;
     var senha = req.body.senha;
-    var nomeFantasia = req.body.nomeFantasia;
+    var cnpj = req.body.cnpj;
     var razaoSocial = req.body.razaoSocial;
+//    var telefone = req.body.telefone;
   
     if (!email || !senha) {
       res.status(400).json({ error: "Email e senha são obrigatórios." });
       return;
     }
-    usuarioServices.cadastrar(email, senha,nomeFantasia,razaoSocial)
+    usuarioServices.cadastrar(email, senha, cnpj, razaoSocial)
       .then(function (resultado) {
         console.log("Usuário cadastrado com sucesso.");
         res.status(201).json({ message: "Usuário cadastrado com sucesso." });
