@@ -1,7 +1,7 @@
 const connection = require('../db');
 const db = require('../db');
 
-function cadastrar( razaoSocial, email, senha, cnpj) {
+function cadastrar(razaoSocial, email, senha, cnpj) {
 
     console.log("function cadastrar():",  razaoSocial, email, senha, cnpj);
   

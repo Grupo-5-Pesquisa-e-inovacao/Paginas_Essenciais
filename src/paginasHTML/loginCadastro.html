@@ -272,8 +272,8 @@
                             </div>
 
 
-                            <button onclick="cadastrar()" class="btn-53">
-                                <div  class="original">CADASTRE-SE</div>
+                            <button class="btn-53">
+                                <div  onclick="cadastrar()" class="original">CADASTRE-SE</div>
                                 <div class="letters">
                                   
                                   <span>S</span>
@@ -345,7 +345,7 @@
 
                                     <div class="seta"></div>
                                 </div>
-                                <input id="telefone_input" type="text" placeholder="(DDD) XXXX-XXXX">
+                                <input id="telefone_input" type="text" placeholder="(DDD) XXXXX-XXXX">
                             </div>
 
 
@@ -364,12 +364,11 @@
                               
                         </form>`
         }
-    </script>
-
-    <script>
+    
         var provedoraIdSalvo = localStorage.getItem('provedoraId');
 
         function cadastrar() {
+            console.log("Entrei na função de cadastro!");
             var email = document.getElementById("input_email").value;
             var senha = document.getElementById("input_senha").value;
             var razaoSocial = document.getElementById("razaoSocial_input").value;
