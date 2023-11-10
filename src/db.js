@@ -14,7 +14,7 @@ connection.connect((error) => {
     if (error) {
         console.error('Erro ao conectar ao banco de dados:', error.message);
     } else {
-        console.log(`Conectado ao Banco de Dados: ${process.env.DB_NAME}`);
+        console.log(`Conectado ao Banco de Dados: camelTech`);
     }
 });
 
