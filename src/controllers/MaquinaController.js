@@ -1,8 +1,113 @@
 // Controle da api
 const MaquinaService = require('../services/MaquinaService');
+const ProvedoraService = require('../services/ProvedoraService');
 
+function visualizarPorId(id) {
+    var instrucao = `
+      SELECT * FROM unidadeProvedora WHERE idProvedora = ?;
+    `;
+  
+    console.log("Executando a instrução SQL:");
+  
+    return new Promise((resolve, reject) => {
+      connection.query(instrucao, [id], (error, results) => {
+        if (error) {
+          console.log(error);
+          console.log("\nHouve um erro ao buscar os dados! Erro: ", error.sqlMessage);
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  }
+
+  
+  function cadastrar(req, res) {
+    var responsavel = req.body.responsavel;
+    var registro = req.body.registro;
+    var processadorMin = req.body.processadorMin;
+    var processadorMax = req.body.processadorMax;
+    var disco = req.body.disco;
+    var ram = req.body.ram;
+    var rede = req.body.rede;
+
+
+
+    // Chame o serviço para cadastrar a máquina
+    MaquinaService.cadastrar(responsavel, registro, processadorMin,processadorMax,disco,ram,rede)
+
+        .then(function (resultado) {
+            console.log("Máquina cadastrada com sucesso.");
+            res.status(201).json({ message: "Máquina cadastrada com sucesso." });
+        })
+        .catch(function (erro) {
+            console.error("Erro ao cadastrar a máquina:", erro);
+
+            // Verifique se o erro é uma instância de Error para obter detalhes
+            if (erro instanceof Error) {
+                res.status(500).json({ error: `Erro ao cadastrar a máquina. Detalhes: ${erro.message}` });
+            } else {
+                res.status(500).json({ error: "Erro ao cadastrar a máquina. Detalhes indisponíveis." });
+            }
+        });
+}
+
+function update(req, res) {
+    var responsavel = req.body.responsavel;
+    var registro = req.body.registro;
+    var processadorMin = req.body.processadorMin;
+    var processadorMax = req.body.processadorMax;
+    var disco = req.body.disco;
+    var ram = req.body.ram;
+    var rede = req.body.rede;
+
+    var id =  req.params.id
+
+    MaquinaService.update(responsavel, registro, processadorMin, processadorMax, disco, ram, rede, id)
+        .then(function (resultado) {
+            // Verifica se houve alguma linha afetada (indicando que o registro foi atualizado)
+            if (resultado) {
+                res.status(200).send("Registro atualizado com sucesso!");
+            } else {
+                res.status(404).send("Registro não encontrado.");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao atualizar o registro! Erro: ", erro.sqlMessage);
+            res.status(500).json({ error: erro.sqlMessage });
+        });
+}
+
+function deletar(req, res) {
+    var responsavel = req.body.responsavel;
+    var id = req.params.id; // Assumindo que o ID a ser excluído está presente nos parâmetros da requisição
+  
+    if (id == undefined) {
+      res.status(400).send("O ID está indefinido!");
+    } else {
+      MaquinaService.deletar(responsavel) // Chame a função de serviço "excluir" que criamos anteriormente
+        .then(function (resultado) {
+          if (resultado.affectedRows > 0) {
+            res.status(200).send("Registro excluído com sucesso!");
+          } else {
+            res.status(404).send("Registro não encontrado.");
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+          console.log("\nHouve um erro ao excluir o registro! Erro: ", erro.sqlMessage);
+          res.status(500).json(erro.sqlMessage);
+        });
+    }
+  }
+  
 
 module.exports = {
+    cadastrar,
+    update,
+    deletar,
     buscarTudo: async (req, res) => {
         try {
             const codigo = req.params.codigo; 

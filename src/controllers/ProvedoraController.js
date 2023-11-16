@@ -77,6 +77,7 @@ function entrar(req, res) {
         });
     }
   }
+  
   function atualizar(req, res) {
     var id = req.params.id; 
     var email = req.body.email;
