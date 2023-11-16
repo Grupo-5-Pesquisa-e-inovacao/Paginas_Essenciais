@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/CSS/dash.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <title>Document</title>
 </head>
 
@@ -174,68 +175,64 @@
       </div>
     </nav>
     <main>
-      <div class="container_topo_visao_geral" style=" display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <span style="margin-top: 3vh; font-size: 4vh; color: white;">Status dos servidores:</span>
-        
-        <div style="display: flex; width: 100%;">
-          <div class="atributos_visao_geral">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewbox="0 0 48 48">
-              <path fill="#c8e6c9" d="M44,24c0,11-9,20-20,20S4,35,4,24S13,4,24,4S44,13,44,24z"></path>
-              <polyline fill="none" stroke="#4caf50" stroke-miterlimit="10" stroke-width="4" points="14,24 21,31 36,16">
-              </polyline>
-            </svg>Bom estado:
-            <h6>30</h6>
-          </div>
-          <div class="atributos_visao_geral">
-            <svg fill="yellow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="45" height="45"
-              xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 478.125 478.125" xml:space="preserve"
-              stroke="#ff0000">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
+      <div class="container_topo_visao_geral">
+        <div class="atributos_visao_geral">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewbox="0 0 48 48">
+            <path fill="#c8e6c9" d="M44,24c0,11-9,20-20,20S4,35,4,24S13,4,24,4S44,13,44,24z"></path>
+            <polyline fill="none" stroke="#4caf50" stroke-miterlimit="10" stroke-width="4" points="14,24 21,31 36,16">
+            </polyline>
+          </svg>Máquinas boas:
+          <h6>7</h6>
+        </div>
+        <div class="atributos_visao_geral">
+          <svg fill="yellow" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+            xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 478.125 478.125" xml:space="preserve"
+            stroke="#ff0000">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <g>
                 <g>
                   <g>
-                    <g>
-                      <circle cx="239.904" cy="314.721" r="35.878"></circle>
-                      <path
-                        d="M256.657,127.525h-31.9c-10.557,0-19.125,8.645-19.125,19.125v101.975c0,10.48,8.645,19.125,19.125,19.125h31.9 c10.48,0,19.125-8.645,19.125-19.125V146.65C275.782,136.17,267.138,127.525,256.657,127.525z">
-                      </path>
-                      <path
-                        d="M239.062,0C106.947,0,0,106.947,0,239.062s106.947,239.062,239.062,239.062c132.115,0,239.062-106.947,239.062-239.062 S371.178,0,239.062,0z M239.292,409.734c-94.171,0-170.595-76.348-170.595-170.596c0-94.248,76.347-170.595,170.595-170.595 s170.595,76.347,170.595,170.595C409.887,333.387,333.464,409.734,239.292,409.734z">
-                      </path>
-                    </g>
+                    <circle cx="239.904" cy="314.721" r="35.878"></circle>
+                    <path
+                      d="M256.657,127.525h-31.9c-10.557,0-19.125,8.645-19.125,19.125v101.975c0,10.48,8.645,19.125,19.125,19.125h31.9 c10.48,0,19.125-8.645,19.125-19.125V146.65C275.782,136.17,267.138,127.525,256.657,127.525z">
+                    </path>
+                    <path
+                      d="M239.062,0C106.947,0,0,106.947,0,239.062s106.947,239.062,239.062,239.062c132.115,0,239.062-106.947,239.062-239.062 S371.178,0,239.062,0z M239.292,409.734c-94.171,0-170.595-76.348-170.595-170.596c0-94.248,76.347-170.595,170.595-170.595 s170.595,76.347,170.595,170.595C409.887,333.387,333.464,409.734,239.292,409.734z">
+                    </path>
                   </g>
                 </g>
               </g>
-            </svg>
-            Alertas:
-            <h6>12</h6>
-          </div>
-          <div class="atributos_visao_geral">
-            <svg fill="#ff0000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="45" height="45"
-              xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 478.125 478.125" xml:space="preserve"
-              stroke="#ff0000">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
+            </g>
+          </svg>
+          Máquinas médias:
+          <h6>1</h6>
+        </div>
+        <div class="atributos_visao_geral">
+          <svg fill="#ff0000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+            xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 478.125 478.125" xml:space="preserve"
+            stroke="#ff0000">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <g>
                 <g>
                   <g>
-                    <g>
-                      <circle cx="239.904" cy="314.721" r="35.878"></circle>
-                      <path
-                        d="M256.657,127.525h-31.9c-10.557,0-19.125,8.645-19.125,19.125v101.975c0,10.48,8.645,19.125,19.125,19.125h31.9 c10.48,0,19.125-8.645,19.125-19.125V146.65C275.782,136.17,267.138,127.525,256.657,127.525z">
-                      </path>
-                      <path
-                        d="M239.062,0C106.947,0,0,106.947,0,239.062s106.947,239.062,239.062,239.062c132.115,0,239.062-106.947,239.062-239.062 S371.178,0,239.062,0z M239.292,409.734c-94.171,0-170.595-76.348-170.595-170.596c0-94.248,76.347-170.595,170.595-170.595 s170.595,76.347,170.595,170.595C409.887,333.387,333.464,409.734,239.292,409.734z">
-                      </path>
-                    </g>
+                    <circle cx="239.904" cy="314.721" r="35.878"></circle>
+                    <path
+                      d="M256.657,127.525h-31.9c-10.557,0-19.125,8.645-19.125,19.125v101.975c0,10.48,8.645,19.125,19.125,19.125h31.9 c10.48,0,19.125-8.645,19.125-19.125V146.65C275.782,136.17,267.138,127.525,256.657,127.525z">
+                    </path>
+                    <path
+                      d="M239.062,0C106.947,0,0,106.947,0,239.062s106.947,239.062,239.062,239.062c132.115,0,239.062-106.947,239.062-239.062 S371.178,0,239.062,0z M239.292,409.734c-94.171,0-170.595-76.348-170.595-170.596c0-94.248,76.347-170.595,170.595-170.595 s170.595,76.347,170.595,170.595C409.887,333.387,333.464,409.734,239.292,409.734z">
+                    </path>
                   </g>
                 </g>
               </g>
-            </svg>
-            Críticos:
-            <h6>20</h6>
-          </div>
+            </g>
+          </svg>
+          Máquinas críticas:
+          <h6>2</h6>
         </div>
         
 
@@ -783,6 +780,13 @@
   const graficos = document.querySelector(".graficos")
 
 
+  $(document).ready(function () {
+    $('#dropDown').click(function () {
+      $('.drop-down').toggleClass('drop-down--active');
+    });
+  });
+
+
   function VisaoGeral() {
     cabecalho.style.display = 'flex';
     graficos.style.display = 'flex';
@@ -968,11 +972,7 @@ maquinas.innerHTML = `
 }
 
 
-  $(document).ready(function () {
-    $('#dropDown').click(function () {
-      $('.drop-down').toggleClass('drop-down--active');
-    });
-  });
+ 
 
   function addUnidade() {
     window.location.href = "/addUnidadePadrao";
@@ -994,4 +994,6 @@ maquinas.innerHTML = `
   function exibirMaquinaEscolhida(){
 
   }
+
+ 
   </script>
