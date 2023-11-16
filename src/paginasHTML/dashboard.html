@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/CSS/dash.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <title>Document</title>
 </head>
 
@@ -180,7 +181,7 @@
             <path fill="#c8e6c9" d="M44,24c0,11-9,20-20,20S4,35,4,24S13,4,24,4S44,13,44,24z"></path>
             <polyline fill="none" stroke="#4caf50" stroke-miterlimit="10" stroke-width="4" points="14,24 21,31 36,16">
             </polyline>
-          </svg>Máquinas boas:
+          </svg>Alto desempenho: 
           <h6>7</h6>
         </div>
         <div class="atributos_visao_geral">
@@ -205,7 +206,7 @@
               </g>
             </g>
           </svg>
-          Máquinas médias:
+          Médio desempenho: 
           <h6>1</h6>
         </div>
         <div class="atributos_visao_geral">
@@ -230,7 +231,7 @@
               </g>
             </g>
           </svg>
-          Máquinas críticas:
+          Baixo desempenho: 
           <h6>2</h6>
         </div>
 
@@ -771,6 +772,13 @@
   const graficos = document.querySelector(".graficos")
 
 
+  $(document).ready(function () {
+    $('#dropDown').click(function () {
+      $('.drop-down').toggleClass('drop-down--active');
+    });
+  });
+
+
   function VisaoGeral() {
     cabecalho.style.display = 'flex';
     graficos.style.display = 'flex';
@@ -956,11 +964,7 @@ maquinas.innerHTML = `
 }
 
 
-  $(document).ready(function () {
-    $('#dropDown').click(function () {
-      $('.drop-down').toggleClass('drop-down--active');
-    });
-  });
+ 
 
   function addUnidade() {
     window.location.href = "/addUnidadePadrao";
@@ -982,4 +986,6 @@ maquinas.innerHTML = `
   function exibirMaquinaEscolhida(){
 
   }
+
+ 
   </script>

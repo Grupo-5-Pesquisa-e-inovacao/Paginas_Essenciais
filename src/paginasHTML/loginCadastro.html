@@ -74,7 +74,7 @@
 
                                 </div>
                                 <input id="emailInput" type="text" placeholder="Email coorporativo" maxlength="30">
-                                <div class="resultado_invalido" id="resultado_"></div>
+                                
                             </div>
 
                             <span class="tipo_campo">Senha</span>
@@ -143,7 +143,7 @@
 
                                 </div>
                                 <input id="razaoSocial_input" type="text" placeholder="Nome da Empresa" maxlength="30">
-                                <div class="resultado_invalido" id="resultado_"></div>
+                                
                             </div>
 
                             <span class="tipo_campo">CNPJ da Empresa</span>
@@ -232,8 +232,56 @@
 
         const middle = document.querySelector('.middle');
 
+        function cadastrar() {
+            console.log("Entrei na função de cadastro!");
+            var email = document.getElementById("input_email").value;
+            var senha = document.getElementById("input_senha").value;
+            var razaoSocial = document.querySelectorAll("#razaoSocial_input").value;
+            var cnpj = document.querySelectorAll("#cnpj_input").value;
+           var telefone = document.querySelectorAll("#telefone_input").value;
+
+            var data = {
+                email: email,
+                senha: senha,
+                razaoSocial: razaoSocial,
+                cnpj: cnpj,
+                telefone: telefone
+            };
+
+            fetch('http://localhost:3300/cadastrar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na solicitação.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Usuário cadastrado com sucesso:', data);
+                    alert("Cadastro realizado");
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert("Erro ao realizar cadastro");
+                });
+        }
+
+
+        var razaoSocialValor = "";
+        var cnpjValor = "";
+        var telefoneValor = "";
+
         function prosseguirForm() {
-            middle.innerHTML = ``
+
+            razaoSocialValor = document.getElementById("razaoSocial_input").value;
+                    cnpjValor = document.getElementById("cnpj_input").value;
+                    telefoneValor =  document.getElementById("telefone_input").value;
+            
             middle.innerHTML = `
                         <form class="formulario">
                             <div class="cabecalhoLogin">
@@ -272,8 +320,8 @@
                             </div>
 
 
-                            <button class="btn-53">
-                                <div  onclick="cadastrar()" class="original">CADASTRE-SE</div>
+                            <button class="btn-53" onclick="cadastrar()">
+                                <div class="original" id="btnCadastroFlip">CADASTRE-SE</div>
                                 <div class="letters">
                                   
                                   <span>S</span>
@@ -298,6 +346,13 @@
 
 
                     `
+                    
+                  
+                     
+
+                    
+
+           
         };
 
 
@@ -316,7 +371,7 @@
 
                                 </div>
                                 <input id="razaoSocial_input" type="text" placeholder="Nome da Empresa" maxlength="30">
-                                <div class="resultado_invalido" id="resultado_"></div>
+                                
                             </div>
 
                             <span class="tipo_campo">CNPJ da Empresa</span>
@@ -363,48 +418,29 @@
                           
                               
                         </form>`
+
+
+
+                        document.querySelector("#razaoSocial_input").value = razaoSocialValor;
+                        document.querySelector("#cnpj_input").value = cnpjValor;
+                        document.querySelector("#telefone_input").value = telefoneValor;
+
+                    
+                        
         }
     
         var provedoraIdSalvo = localStorage.getItem('provedoraId');
 
-        function cadastrar() {
-            console.log("Entrei na função de cadastro!");
-            var email = document.getElementById("input_email").value;
-            var senha = document.getElementById("input_senha").value;
-            var razaoSocial = document.getElementById("razaoSocial_input").value;
-            var cnpj = document.getElementById("cnpj_input").value;
-//            var telefone = document.getElementById("telefone_input").value;
+        
+      
 
-            var data = {
-                email: email,
-                senha: senha,
-                razaoSocial: razaoSocial,
-                cnpj: cnpj,
-                telefone: telefone
-            };
 
-            fetch('http://localhost:3300/cadastrar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro na solicitação.');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Usuário cadastrado com sucesso:', data);
-                    alert("Cadastro realizado");
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    alert("Erro ao realizar cadastro");
-                });
-        }
+        
+
+
+
+
+      
 
         function logar() {
             var email = document.getElementById("input_email").value;
