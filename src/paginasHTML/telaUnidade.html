@@ -254,7 +254,7 @@ function checkLogin(){
     const nav = document.querySelector(".nav-lateral")
 
     if (email === "adm@email" && senha === "123") {
-      nav.innerHTML = ` <nav class="nav-lateral">
+      nav.innerHTML = ` 
       <div class="logo">
         <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
       </div>
@@ -294,10 +294,10 @@ function checkLogin(){
           </li>
         </ul>
       </div>
-    </nav>`
+    `
     }
     else {
-      nav.innerHTML = ` <nav class="nav-lateral">
+      nav.innerHTML = ` 
       <div class="logo">
         <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
       </div>
@@ -348,8 +348,7 @@ function checkLogin(){
             </a>
           </li>
         </ul>
-      </div>
-    </nav>`
+      </div>`
     }
 
   }
