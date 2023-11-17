@@ -333,6 +333,11 @@ background: linear-gradient(to bottom, #0e003e, #141414);
     border-radius: 16px;
     margin-bottom: 3%;
   }
+
+  .form-container h6{
+    font-size: 26px;
+    
+  }
   
   .form-container button:active {
     scale: 0.95;

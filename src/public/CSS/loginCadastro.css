@@ -139,7 +139,7 @@ main{
     width: 350px; 
 }
 .container {
-  background-color: #181818;
+  background-color: #252525;
   padding: 6px;
   width: 28%;
   height: 100%;
@@ -372,7 +372,7 @@ button[type="submit"] {
   font-size: 100%;
   line-height: 1.5;
   margin: 0;
-  -webkit-mask-image: -webkit-radial-gradient(#fff, #000e78);
+  -webkit-mask-image: -webkit-radial-gradient(#fff, rgb(0, 0, 158));
   padding: 0;
   margin-top: 8%;
 }

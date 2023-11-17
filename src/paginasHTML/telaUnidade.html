@@ -171,49 +171,29 @@
 
 
     <div class="container-esquerda">
-        <div class="cabecalho">
-            <h6>
-                Nome unidade
-            </h6>
-        </div>
-        <div class="endereco">
-            <h6 >
-                Endereço
-            </h6>
-            <div class="info">
-                <h6>Rua</h6>
-            </div>
-            <div class="info">
-                <h6>Número</h6>
-            </div>
-                <div class="info">
-                    <h6>Complemento</h6>
-                </div>
-                
-            
-               
-        </div>
-        <div class="endereco">
-            <h6>
-                Perfil
-            </h6>
-            <div class="info">
-                <h6>Nome</h6>
-            </div>
-            <div class="info">
-                <h6>Email</h6>
-            </div>
-                <div class="info">
-                    <h6>Senha</h6>
-                </div>
-                
-            
-                <button class="Btn">Edit 
-                    <svg class="svg" viewBox="0 0 512 512">
-                      <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path></svg>
-                  </button>
-        </div>
-    </div>
+      <div class="cabecalho">
+          <h6>Nome unidade</h6>
+      </div>
+      <div class="endereco">
+          <h6>Rua</h6>
+          <input class="info" disabled id="i1">
+          <h6>Número</h6>
+          <input class="info" disabled id="i2">
+          <h6>Complemento</h6>
+          <input class="info" disabled id="i3">
+      </div>
+      <div class="endereco">
+          <h6>Nome</h6>
+          <input class="info" disabled id="i4">
+          <h6>Email</h6>
+          <input class="info" disabled id="i5">
+          <h6>Senha</h6>
+          <input class="info" disabled id="i6">
+          <button class="Btn" onclick="toggleEditar()">Edit
+          </button>
+      </div>
+  </div>
+  
     <div class="container-direita">
       <h6>Máquinas cadastradas</h6>
       <div class="container_fora_alerta">
@@ -268,14 +248,145 @@ const maedetodos = document.querySelector('.maedetodos');
 const lixeira = document.querySelector('.cardLixeira')
 
 
+function checkLogin(){
+    var email = sessionStorage.getItem('EMAIL');
+    var senha = sessionStorage.getItem('SENHA');
+    const nav = document.querySelector(".nav-lateral")
+
+    if (email === "adm@email" && senha === "123") {
+      nav.innerHTML = ` <nav class="nav-lateral">
+      <div class="logo">
+        <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
+      </div>
+
+      <div class="container-mae">
+        <ul class="nav-list">
+          <h6>Nome da empresa</h6>
+          <li class="maq" href="#" onclick="VisaoGeral()" onclick="trocarMaq(1)" id="label1">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu"
+                viewbox="0 0 16 16">
+                <path
+                  d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+              </svg>
+              Visão geral
+            </a>
+          </li>
+          <li href="#" onclick="addUnidade()" onclick="trocarMaq(4)" id="label3">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-plus-circle-fill" viewbox="0 0 16 16">
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+              </svg>
+              Adicionar unidade
+            </a>
+          </li>
+          <li onclick="limparSessao()" onclick="trocarMaq(5)" id="label4">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-door-closed-fill" viewbox="0 0 16 16">
+                <path
+                  d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+              </svg>
+              Sair
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>`
+    }
+    else {
+      nav.innerHTML = ` <nav class="nav-lateral">
+      <div class="logo">
+        <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
+      </div>
+
+      <div class="container-mae">
+        <ul class="nav-list">
+          <h6>Nome da empresa</h6>
+          <li class="maq" href="#" onclick="VisaoGeral()" onclick="trocarMaq(1)" id="label1">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu"
+                viewbox="0 0 16 16">
+                <path
+                  d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+              </svg>
+              Visão geral
+            </a>
+          </li>
+          <li href="#" onclick="ExibirMaquinas()" onclick="trocarMaq(2)" id="label2">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pc-display" viewbox="0 0 16 16">
+                <path
+                  d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z" />
+              </svg>
+              Máquinas
+            </a>
+          </li>
+          <li href="#" onclick="addMaquina()" onclick="trocarMaq(3)" id="label3">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-plus-circle-fill" viewbox="0 0 16 16">
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+              </svg>
+              Adicionar máquina
+            </a>
+          </li>
+         
+          <li onclick="limparSessao()" onclick="trocarMaq(5)" id="label4">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-door-closed-fill" viewbox="0 0 16 16">
+                <path
+                  d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+              </svg>
+              Sair
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>`
+    }
+
+  }
+
+  checkLogin();
+
+
+
+let isEditing = false;
+
+function toggleEditar() {
+    const inputs = document.querySelectorAll('.info');
+    const btn = document.querySelector('.Btn');
+
+    isEditing = !isEditing;
+
+    if (isEditing) {
+        btn.textContent = 'Salvar';
+    } else {
+        btn.textContent = 'Edit';
+    }
+
+    inputs.forEach(input => {
+        input.disabled = !isEditing;
+    });
+}
+function apagarUnidade(){
+  
+  lixeira.style.display = 'block'
+  maedetodos.style.filter = 'blur(20px)'
+}
+
+
+
 function desativar(){
   const btnDesativar = document.querySelector('.desactive')
 
 
-}
-
-function visuUnidade(){
-  window.location.href = '/dashboard'
 }
 
 function cancelarLixeira(){
@@ -283,6 +394,13 @@ function cancelarLixeira(){
   lixeira.style.display = 'none'
   maedetodos.style.filter = 'blur(0px)'
 }
+
+
+
+function visuUnidade(){
+  window.location.href = '/dashboard'
+}
+
 
 function ExibirMaquinas() {
     opcoes_escondidas.style.display = 'flex';
@@ -292,11 +410,7 @@ function SairExibirMaquinas() {
     opcoes_escondidas.style.display = 'none';
 }
 
-function apagarUnidade(){
-  
-  lixeira.style.display = 'block'
-  maedetodos.style.filter = 'blur(20px)'
-}
+
 
 
 $(document).ready(function () {

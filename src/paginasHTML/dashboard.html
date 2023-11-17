@@ -13,6 +13,8 @@
 
 <body>
 
+
+
   <div class="maedetodos">
 
 
@@ -242,13 +244,7 @@
           <div class="qtd_alertas">
             <div class="cabecalho_alertas">
               <h1>Quantidade de Servidores cadastrados:</h1>
-              <!--
-              <select name="filtarDias" id="filtroDias">
-
-                  <option value="dia">Dia</option>
-                <option value="semana">Semana</option>
-              </select>
--->
+            
             </div>
             <div class="container_fora_alerta">
               <div class="container_dentro_alerta">
@@ -257,11 +253,7 @@
             </div>
           </div>
 
-<!---
-          <div style="width: 300px; height: 300px;">
-            <canvas id="myPieChart"></canvas>
-          </div>
--->>
+
 
           <div class="qtd_alertas">
             <div class="cabecalho_rede">
@@ -277,46 +269,7 @@
         </div>
       </div>
       <div class="container_baixo_visao_geral">
-    <!--
-          <div class="container_chart_geral_ram">
-          <div class="cabecalho_geral_ram">
-            <div class="cabecalho_geral_ram_esquerda">
-              <h1>Consumo de RAM</h1>
-              <h6>Número de máquinas (dias)</h6>
-            </div>
-            <div class="cabecalho_geral_ram_direita">
-              <h1>Maior que 80%</h1>
-            </div>
-
-
-          </div>
-          <div class="grafico_consumo_ram_geral">
-            <div style="height:250px; width: 500px;">
-              <canvas id="aaa"></canvas>
-            </div>
-          </div>
-  
-        </div>
-
-        <div class="container_chart_geral_ram">
-          <div class="cabecalho_geral_ram">
-            <div class="cabecalho_geral_ram_esquerda">
-              <h1>Consumo de CPU</h1>
-              <h6>Número de máquinas (dias)</h6>
-            </div>
-            <div class="cabecalho_geral_ram_direita">
-              <h1>Maior que 70%</h1>
-            </div>
-
-
-          </div>
-          <div class="grafico_consumo_ram_geral">
-            <div style="height: 250px; width: 500px;">
-              <canvas id="bbb"></canvas>
-            </div>
-          </div>
-        </div>
-  -->
+   
       </div>
       
 
@@ -332,446 +285,118 @@
 </html>
 <script>
 
+  function checkLogin(){
+    var email = sessionStorage.getItem('EMAIL');
+    var senha = sessionStorage.getItem('SENHA');
+    const nav = document.querySelector(".nav-lateral")
 
-  // Essa primeira sessão de códigos e variáveis são para a dashboard de visão geral e para a dashboard de máquinas
+    if (email === "adm@email" && senha === "123") {
+      nav.innerHTML = ` <nav class="nav-lateral">
+      <div class="logo">
+        <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
+      </div>
 
-
-  const ctx = document.getElementById('myChart');
-  const ctx1 = document.getElementById('myChart2');
-  const ctx2 = document.getElementById('myChart3');
-  const ctx3 = document.getElementById('myChart4');
-  const ctx4 = document.getElementById('aaa');
-  const ctx6 = document.getElementById('bbb');
-
-
- 
-  var data = {
-    labels: [
-      'Máquinas Boas', 'Desempenho Ruim'
-    ],
-    datasets: [
-      {
-        data: [
-          7, 3
-        ], // Substitua com suas porcentagens reais
-        backgroundColor: [
-          '#006eff', // Cor para Máquinas Boas
-          'rgba(255, 99, 132, 0.8)' // Cor para Outras Máquinas
-        ]
-      }
-    ]
-  };
-
-  // Configurações do gráfico
-  var options = {
-    responsive: true,
-    maintainAspectRatio: false
-  };
-
-  // Obtém o contexto do canvas
-  var ctx5 = document.getElementById('myPieChart').getContext('2d');
-
-  // Cria o gráfico de pizza
-  var myPieChart = new Chart(ctx5, {
-    type: 'pie',
-    data: data,
-    options: options
-  });
-
-
-  // new Chart(ctx, {
-  // type: 'line',
-  // data: {
-  //     labels: ['12:00:00', '12:01:00', '12:02:00', '12:03:00', '12:04:00',
-  //       '12:05:00', '12:06:00', '12:07:00', '12:08:00', '12:09:00',
-  //       '12:10:00', '12:11:00', '12:12:00', '12:13:00', '12:14:00',
-  //       '12:15:00', '12:16:00', '12:17:00', '12:18:00', '12:19:00',
-  //       '12:20:00', '12:21:00', '12:22:00', '12:23:00', '12:24:00',
-
-  //     ], // Rótulos de tempo
-  //     datasets: [{
-  //       label: '%',
-  //       data: [5, 10, 15, 20, 25,
-  //         30, 35, 40, 45, 50,
-  //         55, 60, 65, 70, 75,
-  //         80, 85, 90, 95, 100,
-  //         90, 80, 70, 60, 50,], // Uso da CPU ao longo do tempo
-  //       borderWidth: 2,
-  //       borderColor: '#7900c5', // Cor da linha
-  //       fill: true, // Preencher a área sob a linha
-  //       backgroundColor: 'rgba(121, 0, 197, 0.5)'
-  //     }]
-  // },
-  // options: {
-  //     plugins: {
-  //       title: {
-  //         display: true,
-  //         text: 'Uso da CPU em %',
-  //         color: 'white' // Define a cor do título do gráfico
-  //       }
-  //     },
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true,
-  //         max: 100, // isso é a barra lateral que mostra a porcentagem
-  //         stepSize: 5,
-  //         ticks: {
-  //           callback: function (value) {
-  //             return value + '%'; // pra mostrar p dado em porcentagem
-  //           }
-  //         },
-  //         grid: {
-  //           color: 'white'
-  //         },
-  //         ticks: {
-  //           color: 'white'
-  //         }
-  //       },
-  //       x: {
-  //         grid: {
-  //           color: 'white'
-  //         },
-  //         ticks: {
-  //           color: 'white'
-  //         }
-  //       }
-  //     }
-  // }
-  // }
-  // );
-
-
-  // new Chart(ctx1, {
-  // type: 'line',
-  // label: '%',
-  // data: {
-  //     labels: ['12:00:00', '12:01:00', '12:02:00', '12:03:00', '12:04:00',
-  //       '12:05:00', '12:06:00', '12:07:00', '12:08:00', '12:09:00',
-  //       '12:10:00', '12:11:00', '12:12:00', '12:13:00', '12:14:00',
-  //       '12:15:00', '12:16:00', '12:17:00', '12:18:00', '12:19:00',
-  //       '12:20:00', '12:21:00', '12:22:00', '12:23:00', '12:24:00',
-
-  //     ], // Rótulos de tempo
-  //     datasets: [{
-  //       label: '%',
-  //       data: [3, 7, 12, 17, 22,
-  //         27, 32, 37, 30, 50,
-  //         55, 60, 65, 70, 75,
-  //         80, 85, 90, 95, 100,
-  //         90, 80, 70, 60, 50,], // Uso da RAM ao longo do tempo
-  //       borderWidth: 2,
-  //       borderColor: '#7900c5', // Cor da linha
-  //       fill: true, // Preencher a área sob a linha
-  //       backgroundColor: 'rgba(121, 0, 197, 0.5)'
-  //     }]
-  // },
-  // options: {
-  //     plugins: {
-  //       title: {
-  //         display: true,
-  //         text: 'Uso da RAM em %',
-  //         color: 'white' // Define a cor do título do gráfico
-  //       }
-  //     },
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true,
-  //         max: 100,
-  //         stepSize: 5,
-  //         ticks: {
-  //           callback: function (value) {
-  //             return value + '%';
-  //           }
-  //         },
-  //         grid: {
-  //           color: 'white'
-  //         },
-  //         ticks: {
-  //           color: 'white'
-  //         }
-  //       },
-  //       x: {
-  //         grid: {
-  //           color: 'white'
-  //         },
-  //         ticks: {
-  //           color: 'white'
-  //         }
-  //       }
-  //     }
-  // }
-  // });
-
-  // new Chart(ctx2, {
-  // type: 'line',
-  // data: {
-  //     labels: ['12:00:00', '12:01:00', '12:02:00', '12:03:00', '12:04:00',
-  //       '12:05:00', '12:06:00', '12:07:00', '12:08:00', '12:09:00',
-  //       '12:10:00', '12:11:00', '12:12:00', '12:13:00', '12:14:00',
-  //       '12:15:00', '12:16:00', '12:17:00', '12:18:00', '12:19:00',
-  //       '12:20:00', '12:21:00', '12:22:00', '12:23:00', '12:24:00',
-
-  //     ], // Rótulos de tempo
-  //     datasets: [{
-  //       label: '%',
-  //       data: [5, 10, 15, 20, 25,
-  //         30, 35, 40, 45, 50,
-  //         55, 60, 65, 70, 75,
-  //         80, 85, 90, 95, 100,
-  //         90, 80, 70, 60, 50,], // Uso da CPU ao longo do tempo
-  //       borderWidth: 2,
-  //       borderColor: '#7900c5', // Cor da linha
-  //       fill: true, // Preencher a área sob a linha
-  //       backgroundColor: 'rgba(121, 0, 197, 0.5)'
-  //     }]
-  // },
-  // options: {
-  //     plugins: {
-  //       title: {
-  //         display: true,
-  //         text: 'Uso da CPU em %',
-  //         color: 'white' // Define a cor do título do gráfico
-  //       }
-  //     },
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true,
-  //         max: 100, // isso é a barra lateral que mostra a porcentagem
-  //         stepSize: 5,
-  //         ticks: {
-  //           callback: function (value) {
-  //             return value + '%'; // pra mostrar p dado em porcentagem
-  //           }
-  //         },
-  //         grid: {
-  //           color: 'white'
-  //         },
-  //         ticks: {
-  //           color: 'white'
-  //         }
-  //       },
-  //       x: {
-  //         grid: {
-  //           color: 'white'
-  //         },
-  //         ticks: {
-  //           color: 'white'
-  //         }
-  //       }
-  //     }
-  // }
-  // }
-  // );
-
-  // new Chart(ctx3, {
-  // type: 'line',
-  // data: {
-  //     labels: ['12:00:00', '12:01:00', '12:02:00', '12:03:00', '12:04:00',
-  //       '12:05:00', '12:06:00', '12:07:00', '12:08:00', '12:09:00',
-  //       '12:10:00', '12:11:00', '12:12:00', '12:13:00', '12:14:00',
-  //       '12:15:00', '12:16:00', '12:17:00', '12:18:00', '12:19:00',
-  //       '12:20:00', '12:21:00', '12:22:00', '12:23:00', '12:24:00',
-
-  //     ], // Rótulos de tempo
-  //     datasets: [{
-  //       label: '%',
-  //       data: [5, 10, 15, 20, 25,
-  //         30, 35, 40, 45, 50,
-  //         55, 60, 65, 70, 75,
-  //         80, 85, 90, 95, 100,
-  //         90, 80, 70, 60, 50,], // Uso da CPU ao longo do tempo
-  //       borderWidth: 2,
-  //       borderColor: '#7900c5', // Cor da linha
-  //       fill: true, // Preencher a área sob a linha
-  //       backgroundColor: 'rgba(121, 0, 197, 0.5)'
-  //     }]
-  // },
-  // options: {
-  //     plugins: {
-  //       title: {
-  //         display: true,
-  //         text: 'Uso da CPU em %',
-  //         color: 'white' // Define a cor do título do gráfico
-  //       }
-  //     },
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true,
-  //         max: 100, // isso é a barra lateral que mostra a porcentagem
-  //         stepSize: 5,
-  //         ticks: {
-  //           callback: function (value) {
-  //             return value + '%'; // pra mostrar p dado em porcentagem
-  //           }
-  //         },
-  //         grid: {
-  //           color: 'white'
-  //         },
-  //         ticks: {
-  //           color: 'white'
-  //         }
-  //       },
-  //       x: {
-  //         grid: {
-  //           color: 'white'
-  //         },
-  //         ticks: {
-  //           color: 'white'
-  //         }
-  //       }
-  //     }
-  // }
-  // }
-  // );
-
-  new Chart(ctx4, {
-    type: 'bar',
-    data: {
-      labels: [
-        'Segunda-feira',
-        'Terça-feira',
-        'Quarta-feira',
-        'Quinta-feira',
-        'Sexta-feira',
-        'Sábado',
-        'Domingo'
-      ], // Rótulos de tempo
-
-
-      datasets: [
-        {
-          label: 'QTD',
-          data: [
-            2,
-            5,
-            10,
-            3,
-            22,
-            2,
-            1
-          ], // Uso da CPU ao longo do tempo
-          borderWidth: 10,
-          borderColor: '#006eff', // Cor da linha
-          fill: true, // Preencher a área sob a linha
-          backgroundColor: '#006eff'
-        }
-      ]
-    },
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'Quantidade de máquinas',
-          color: 'white' // Define a cor do título do gráfico
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 50, // isso é a barra lateral que mostra a porcentagem
-          stepSize: 10,
-          ticks: {
-            callback: function (value) {
-              return value + ' Máquinas'; // pra mostrar p dado em porcentagem
-            }
-          },
-          grid: {
-            color: 'white'
-          },
-          ticks: {
-            color: 'white'
-          }
-        },
-        // x: {
-        // grid: {
-        //     color: 'white'
-        // },
-        // ticks: {
-        //     color: 'white'
-        // }
-        // }
-      }
+      <div class="container-mae">
+        <ul class="nav-list">
+          <h6>Nome da empresa</h6>
+          <li class="maq" href="#" onclick="VisaoGeral()" onclick="trocarMaq(1)" id="label1">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu"
+                viewbox="0 0 16 16">
+                <path
+                  d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+              </svg>
+              Visão geral
+            </a>
+          </li>
+          <li href="#" onclick="addUnidade()" onclick="trocarMaq(4)" id="label3">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-plus-circle-fill" viewbox="0 0 16 16">
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+              </svg>
+              Adicionar unidade
+            </a>
+          </li>
+          <li onclick="limparSessao()" onclick="trocarMaq(5)" id="label4">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-door-closed-fill" viewbox="0 0 16 16">
+                <path
+                  d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+              </svg>
+              Sair
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>`
     }
-  });
+    else {
+      nav.innerHTML = ` <nav class="nav-lateral">
+      <div class="logo">
+        <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
+      </div>
 
-  new Chart(ctx6, {
-    type: 'bar',
-    data: {
-      labels: [
-        'Segunda-feira',
-        'Terça-feira',
-        'Quarta-feira',
-        'Quinta-feira',
-        'Sexta-feira',
-        'Sábado',
-        'Domingo'
-      ], // Rótulos de tempo
-
-
-      datasets: [
-        {
-          label: 'QTD',
-          data: [
-            2,
-            5,
-            10,
-            3,
-            22,
-            2,
-            1
-          ], // Uso da CPU ao longo do tempo
-          borderWidth: 10,
-          borderColor: '#006eff', // Cor da linha
-          fill: true, // Preencher a área sob a linha
-          backgroundColor: '#006eff'
-        }
-      ]
-    },
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'Quantidade de máquinas',
-          color: 'white' // Define a cor do título do gráfico
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 50, // isso é a barra lateral que mostra a porcentagem
-          stepSize: 10,
-          ticks: {
-            callback: function (value) {
-              return value + ' Máquinas'; // pra mostrar p dado em porcentagem
-            }
-          },
-          grid: {
-            color: 'white'
-          },
-          ticks: {
-            color: 'white'
-          }
-        },
-        // x: {
-        // grid: {
-        //     color: 'white'
-        // },
-        // ticks: {
-        //     color: 'white'
-        // }
-        // }
-      }
+      <div class="container-mae">
+        <ul class="nav-list">
+          <h6>Nome da empresa</h6>
+          <li class="maq" href="#" onclick="VisaoGeral()" onclick="trocarMaq(1)" id="label1">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu"
+                viewbox="0 0 16 16">
+                <path
+                  d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+              </svg>
+              Visão geral
+            </a>
+          </li>
+          <li href="#" onclick="ExibirMaquinas()" onclick="trocarMaq(2)" id="label2">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pc-display" viewbox="0 0 16 16">
+                <path
+                  d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z" />
+              </svg>
+              Máquinas
+            </a>
+          </li>
+          <li href="#" onclick="addMaquina()" onclick="trocarMaq(3)" id="label3">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-plus-circle-fill" viewbox="0 0 16 16">
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+              </svg>
+              Adicionar máquina
+            </a>
+          </li>
+         
+          <li onclick="limparSessao()" onclick="trocarMaq(5)" id="label4">
+            <a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-door-closed-fill" viewbox="0 0 16 16">
+                <path
+                  d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+              </svg>
+              Sair
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>`
     }
-  });
 
-  // A partir daqui, são funções de atualização do html ou de mudança de página
+  }
 
+  checkLogin();
 
   const containerOpcoes = document.querySelector('.opcoes_escolha');
   const maquinas = document.querySelector('.maquinas');
 
 
-  const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
+ 
   const exit_opcoes = document.querySelector('#exit_opcoes');
   const main = document.querySelector('main');
   const maedetodos = document.querySelector('.maedetodos');
@@ -786,8 +411,10 @@
     });
   });
 
+ 
 
   function VisaoGeral() {
+    const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
     cabecalho.style.display = 'flex';
     graficos.style.display = 'flex';
     opcoes_escondidas.style.display = 'none';
@@ -795,10 +422,12 @@
 
   }
   function ExibirMaquinas() {
+    const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
     opcoes_escondidas.style.display = 'flex';
   }
 
   function addMaquina() {
+    const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
     cabecalho.style.display = 'none'
     opcoes_escondidas.style.display = 'none'
     graficos.style.display = 'none'
@@ -806,6 +435,7 @@
   }
 
   function SairExibirMaquinas() {
+    const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
     opcoes_escondidas.style.display = 'none';
   }
 

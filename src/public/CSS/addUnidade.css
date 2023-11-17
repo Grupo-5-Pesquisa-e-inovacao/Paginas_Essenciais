@@ -1,4 +1,19 @@
+body::-webkit-scrollbar {
+  width: 7px;
+  /* width of the entire scrollbar */
+}
 
+body::-webkit-scrollbar-track {
+  background: #030227;
+  /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #0014ad;
+  /* color of the scroll thumb */
+  border-radius: 10px;
+  /* roundness of the scroll thumb */
+}
 
 .container-esquerda-visu{
     width: 60%;
@@ -6,7 +21,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: radial-gradient(circle at 62.62% 50%, #161616  0, #141414 50%, rgb(3, 0, 19) 100%);
+    background-image: radial-gradient(circle at 62.62% 50%, #05053b  0, #171717 50%, #202020 100%);
     margin-left: 20%;
 }
 
@@ -53,7 +68,7 @@
 .form {
     max-width: 500px;
     width: 100%;
-    background-color: #181818;
+    background-color: #252525;
     padding: 20px;
     display: flex;
 

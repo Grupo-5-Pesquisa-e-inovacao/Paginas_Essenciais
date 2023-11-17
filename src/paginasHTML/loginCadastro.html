@@ -24,9 +24,7 @@
 
 
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
+                
             </ul>
 
             <div class="navigation">
@@ -99,7 +97,7 @@
                                 <input id="senhaInput" type="password" placeholder="Senha">
                             </div>
 
-                            <button class="btn-53" id="btnLogin">
+                            <button type="button" class="btn-53" id="btnLogin" onclick="entrarDash(event)">
                                 <div class="original">LOGIN</div>
                                 <div class="letters">
 
@@ -204,7 +202,28 @@
         </div>
     </main>
 
+</body>
+
+</html>
+
     <script>
+
+        function entrarDash(event){
+            
+    event.preventDefault();
+    // Restante do código para entrar na dash
+            window.location.href =  "/dashboard"
+
+
+            var email = document.getElementById("emailInput").value
+            var senha = document.getElementById("senhaInput").value
+
+            sessionStorage.setItem('EMAIL', email);
+            sessionStorage.setItem('SENHA', senha);
+
+
+        }
+
 
         const hamburguer = document.querySelector(".navigation");
         const navMenu = document.querySelector(".nav-menu");
@@ -574,6 +593,3 @@
                 });
         }
     </script>
-</body>
-
-</html>
