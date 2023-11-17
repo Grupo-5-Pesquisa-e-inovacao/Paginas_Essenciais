@@ -61,6 +61,21 @@ server.post("/logar", function (req, res) {
     ProvedoraController.cadastrar(req, res);
   });  
 
+   server.get("/teste", function (req,res){
+     res.sendFile(__dirname + '/testeexecucao.html')
+   });
+
+// cadastro de maquina na unidade
+  server.post("/cadastrar/:id", function(req, res){
+  MaquinaController.cadastrar(req,res);
+  })
+  server.post("/deletar/:id", function(req,res){
+    MaquinaController.delete(req,res);
+  })
+  server.post("/update/:id", function(req,res){
+    MaquinaController.update(req, res);
+  })
+// Fim do cadastro maquina na unidade
   server.delete('/deletar/:id', function (req,res){
     ProvedoraController.excluir(req,res)
   });
@@ -72,10 +87,6 @@ server.post("/logar", function (req, res) {
   server.get('/visualizar/:id',function(req,res){
     ProvedoraController.visualizarPorId(req,res)
   });
-
-//   server.get("/", function (req,res){
-//     res.sendFile(__dirname + '/testeexecucao.html')
-//   });
 
 
 const arquivoExe = '/home/ubuntu/testeServer/CamelLooca.exe';

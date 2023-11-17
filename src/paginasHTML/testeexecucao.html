@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="responsavel" type="text"> <br>
+    <input id="registro" type="text"> <br>
+    <input id="processadorMin" type="text"> <br>
+    <input id="processadorMax" type="text"> <br>
+    <input id="ram" type="text"> <br>
+    <input id="disco" type="text"> <br>
+    <input id="rede" type="text"> <br>
+
+    <button onclick="cadastrar()">Cadastrar</button> <br>
+    <br><br><br><br><br>
+    <button onclick="logar()">Logar</button>
+
+    <div id="resposta"></div>
+
+    <br><br><br><br><br>
+    <input id="input_emailAtualizar" type="text"> <br>
+    <input id="input_senhaAtualizar" type="text"> <br>
+    <input id="input_razaoSocialAtualizar" type="text"> <br>
+    <input id="input_nomeFantasiaAtualizar" type="text"> <br>
+    <button onclick="atualizar()">Atualizar</button>
+    <br><br><br><br><br>
+
+    <button onclick="deletar()">Deletar</button>
+
+    <button onclick="visualizarPorId()">Deletar</button>  
+
+</body>
+</html>
+
+<script>
+
+var provedoraIdSalvo = localStorage.getItem('provedoraId');
+
+function cadastrar() {
+  var responsavel = document.getElementById("responsavel").value;
+  var registro = document.getElementById("registro").value;
+  var ProcessadorMin = document.getElementById("processadorMin").value;
+  var processadorMax = document.getElementById("processadorMax").value; 
+  var disco = document.getElementById("disco").value;
+  var ram = document.getElementById("ram").value;
+  var rede = document.getElementById("rede").value;
+
+  var data = {
+    responsavel:responsavel,
+    registro:registro,
+    processadorMin:processadorMin,
+    processadorMax:processadorMax,
+    disco:disco,
+    ram:ram,
+    rede:rede
+  };
+
+  fetch('http://localhost:3300/cadastrar/1', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na solicitação.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Usuário cadastrado com sucesso:', data);
+      alert("Cadastro realizado");
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+      alert("Erro ao realizar cadastro");
+    });
+}
+
+function logar() {
+  var email = document.getElementById("input_email").value;
+  var senha = document.getElementById("input_senha").value;
+
+  var data = {
+    email: email,
+    senha: senha
+  };
+
+  fetch('http://localhost:3300/logar', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na solicitação.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Usuário logado com sucesso:', data);
+      var idProvedora = data.idProvedora;
+      localStorage.setItem('provedoraId', idProvedora);
+      provedoraIdSalvo = localStorage.getItem('provedoraId');
+      console.log('provedoraId recuperado do localStorage:', provedoraIdSalvo);
+      alert("Logado");
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+    });
+    visualizarPorId()
+}
+
+
+
+function deletar() {
+
+fetch(`http://localhost:3300/deletar/${provedoraIdSalvo}`, {
+  method: 'DELETE',
+})
+  .then((response) => {
+    if (response.ok) {
+      return response.text();
+    } else if (response.status === 404) {
+      throw new Error('Registro não encontrado.');
+    } else {
+      throw new Error('Erro ao excluir o registro.');
+    }
+  })
+  .then((data) => {
+    console.log(data); 
+  })
+  .catch((error) => {
+    console.error('Erro:', error.message);
+  });
+
+}
+
+
+
+function atualizar() {
+  var email = document.getElementById("input_emailAtualizar").value;
+  var senha = document.getElementById("input_senhaAtualizar").value;
+  var razaoSocial = document.getElementById("input_razaoSocialAtualizar").value;
+  var nomeFantasia = document.getElementById("input_nomeFantasiaAtualizar").value;
+
+  const dadosAtualizacao = {
+  email: email,
+  senha: senha,
+  nomeFantasia: nomeFantasia,
+  razaoSocial: razaoSocial,
+};
+
+fetch(`http://localhost:3300/atualizar/${provedoraIdSalvo}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(dadosAtualizacao),
+})
+  .then((response) => {
+    if (response.ok) {
+      return response.text();
+    } else if (response.status === 404) {
+      throw new Error('Registro não encontrado.');
+    } else {
+      throw new Error('Erro ao atualizar o registro.');
+    }
+  })
+  .then((data) => {
+    console.log(data); // Saída da resposta da API
+  })
+  .catch((error) => {
+    console.error('Erro:', error.message);
+  }); 
+}
+
+
+const respostaDiv = document.getElementById("resposta");
+
+function visualizarPorId() {
+  console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+  fetch(`http://localhost:3300/visualizar/${provedoraIdSalvo}`) 
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Erro na solicitação.');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.length > 0) {
+        const htmlContent = `
+          <p>ID: ${data[0].idProvedora}</p>
+          <p>Nome Fantasia: ${data[0].nomeFantasia}</p>
+          <p>Email: ${data[0].email}</p>
+          <p>Razão Social: ${data[0].razaoSocial}</p>
+          
+        `
+        respostaDiv.innerHTML = htmlContent;
+      } else {
+        respostaDiv.innerHTML = "Registro não encontrado.";
+      }
+    })
+    .catch((error) => {
+      console.error('Erro:', error);
+      respostaDiv.innerHTML = "Erro ao buscar os dados.";
+    });
+}
+
+
+
+
+
+
+</script>

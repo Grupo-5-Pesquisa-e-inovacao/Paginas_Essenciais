@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/CSS/dash.css">
         <link rel="stylesheet" href="/CSS/addMaquina.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <title>Document</title>
+        <title>Cadastro de Maquinas</title>
     </head>
 
     <body>
@@ -156,11 +156,11 @@
     <div class="ajustando_dados">
         <div class="dados">
             <span>Resposavel</span>
-            <input class="input" type="text" name="" id="" placeholder="Pessoa responsavel">
+            <input class="input" type="text" name="" id="responsavel" placeholder="Pessoa responsavel">
         </div>
         <div class="dados">
             <span>Numero de registro</span>
-            <input class="input" type="text" name="" id="" placeholder="identificação maquina">
+            <input class="input" type="text" name="" id="registro" placeholder="identificação maquina">
         </div>
     </div>
 
@@ -173,12 +173,12 @@
                     
                     <div class="informacao">
                         <p>Processador</p>
-                        <input class="input" type="text" name="" id="" placeholder="Min">
-                        <input class="input" type="text" name="" id="" placeholder="Max">
+                        <input class="input" type="text" name="" id="processadorMin" placeholder="Min">
+                        <input class="input" type="text" name="" id="processadorMax" placeholder="Max">
                     </div>
                     <div class="informacao">
                         <span>Disco</span>
-                        <input class="input" type="text" name="" id="" placeholder="Valor">
+                        <input class="input" type="text" name="" id="disco" placeholder="Valor">
                     </div>
                 </div>
 
@@ -186,11 +186,11 @@
                     <div class="informacao">
                         <span>
                             RAM</span>
-                        <input class="input" type="text" name="" id="" placeholder="Valor">
+                        <input class="input" type="text" name="" id="ram" placeholder="Valor">
                     </div>
                     <div class="informacao">
                         <span>Rede</span>
-                        <input class="input" type="text" name="" id="" placeholder="Velocidade">
+                        <input class="input" type="text" name="" id="rede" placeholder="Velocidade">
                     </div>
 
                 </div>
@@ -198,7 +198,7 @@
 
 
             <div class="btnAdd">
-                <button class="btn-53" onclick="irParaDash()">
+                <button class="btn-53" onclick="deletar()">
                     <div class="original">CADASTRAR</div>
                     <div class="letters">
 
@@ -214,6 +214,9 @@
 
     </div>
 </div></main></body></html><script>
+    
+
+
 const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
 const maquinas = document.querySelector('.maquinas');
 
@@ -536,4 +539,120 @@ $(document).ready(function () {
     $('#dropDown').click(function () {
         $('.drop-down').toggleClass('drop-down--active');
     });
-});</script>
+});
+
+
+
+
+
+function cadastrar() {
+  var responsavel = document.getElementById("responsavel").value;
+  var registro = document.getElementById("registro").value;
+  var processadorMin = document.getElementById("processadorMin").value;
+  var processadorMax = document.getElementById("processadorMax").value; 
+  var disco = document.getElementById("disco").value;
+  var ram = document.getElementById("ram").value;
+  var rede = document.getElementById("rede").value;
+
+  const data ={
+    responsavel: responsavel,
+    registro: registro,
+    prcessadorMin: processadorMin,
+    processadorMax: processadorMax,
+    disco: disco,
+    ram: ram,
+    rede: rede
+  }
+console.log(data);
+  fetch('http://localhost:3300/cadastrar/1', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na solicitação.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Usuário cadastrado com sucesso:', data);
+      alert("Cadastro realizado");
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+      alert("Erro ao realizar cadastro");
+    });
+}
+
+
+function update() {
+    var responsavel = document.getElementById("responsavel").value;
+    var registro = document.getElementById("registro").value;
+    var processadorMin = document.getElementById("processadorMin").value;
+    var processadorMax = document.getElementById("processadorMax").value; 
+    var disco = document.getElementById("disco").value;
+    var ram = document.getElementById("ram").value;
+    var rede = document.getElementById("rede").value;
+
+    const dadosAtualizacao = {
+        responsavel: responsavel,
+        registro: registro,
+        prcessadorMin: processadorMin,
+        processadorMax: processadorMax,
+        disco: disco,
+        ram: ram,
+        rede: rede
+    };
+fetch(`http://localhost:3300/update/6`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(dadosAtualizacao),
+})
+  .then((response) => {
+    if (response.ok) {
+      return response.text();
+    } else if (response.status === 404) {
+      throw new Error('Registro não encontrado.');
+    } else {
+      throw new Error('Erro ao atualizar o registro.');
+    }
+  })
+  .then((data) => {
+    console.log(data); // Saída da resposta da API
+  })
+  .catch((error) => {
+    console.error('Erro:', error.message);
+  });
+}
+
+function deletar() {
+    var responsavel = document.getElementById('responsavel');
+    var data={
+        responsavel:responsavel
+    };
+    fetch(`http://localhost:3300/deletar/6`, {
+    method: 'DELETE',
+    })
+    .then((response) => {
+        if (response.ok) {
+        return response.text();
+        } else if (response.status === 404) {
+        throw new Error('Registro não encontrado.');
+        } else {
+        throw new Error('Erro ao excluir o registro.');
+        }
+    })
+    .then((data) => {
+        console.log(data); 
+    })
+    .catch((error) => {
+        console.error('Erro:', error.message);
+    });
+
+};
+</script>
