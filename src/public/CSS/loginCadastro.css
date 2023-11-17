@@ -412,6 +412,7 @@ button[type="submit"] {
   display: grid;
   inset: 0;
   place-content: center;
+  
   position: absolute;
   transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1);
 }
