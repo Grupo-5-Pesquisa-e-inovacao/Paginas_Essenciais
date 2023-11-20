@@ -56,31 +56,34 @@ function cadastrar(responsavel, registro, processadorMin, processadorMax, disco,
     });
 }
 
-function deletar(responsavel) {
-    var instrucao1=`
-        DELETE FROM configuracao WHERE fkServidor = 1;
-    `
-    var instrucao2 = `
-      DELETE FROM servidor WHERE idServidor = x;
-    `;
-    console.log("Executando a instrução SQL: \n"+instrucao1);
-    console.log("Executando a instrução SQL: \n"+instrucao2);
+function excluir(id) {
+    var instrucao = `DELETE FROM servidor WHERE idServidor = ?`;
+    console.log("Executando a instrução SQL:\n" + instrucao);
   
     return new Promise((resolve, reject) => {
       db.query(instrucao, [id], (error, results, fields) => {
         if (error) {
-          console.log(error);
-          reject(error);
+          console.error("Erro ao excluir o registro:", error);
+          reject("Erro ao excluir o registro: " + error.message);
         } else {
-          resolve(results);
+          if (results.affectedRows > 0) {
+            console.log("Registro excluído com sucesso.");
+            resolve("Registro excluído com sucesso.");
+          } else {
+            console.log("Nenhum registro encontrado para exclusão.");
+            reject("Nenhum registro encontrado para exclusão.");
+          }
         }
       });
     });
   }
+  
+
+
 module.exports = {
     cadastrar,
     update,
-    deletar,
+    excluir,
     buscarTudo: (codigo) => {
         return new Promise((resolver, reject) => {
             db.query('SELECT dh.* FROM dadosHardware dh INNER JOIN captura c ON dh.idDadosHardware = c.fkDados INNER JOIN servidor s ON c.fkServidor = s.idServidor WHERE s.idServidor = ?', [codigo], (error, results) => { // Chamada ao banco

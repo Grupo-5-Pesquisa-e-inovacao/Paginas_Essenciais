@@ -69,8 +69,8 @@ server.post("/logar", function (req, res) {
   server.post("/cadastrar/:id", function(req, res){
   MaquinaController.cadastrar(req,res);
   })
-  server.post("/deletar/:id", function(req,res){
-    MaquinaController.delete(req,res);
+  server.delete("/excluir/:id", function(req,res){
+    MaquinaController.excluir(req,res);
   })
   server.post("/update/:id", function(req,res){
     MaquinaController.update(req, res);

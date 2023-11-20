@@ -80,14 +80,13 @@ function update(req, res) {
         });
 }
 
-function deletar(req, res) {
-    var responsavel = req.body.responsavel;
+function excluir(req, res) {
     var id = req.params.id; // Assumindo que o ID a ser excluído está presente nos parâmetros da requisição
   
     if (id == undefined) {
       res.status(400).send("O ID está indefinido!");
     } else {
-      MaquinaService.deletar(responsavel) // Chame a função de serviço "excluir" que criamos anteriormente
+      MaquinaService.excluir(id) // Chame a função de serviço "excluir" que criamos anteriormente
         .then(function (resultado) {
           if (resultado.affectedRows > 0) {
             res.status(200).send("Registro excluído com sucesso!");
@@ -107,7 +106,7 @@ function deletar(req, res) {
 module.exports = {
     cadastrar,
     update,
-    deletar,
+    excluir,
     buscarTudo: async (req, res) => {
         try {
             const codigo = req.params.codigo; 

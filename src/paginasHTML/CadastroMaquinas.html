@@ -198,7 +198,7 @@
 
 
             <div class="btnAdd">
-                <button class="btn-53" onclick="deletar()">
+                <button class="btn-53" onclick="excluir()">
                     <div class="original">CADASTRAR</div>
                     <div class="letters">
 
@@ -607,7 +607,7 @@ function update() {
         ram: ram,
         rede: rede
     };
-fetch(`http://localhost:3300/update/6`, {
+fetch(`http://localhost:3300/update/4`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -631,12 +631,8 @@ fetch(`http://localhost:3300/update/6`, {
   });
 }
 
-function deletar() {
-    var responsavel = document.getElementById('responsavel');
-    var data={
-        responsavel:responsavel
-    };
-    fetch(`http://localhost:3300/deletar/6`, {
+function excluir() {
+    fetch(`http://localhost:3300/excluir/2`, {
     method: 'DELETE',
     })
     .then((response) => {
