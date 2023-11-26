@@ -1,17 +1,17 @@
 const db = require('../db');
 const connection = require('../db');
 
-function cadastrar(responsavel, registro, processadorMin, processadorMax, disco, ram, rede ) {
+function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede, id ) {
 
-    console.log("function cadastrar():", responsavel, registro, processadorMin, processadorMax, disco, ram, rede);
+    console.log("function cadastrar():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede);
   
-    var instrucaoUsuario = `INSERT INTO servidor (responsavel, registro,processadorMin, processadorMax, disco, ram, rede, fkUnidade) VALUES (?,?,?,?,?,?,?,?)`;
+    var instrucaoUsuario = `INSERT INTO servidor (nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeRam,maxUsoRam, capacidadeDisco,maxUsoDisco, velocidaDeRede,fkUnidade) VALUES (?,?,?,?,?,?,?,?,?)`;
     
   
     console.log("Executando a instrução SQL:");
   
     return new Promise((resolve, reject) => {
-      connection.query(instrucaoUsuario, [responsavel, registro, processadorMin, processadorMax, disco, ram, rede,1], (error, results) => {
+      connection.query(instrucaoUsuario, [nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede,1], (error, results) => {
         if (error) {
           console.log(error);
           console.log("\nHouve um erro ao realizar o cadastro! Erro: ", error.sqlMessage);
@@ -25,19 +25,31 @@ function cadastrar(responsavel, registro, processadorMin, processadorMax, disco,
     });
   }
 
-  function update(responsavel, registro, processadorMin, processadorMax, disco, ram, rede, id) {
-    console.log("function update():", responsavel, registro, processadorMin, processadorMax, disco, ram, rede,id);
+  function update(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id) {
+    console.log("function update():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id);
 
     var instrucaoUsuario = `
       UPDATE servidor
-      SET responsavel = ?, registro = ?, processadorMin = ?, processadorMax = ?, disco = ?, ram = ?, rede = ?
+      SET nomeResponsavel = ?, numeroRegistro = ?, frequenciaIdealProcessador = ?, capacidadeDisco = ?, maxUsoDisco = ?, capacidadeRam = ?, maxUsoRam = ?, velocidaDeRede = ?
       WHERE idServidor = ?;
-    `;
+    `
+    const valores = [
+        nomeResponsavel, 
+        `SRV${numeroRegistro}`,        
+        `${frequenciaIdealProcessador} GHz`, 
+        `${capacidadeDisco}GB`,
+        `${maxUsoDisco}%`,
+        `${capacidadeRam}GB`,
+        `${maxUsoRam}%`, 
+        `${velocidaDeRede} Gbps`, // Adicionando '%' antes e depois da variável velocidaDeRede
+        id
+    ];
+
 
     console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
 
     return new Promise((resolve, reject) => {
-        connection.query(instrucaoUsuario, [responsavel, registro, processadorMin, processadorMax, disco, ram, rede, id], (error, results) => {
+        connection.query(instrucaoUsuario, valores, (error, results) => {
             if (error) {
                 console.log(error);
                 console.log("\nHouve um erro ao realizar a atualização! Erro: ", error.sqlMessage);
@@ -45,10 +57,10 @@ function cadastrar(responsavel, registro, processadorMin, processadorMax, disco,
             } else {
                 // Verifica se pelo menos uma linha foi afetada pela atualização
                 if (results.affectedRows > 0) {
-                    console.log(`Registro com responsável ${responsavel} atualizado com sucesso.`);
+                    console.log(`Registro com responsável ${nomeResponsavel} atualizado com sucesso.`);
                     resolve(true); // Atualização bem-sucedida
                 } else {
-                    console.log(`Registro com responsável ${responsavel} não encontrado.`);
+                    console.log(`Registro com responsável ${nomeResponsavel} não encontrado.`);
                     resolve(false); // Nenhum registro foi encontrado para atualizar
                 }
             }

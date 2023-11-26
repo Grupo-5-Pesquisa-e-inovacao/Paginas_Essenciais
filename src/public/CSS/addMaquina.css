@@ -98,9 +98,9 @@
 
 .informacao{
     display: flex ;
-    justify-content: center;
+    
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
     text-align: left;
 }
 
@@ -142,7 +142,34 @@
     border: 1px solid transparent;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
-    border-radius: 15px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .outros{
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 35%;
+    font-size: 0.9rem;
+    color: #4a5568;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .processador{
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 70%;
+    font-size: 0.9rem;
+    color: #4a5568;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+    text-align: center;
   }
   
   .input:focus {

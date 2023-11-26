@@ -24,18 +24,19 @@ function visualizarPorId(id) {
 
   
   function cadastrar(req, res) {
-    var responsavel = req.body.responsavel;
-    var registro = req.body.registro;
-    var processadorMin = req.body.processadorMin;
-    var processadorMax = req.body.processadorMax;
-    var disco = req.body.disco;
-    var ram = req.body.ram;
-    var rede = req.body.rede;
+    var nomeResponsavel = req.body.nomeResponsavel;
+    var numeroRegistro = req.body.numeroRegistro;
+    var frequenciaIdealProcessador = req.body.frequenciaIdealProcessador;
+    var capacidadeDisco = req.body.capacidadeDisco;
+    var maxUsoDisco = req.body.maxUsoDisco;
+    var capacidadeRam = req.body.capacidadeRam
+    var maxUsoRam = req.body.maxUsoRam;
+    var velocidaDeRede = req.body.velocidaDeRede;
 
 
 
     // Chame o serviço para cadastrar a máquina
-    MaquinaService.cadastrar(responsavel, registro, processadorMin,processadorMax,disco,ram,rede)
+    MaquinaService.cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede)
 
         .then(function (resultado) {
             console.log("Máquina cadastrada com sucesso.");
@@ -53,18 +54,19 @@ function visualizarPorId(id) {
         });
 }
 
-function update(req, res) {
-    var responsavel = req.body.responsavel;
-    var registro = req.body.registro;
-    var processadorMin = req.body.processadorMin;
-    var processadorMax = req.body.processadorMax;
-    var disco = req.body.disco;
-    var ram = req.body.ram;
-    var rede = req.body.rede;
+function update(req, res) { 
+    var nomeResponsavel = req.body.nomeResponsavel;
+    var numeroRegistro = req.body.numeroRegistro;
+    var frequenciaIdealProcessador = req.body.frequenciaIdealProcessador;
+    var capacidadeDisco = req.body.capacidadeDisco;
+    var maxUsoDisco = req.body.maxUsoDisco;
+    var capacidadeRam = req.body.capacidadeRam
+    var maxUsoRam = req.body.maxUsoRam;
+    var velocidaDeRede = req.body.velocidaDeRede;
 
     var id =  req.params.id
 
-    MaquinaService.update(responsavel, registro, processadorMin, processadorMax, disco, ram, rede, id)
+    MaquinaService.update(nomeResponsavel, numeroRegistro,frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede, id)
         .then(function (resultado) {
             // Verifica se houve alguma linha afetada (indicando que o registro foi atualizado)
             if (resultado) {
@@ -122,7 +124,7 @@ module.exports = {
                     usoDisco: maquina.usoDisco, 
                     tamanhoDisco: maquina.tamanhoDisco, 
                     nomeDisco: maquina.nomeDisco, 
-                    rede: maquina.rede, 
+                    velocidaDeRede: maquina.velocidaDeRede, 
                     qtdEmUso: maquina.qtdEmUso, 
                     frequencia: maquina.frequencia, 
                     hostName: maquina.hostName, 
@@ -153,7 +155,7 @@ module.exports = {
                     usoDisco: maquina.usoDisco, 
                     tamanhoDisco: maquina.tamanhoDisco, 
                     nomeDisco: maquina.nomeDisco, 
-                    rede: maquina.rede, 
+                    velocidaDeRede: maquina.velocidaDeRede, 
                     qtdEmUso: maquina.qtdEmUso, 
                     frequencia: maquina.frequencia, 
                     hostName: maquina.hostName, 

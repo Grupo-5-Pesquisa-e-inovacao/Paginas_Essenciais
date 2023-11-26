@@ -118,7 +118,7 @@
             <div class="logo">
                 <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
             </div>
-        
+
             <div class="container-mae">
                 <ul class="nav-list">
                     <li>
@@ -184,7 +184,7 @@
                 </ul>
             </div>
         </nav>
-        
+
 
 
         <!-- Conteúdo da página -->
@@ -382,13 +382,13 @@
 
 <script>
 
-function checkLogin(){
-    var email = sessionStorage.getItem('EMAIL');
-    var senha = sessionStorage.getItem('SENHA');
-    const nav = document.querySelector(".nav-lateral")
+    function checkLogin() {
+        var email = sessionStorage.getItem('EMAIL');
+        var senha = sessionStorage.getItem('SENHA');
+        const nav = document.querySelector(".nav-lateral")
 
-    if (email === "adm@email" && senha === "123") {
-      nav.innerHTML = ` 
+        if (email === "adm@email" && senha === "123") {
+            nav.innerHTML = ` 
       <div class="logo">
         <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
       </div>
@@ -428,9 +428,9 @@ function checkLogin(){
           </li>
         </ul>
       </div>`
-    }
-    else {
-      nav.innerHTML = `
+        }
+        else {
+            nav.innerHTML = `
       <div class="logo">
         <a href="/"><img src="/assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
       </div>
@@ -482,18 +482,18 @@ function checkLogin(){
           </li>
         </ul>
       </div>`
+        }
+
     }
 
-  }
-
-  checkLogin();
+    checkLogin();
 
 
-$(document).ready(function () {
-    $('#dropDown').click(function () {
-        $('.drop-down').toggleClass('drop-down--active');
+    $(document).ready(function () {
+        $('#dropDown').click(function () {
+            $('.drop-down').toggleClass('drop-down--active');
+        });
     });
-});
 
 
 
@@ -509,16 +509,16 @@ $(document).ready(function () {
 
 
     function ativarInput(idInput, idBtn, idDiv) {
-    var minhaInput = document.getElementById(idInput);
-    var button = document.getElementById(idBtn);
-    var div = document.getElementById(idDiv);
+        var minhaInput = document.getElementById(idInput);
+        var button = document.getElementById(idBtn);
+        var div = document.getElementById(idDiv);
 
-    var valorAntigo = minhaInput.value;
+        var valorAntigo = minhaInput.value;
 
-    minhaInput.disabled = false;
-    minhaInput.focus();
+        minhaInput.disabled = false;
+        minhaInput.focus();
 
-    var divNova = `<div class="search" id="${idDiv}">
+        var divNova = `<div class="search" id="${idDiv}">
         <input type="text" class="search__input" placeholder="Dados aqui" id="${idInput}" value="${valorAntigo}">
         <button class="search__button activated" id="${idBtn}" onclick="desativarInput('${idInput}', '${idBtn}', '${idDiv}')">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-check-lg" viewBox="0 0 16 16">
@@ -527,22 +527,22 @@ $(document).ready(function () {
         </button>
     </div>`;
 
-    div.innerHTML = divNova;
-}
+        div.innerHTML = divNova;
+    }
 
 
-function desativarInput(idInput, idBtn, idDiv) {
-    var minhaInput = document.getElementById(idInput);
-    var button = document.getElementById(idBtn);
-    var div = document.getElementById(idDiv);
+    function desativarInput(idInput, idBtn, idDiv) {
+        var minhaInput = document.getElementById(idInput);
+        var button = document.getElementById(idBtn);
+        var div = document.getElementById(idDiv);
 
-    // Salva o valor atual da input antes de desativá-la
-    var valorAntigo = minhaInput.value;
+        // Salva o valor atual da input antes de desativá-la
+        var valorAntigo = minhaInput.value;
 
-    minhaInput.disabled = true;
-    minhaInput.focus();
+        minhaInput.disabled = true;
+        minhaInput.focus();
 
-    var divNova = `<div class="search" id="${idDiv}">
+        var divNova = `<div class="search" id="${idDiv}">
         <input type="text" class="search__input" placeholder="Dados aqui" id="${idInput}" disabled value="${valorAntigo}">
         <button class="search__button" id="${idBtn}" onclick="ativarInput('${idInput}', '${idBtn}', '${idDiv}')">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -551,8 +551,8 @@ function desativarInput(idInput, idBtn, idDiv) {
         </button>
     </div>`;
 
-    div.innerHTML = divNova;
-}
+        div.innerHTML = divNova;
+    }
 
 
 
@@ -583,9 +583,9 @@ function desativarInput(idInput, idBtn, idDiv) {
         const btnCancelar = document.querySelector('.cancelarLixeira');
         lixeira.style.display = 'none'
         grafico.style.filter = 'blur(0px)'
-        
+
         nav.style.filter = 'blur(0px)'
-        
+
     }
 
     var id = 180;
@@ -1205,7 +1205,7 @@ function desativarInput(idInput, idBtn, idDiv) {
     }
 
 
-    function VisaoGeral(){
+    function VisaoGeral() {
         window.location.href = "/dashboard"
     }
 
