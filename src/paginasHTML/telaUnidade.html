@@ -171,9 +171,7 @@
 
 
     <div class="container-esquerda">
-      <div class="cabecalho">
-          <h6>Nome unidade</h6>
-      </div>
+  
       <div class="endereco">
           <h6>Rua</h6>
           <input class="info" disabled id="i1">
@@ -181,17 +179,19 @@
           <input class="info" disabled id="i2">
           <h6>Complemento</h6>
           <input class="info" disabled id="i3">
-      </div>
-      <div class="endereco">
-          <h6>Nome</h6>
+          <h6>CEP</h6>
           <input class="info" disabled id="i4">
-          <h6>Email</h6>
+          <h6>Nome</h6>
           <input class="info" disabled id="i5">
-          <h6>Senha</h6>
+          <h6>Representante</h6>
           <input class="info" disabled id="i6">
+          <h6>Email representante</h6>
+          <input class="info" disabled id="i7">
+          <h6>Senha</h6>
+          <input class="info" disabled id="i8">
           <button class="Btn" onclick="toggleEditar()">Edit
           </button>
-      </div>
+        </div>
   </div>
   
     <div class="container-direita">
@@ -367,7 +367,10 @@ function toggleEditar() {
 
     if (isEditing) {
         btn.textContent = 'Salvar';
+        btn.addEventListener('click', cadastrar);
+        
     } else {
+      btn.removeEventListener('click', cadastrar)
         btn.textContent = 'Edit';
     }
 
@@ -596,6 +599,77 @@ function addUnidade() {
     sessionStorage.clear();
     window.location.href = "/";
   }
-  
+
+
+  function cadastrar() {
+        
+        var ruaVar = i1.value
+        var numeroVar = i2.value;
+        var complementoVar = i3.value
+        var cepVar = i4.value
+        var nomeVar = i5.value
+        var representanteVar = i6.value
+        var emailVar = i7.value
+        var senhaVar = i8.value
+        if (
+          ruaVar == "" ||
+          emailVar == "" ||
+          senhaVar == "" ||
+          complementoVar == "" ||
+          numeroVar == "" ||
+          nomeVar == ""
+        ) {
+          alert(
+            "Atenção! Preencha todos os campos para a realização do cadastro!"
+          );
+
+          return false;
+        }
+        if (
+          emailVar.indexOf("@") == -1 ||
+          emailVar.indexOf(".com") == -1 
+        ) {
+          alert(
+            "Atenção! Para o email siga o seguinte exemplo: aaa@exemplo.com"
+          );
+          return false;
+        }
+
+        // Enviando o valor da nova input
+        fetch("/cadastrarUnidade", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeUnidade: nomeVar,
+            senha: senhaVar,
+            cep: cepVar,
+            rua: ruaVar,
+            complemento: complementoVar,
+            numero: numeroVar,
+            representante: representanteVar,
+            email: emailVar,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              setTimeout(() => {
+                window.location = "login.html";
+              }, "1000");
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+        return false;
+      }
 
 </script>

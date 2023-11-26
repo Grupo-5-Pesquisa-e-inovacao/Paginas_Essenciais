@@ -5,6 +5,7 @@ const port = process.env.PORT || 3300;
 const server = express();
 const MaquinaController = require('./controllers/MaquinaController.js');
 const ProvedoraController = require('./controllers/ProvedoraController.js');
+const UnidadeController = require('./controllers/UnidadeController.js');
 const cors = require('cors');
 server.use(cors());
 const bodyParser = require('body-parser');
@@ -106,6 +107,40 @@ server.get('/dadosRamMaquina/:codigo',MaquinaController.buscarRam);
 server.get('/dadosCPUMaquina/:codigo',MaquinaController.buscarCPU);
 
 //console: mensagem servidor
-server.listen(port, ()=>{
+
+
+// // crud unidade
+
+server.post("/logarUnidade", function (req, res) {
+    UnidadeController.entrar(req, res);
+  });
+
+  server.post("/cadastrarUnidade", function (req, res) {
+    UnidadeController.cadastrar(req, res);
+  });  
+
+  server.get("/", function (req,res){
+    res.sendFile(__dirname + '/testeexecucao.html')
+  })
+
+  server.delete('/deletarUnidade/:idunidadeProvedora', function (req,res){
+    UnidadeController.excluir(req,res)
+  })
+
+  server.put('/atualizarUnidade/:idunidadeProvedora', function(req,res) {
+    UnidadeController.atualizar(req,res)
+  })
+
+  server.get('/visualizarUnidade/:idunidadeProvedora',function(req,res){
+    UnidadeController.visualizarPorId(req,res)
+  })
+
+  server.get('/arthurEntender',function (req,res){
+    res.sendFile("C:/Users/arthu/OneDrive/Área de Trabalho/git/Paginas_Essenciais/src/paginasHTML/telaUnidade.html")
+
+  })
+
+
+  server.listen(port, ()=>{
     console.log(`Servidor rodando em: http://localhost:${port}`);
 });
