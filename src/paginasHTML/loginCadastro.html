@@ -140,7 +140,7 @@
                                     <div class="seta"></div>
 
                                 </div>
-                                <input id="razaoSocial_input" type="text" placeholder="Nome da Empresa" maxlength="30">
+                                <input class="razaoSocial_input" id="razaoSocial_input" type="text" placeholder="Nome da Empresa" maxlength="30">
 
                             </div>
 
@@ -256,16 +256,16 @@
         console.log("Entrei na função de cadastro!");
         var email = document.getElementById("input_email").value;
         var senha = document.getElementById("input_senha").value;
-        var razaoSocial = document.querySelectorAll("#razaoSocial_input").value;
-        var cnpj = document.querySelectorAll("#cnpj_input").value;
-        var telefone = document.querySelectorAll("#telefone_input").value;
+        // var razaoSocial = document.querySelectorAll("#razaoSocial_input").value;
+        // var cnpj = document.querySelectorAll("#cnpj_input").value;
+        // var telefone = document.querySelectorAll("#telefone_input").value;
 
         var data = {
             email: email,
             senha: senha,
-            razaoSocial: razaoSocial,
-            cnpj: cnpj,
-            telefone: telefone
+            razaoSocial: razaoSocialGlobal,
+            cnpj: cnpjGlobal,
+            telefone: telefoneGlobal
         };
 
         fetch('http://localhost:3300/cadastrar', {
@@ -292,15 +292,19 @@
     }
 
 
-    var razaoSocialValor = "";
-    var cnpjValor = "";
-    var telefoneValor = "";
+    var razaoSocialGlobal;
+    var cnpjGlobal;
+    var telefoneGlobal;
 
     function prosseguirForm() {
 
-        razaoSocialValor = document.getElementById("razaoSocial_input").value;
-        cnpjValor = document.getElementById("cnpj_input").value;
-        telefoneValor = document.getElementById("telefone_input").value;
+        var razaoSocial = document.getElementById("razaoSocial_input").value;
+        var cnpj = document.getElementById("cnpj_input").value;
+        var telefone = document.getElementById("telefone_input").value;
+
+        razaoSocialGlobal=razaoSocial
+        cnpjGlobal=cnpj
+        telefoneGlobal=telefone
 
         middle.innerHTML = `
                         <form class="formulario">
@@ -339,6 +343,8 @@
                                 <input id="input_senha" type="text" placeholder="*******">
                             </div>
 
+                            
+
 
                             <button class="btn-53" onclick="cadastrar()">
                                 <div class="original" id="btnCadastroFlip">CADASTRE-SE</div>
@@ -366,10 +372,6 @@
 
 
                     `
-
-
-
-
 
 
 

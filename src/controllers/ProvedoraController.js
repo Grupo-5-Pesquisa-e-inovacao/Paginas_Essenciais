@@ -36,17 +36,17 @@ function entrar(req, res) {
   
   }
   function cadastrar(req, res) {
+    var razaoSocial = req.body.razaoSocial;
     var email = req.body.email;
     var senha = req.body.senha;
     var cnpj = req.body.cnpj;
-    var razaoSocial = req.body.razaoSocial;
 //    var telefone = req.body.telefone;
   
     if (!email || !senha) {
       res.status(400).json({ error: "Email e senha são obrigatórios." });
       return;
     }
-    usuarioServices.cadastrar(email, senha, cnpj, razaoSocial)
+    usuarioServices.cadastrar(razaoSocial,email, senha, cnpj)
       .then(function (resultado) {
         console.log("Usuário cadastrado com sucesso.");
         res.status(201).json({ message: "Usuário cadastrado com sucesso." });
