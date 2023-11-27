@@ -294,7 +294,30 @@ function checkLogin(){
   checkLogin();
 
 function unidade1(){
-  window.location.href = "/telaUnidade"
+
+  
+
+  const idunidadeProvedora = 1;  //AQUI VAI RECUPERAR O LOCALSTORAGE DA PROVEDORA
+
+   fetch(`/visualizarUnidade/${idunidadeProvedora}`)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Erro de rede - ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    sessionStorage.setItem('idUnidade', data[0].idunidadeProvedora);
+
+  })
+  .catch(error => {
+    console.error('Erro na requisição:', error);
+  });
+
+
+
+
+  // window.location.href = "/telaUnidade"
 }
   
 function irParaDash() {

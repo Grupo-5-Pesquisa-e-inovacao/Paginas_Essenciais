@@ -68,30 +68,34 @@ function cadastrar(rua, numero, complemento, cep, nomeUnidade, representante, em
       });
     });
   }
+  
+  const sql = require('mssql');
+
   function visualizarPorId(idunidadeProvedora) {
     var instrucao = `
-    SELECT 
-    *
-FROM
-    unidadeProvedora
-        JOIN
-    usuario ON usuario.fkUnidade = unidadeProvedora.idUnidadeProvedora;
+      SELECT * FROM unidadeProvedora
+      JOIN usuario ON usuario.fkUnidade = unidadeProvedora.idUnidadeProvedora
+      WHERE unidadeProvedora.idUnidadeProvedora = @idunidadeProvedora;
     `;
   
     console.log("Executando a instrução SQL:");
   
     return new Promise((resolve, reject) => {
-      connection.query(instrucao, [idunidadeProvedora], (error, results) => {
+      const request = connection.request();
+      request.input('idunidadeProvedora', sql.Int, idunidadeProvedora);
+  
+      request.query(instrucao, (error, results) => {
         if (error) {
           console.log(error);
           console.log("\nHouve um erro ao buscar os dados! Erro: ", error.sqlMessage);
           reject(error);
         } else {
-          resolve(results);
+          resolve(results.recordset);
         }
       });
     });
   }
+  
   
 
   
