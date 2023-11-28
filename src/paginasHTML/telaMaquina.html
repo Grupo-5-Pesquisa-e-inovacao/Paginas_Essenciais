@@ -191,98 +191,28 @@
         <!-- Para mudar o status da máquina, apenas acesse a classlist do id do status, e troque para o correspondente. A nomeclatura segue a mesma, mudando apenas o status no final como alto medio ou baixo -->
         <div class="graficos">
             <div class="cabecalhoMaquinaCima">
-
-                <div class="search" id="div1">
-                    <input type="text" class="search__input" placeholder="Dados aqui" disabled id="ipt1">
-                    <button class="search__button" id="btn1" onclick="ativarInput('ipt1', 'btn1', 'div1')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" id="iconeSvg"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                        </svg>
-                    </button>
+                <div class="arrumando">
+                    <input class="info" type="text" name="" id="nameResponsavel">
+                    <input class="info info" type="text" name="" id="numeroRegistro">
+                    <input class="info" type="text" name="" id="frequenciaIdealProcessador">
+                    <input class="info" type="text" name="" id="maxUsoDisco">
+                    <button class="Btn" id="atualizar">Edit</button>
                 </div>
-                <div class="search" id="div2">
-                    <input type="text" class="search__input" placeholder="Dados aqui" disabled id="ipt2">
-                    <button class="search__button" onclick="ativarInput('ipt2', 'btn2', 'div2')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="search">
-                    <input type="text" class="search__input" placeholder="Dados aqui" disabled>
-                    <button class="search__button" style="cursor: text;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="search" style="width: 50%;">
-                    <input type="text" class="search__input" placeholder="Dados aqui" disabled>
-                    <button class="search__button" style="cursor: text;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="apagarUnidade" onclick="apagarUnidade()" style="margin: 0; margin-bottom: 2%;">
-                    <button class="btn">
-                        <svg viewBox="0 0 15 17.5" height="17.5" width="15" fill="white"
-                            xmlns="http://www.w3.org/2000/svg" class="icon">
-                            <path transform="translate(-2.5 -1.25)"
-                                d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
-                                id="Fill"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="cabecalhoMaquinaBaixo">
-                <div class="search" id="div3">
-                    <input type="text" class="search__input" placeholder="Dados aqui" disabled id="ipt3">
-                    <button class="search__button" onclick="ativarInput('ipt3', 'btn3', 'div3')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="search" id="div4">
-                    <input type="text" class="search__input" placeholder="Dados aqui" disabled id="ipt4">
-                    <button class="search__button" onclick="ativarInput('ipt4', 'btn4', 'div4')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="search" id="div5">
-                    <input type="text" class="search__input" placeholder="Dados aqui" disabled id="ipt5">
-                    <button class="search__button" onclick="ativarInput('ipt5', 'btn5', 'div5')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="search" id="div6">
-                    <input type="text" class="search__input" placeholder="Dados aqui" disabled id="ipt6">
-                    <button class="search__button" onclick="ativarInput('ipt6', 'btn6', 'div6')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
-                            class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                        </svg>
-                    </button>
+                <div class="arrumando">
+                    <input class="info" type="text" name="" id="capacidadeDisco">
+                    <input class="info" type="text" name="" id="MaxUsoRam">
+                    <input class="info" type="text" name="" id="capacidadeRam">
+                    <input class="info" type="text" name="" id="velocidadeDeRede">
+                    <div class="apagarUnidade" onclick="apagarUnidade()" style="margin: 0; margin-bottom: 2%;">
+                        <button class="btn">
+                            <svg viewBox="0 0 15 17.5" height="17.5" width="15" fill="white"
+                                xmlns="http://www.w3.org/2000/svg" class="icon">
+                                <path transform="translate(-2.5 -1.25)"
+                                    d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                                    id="Fill"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="graficos_container_cima">
@@ -338,18 +268,8 @@
                 <div>
                     <canvas id="myChartTudo"></canvas>
                 </div>
-
-
-
             </div>
-
-
-
-
         </div>
-
-
-
     </div>
 
     <div class="cardLixeira">
@@ -381,6 +301,136 @@
 </body>
 
 <script>
+
+function preencherValores(data) {
+        const inputs = document.querySelectorAll('.info');
+
+        inputs.forEach(input => {
+            input.value = data[input.id];
+        });
+    }
+
+    function carregarDadosDoBanco() {
+        // Aqui você deve realizar a chamada AJAX para recuperar os dados do banco de dados
+        // e chamar a função preencherValores() com os dados retornados
+
+        // Exemplo fictício de chamada AJAX
+        const request = new XMLHttpRequest();
+        request.open('GET', 'http://localhost:3300/recuperar/2', true);
+
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 400) {
+                const response = JSON.parse(request.responseText);
+                preencherValores(response);
+            } else {
+                console.error('Erro ao recuperar os dados do banco de dados.');
+            }
+        };
+
+        request.onerror = function() {
+            console.error('Erro de conexão.');
+        };
+
+        request.send();
+    }
+
+    carregarDadosDoBanco();
+
+
+    let isEditing = false;
+
+    function toggleEditar() {
+        const inputs = document.querySelectorAll('.info');
+        const btn = document.querySelector('.Btn');
+
+        isEditing = !isEditing;
+
+        if (isEditing) {
+            btn.textContent = 'Salvar';
+        } else {
+            btn.textContent = 'Edit';
+        }
+
+        inputs.forEach(input => {
+            input.disabled = !isEditing;
+        });
+    }
+
+    function salvarValores() {
+        const inputs = document.querySelectorAll('.info');
+        const valores = {};
+
+        inputs.forEach(input => {
+            valores[input.id] = input.value;
+        });
+
+        console.log(valores);
+
+        toggleEditar();
+    }
+
+    const btnEditar = document.getElementById('atualizar');
+    btnEditar.addEventListener('click', function () {
+        if (isEditing) {
+            salvarValores();
+        } else {
+            toggleEditar();
+        }
+    });
+
+
+
+    function update() {
+        var nomeResponsavel = document.getElementById("nameResponsavel").value;
+        var numeroRegistro = document.getElementById("numeroRegistro").value;
+        var frequenciaIdealProcessador = parseFloat(document.getElementById("frequenciaIdealProcessador").value);
+        var maxUsoDisco = document.getElementById("maxUsoDisco").value;
+        var capacidadeDisco = document.getElementById("capacidadeDisco").value;
+        var maxUsoRam = document.getElementById("MaxUsoRam").value;
+        var capacidadeRam = document.getElementById("capacidadeRam").value;
+        var velocidaDeRede = document.getElementById("velocidadeDeRede").value;
+
+        const dadosAtualizacao = {
+            nomeResponsavel: nomeResponsavel,
+            numeroRegistro: numeroRegistro,
+            frequenciaIdealProcessador: frequenciaIdealProcessador,
+            maxUsoDisco: maxUsoDisco,
+            capacidadeDisco: capacidadeDisco,
+            maxUsoRam: maxUsoRam,
+            capacidadeRam: capacidadeRam,
+            velocidaDeRede: velocidaDeRede
+        };
+        fetch(`http://localhost:3300/update/2`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dadosAtualizacao),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.text();
+                } else if (response.status === 404) {
+                    throw new Error('Registro não encontrado.');
+                } else {
+                    throw new Error('Erro ao atualizar o registro.');
+                }
+            })
+            .then((data) => {
+                console.log("Maquina atualizada com sucesso!", data); // Saída da resposta da API
+            })
+            .catch((error) => {
+                console.error('Erro:', error.message);
+            });
+    }
+
+    // Pegando as funções de cima e executando no BUTTON que tem o ID = atualizar
+    document.getElementById('atualizar').onclick = function () {
+        toggleEditar();
+        salvarValores();
+        update();
+    };
+
 
     function checkLogin() {
         var email = sessionStorage.getItem('EMAIL');

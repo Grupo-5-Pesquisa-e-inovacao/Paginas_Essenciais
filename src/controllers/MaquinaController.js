@@ -57,16 +57,16 @@ function visualizarPorId(id) {
 function update(req, res) { 
     var nomeResponsavel = req.body.nomeResponsavel;
     var numeroRegistro = req.body.numeroRegistro;
-    var frequenciaIdealProcessador = req.body.frequenciaIdealProcessador;
+    var frequenciaIdealProcessador = parseFloat(req.body.frequenciaIdealProcessador);
     var capacidadeDisco = req.body.capacidadeDisco;
     var maxUsoDisco = req.body.maxUsoDisco;
-    var capacidadeRam = req.body.capacidadeRam
+    var capacidadeRam = req.body.capacidadeRam;
     var maxUsoRam = req.body.maxUsoRam;
-    var velocidaDeRede = req.body.velocidaDeRede;
+    var velocidaDeRede = parseFloat(req.body.velocidaDeRede);
 
-    var id =  req.params.id
+    var id = req.params.id;
 
-    MaquinaService.update(nomeResponsavel, numeroRegistro,frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede, id)
+    MaquinaService.update(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id)
         .then(function (resultado) {
             // Verifica se houve alguma linha afetada (indicando que o registro foi atualizado)
             if (resultado) {
@@ -81,7 +81,33 @@ function update(req, res) {
             res.status(500).json({ error: erro.sqlMessage });
         });
 }
+function recuperar(req, res) { 
+    var nomeResponsavel = req.body.nomeResponsavel;
+    var numeroRegistro = req.body.numeroRegistro;
+    var frequenciaIdealProcessador = parseFloat(req.body.frequenciaIdealProcessador);
+    var capacidadeDisco = req.body.capacidadeDisco;
+    var maxUsoDisco = req.body.maxUsoDisco;
+    var capacidadeRam = req.body.capacidadeRam;
+    var maxUsoRam = req.body.maxUsoRam;
+    var velocidaDeRede = parseFloat(req.body.velocidaDeRede);
 
+    var id = req.params.id;
+
+    MaquinaService.recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id)
+        .then(function (resultado) {
+            // Verifica se houve alguma linha afetada (indicando que o registro foi atualizado)
+            if (resultado) {
+                res.status(200).send("Registro atualizado com sucesso!");
+            } else {
+                res.status(404).send("Registro não encontrado.");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao atualizar o registro! Erro: ", erro.sqlMessage);
+            res.status(500).json({ error: erro.sqlMessage });
+        });
+}
 function excluir(req, res) {
     var id = req.params.id; // Assumindo que o ID a ser excluído está presente nos parâmetros da requisição
   
@@ -108,6 +134,7 @@ function excluir(req, res) {
 module.exports = {
     cadastrar,
     update,
+    recuperar,
     excluir,
     buscarTudo: async (req, res) => {
         try {

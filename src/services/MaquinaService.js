@@ -5,7 +5,7 @@ function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, 
 
     console.log("function cadastrar():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede);
   
-    var instrucaoUsuario = `INSERT INTO servidor (nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeRam,maxUsoRam, capacidadeDisco,maxUsoDisco, velocidaDeRede,fkUnidade) VALUES (?,?,?,?,?,?,?,?,?)`;
+    var instrucaoUsuario = `INSERT INTO servidor (nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeRam,maxUsoRam, capacidadeDisco,maxUsoDisco, velocidaDeRede,fkUsuario) VALUES (?,?,?,?,?,?,?,?,?)`;
     
   
     console.log("Executando a instrução SQL:");
@@ -32,19 +32,23 @@ function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, 
       UPDATE servidor
       SET nomeResponsavel = ?, numeroRegistro = ?, frequenciaIdealProcessador = ?, capacidadeDisco = ?, maxUsoDisco = ?, capacidadeRam = ?, maxUsoRam = ?, velocidaDeRede = ?
       WHERE idServidor = ?;
-    `
+    `;
+
+    // Converter os valores apropriados para números
+    var frequenciaIdealProcessadorNum = parseFloat(frequenciaIdealProcessador);
+    var velocidaDeRedeNum = parseFloat(velocidaDeRede);
+
     const valores = [
         nomeResponsavel, 
         `SRV${numeroRegistro}`,        
-        `${frequenciaIdealProcessador} GHz`, 
-        `${capacidadeDisco}GB`,
-        `${maxUsoDisco}%`,
-        `${capacidadeRam}GB`,
-        `${maxUsoRam}%`, 
-        `${velocidaDeRede} Gbps`, // Adicionando '%' antes e depois da variável velocidaDeRede
+        frequenciaIdealProcessadorNum, 
+        capacidadeDisco,
+        maxUsoDisco,
+        capacidadeRam,
+        maxUsoRam, 
+        velocidaDeRedeNum,
         id
     ];
-
 
     console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
 
@@ -67,7 +71,52 @@ function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, 
         });
     });
 }
+function recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id) {
+    console.log("function update():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id);
 
+    var instrucaoUsuario = `
+      UPDATE servidor
+      SET nomeResponsavel = ?, numeroRegistro = ?, frequenciaIdealProcessador = ?, capacidadeDisco = ?, maxUsoDisco = ?, capacidadeRam = ?, maxUsoRam = ?, velocidaDeRede = ?
+      WHERE idServidor = ?;
+    `;
+
+    // Converter os valores apropriados para números
+    var frequenciaIdealProcessadorNum = parseFloat(frequenciaIdealProcessador);
+    var velocidaDeRedeNum = parseFloat(velocidaDeRede);
+
+    const valores = [
+        nomeResponsavel, 
+        `SRV${numeroRegistro}`,        
+        frequenciaIdealProcessadorNum, 
+        capacidadeDisco,
+        maxUsoDisco,
+        capacidadeRam,
+        maxUsoRam, 
+        velocidaDeRedeNum,
+        id
+    ];
+
+    console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
+
+    return new Promise((resolve, reject) => {
+        connection.query(instrucaoUsuario, valores, (error, results) => {
+            if (error) {
+                console.log(error);
+                console.log("\nHouve um erro ao realizar a atualização! Erro: ", error.sqlMessage);
+                reject(error);
+            } else {
+                // Verifica se pelo menos uma linha foi afetada pela atualização
+                if (results.affectedRows > 0) {
+                    console.log(`Registro com responsável ${nomeResponsavel} atualizado com sucesso.`);
+                    resolve(true); // Atualização bem-sucedida
+                } else {
+                    console.log(`Registro com responsável ${nomeResponsavel} não encontrado.`);
+                    resolve(false); // Nenhum registro foi encontrado para atualizar
+                }
+            }
+        });
+    });
+}
 function excluir(id) {
     var instrucao = `DELETE FROM servidor WHERE idServidor = ?`;
     console.log("Executando a instrução SQL:\n" + instrucao);
@@ -95,6 +144,7 @@ function excluir(id) {
 module.exports = {
     cadastrar,
     update,
+    recuperar,
     excluir,
     buscarTudo: (codigo) => {
         return new Promise((resolver, reject) => {
