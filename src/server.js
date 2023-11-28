@@ -16,6 +16,7 @@ server.use(express.static(__dirname + '/public'))
 server.use(express.json());
 
 
+
 // telas 
 server.get('/', function(req,res){
     res.sendFile(__dirname + '/paginasHTML/index.html')
@@ -133,11 +134,6 @@ server.post("/logarUnidade", function (req, res) {
 
   server.get('/visualizarUnidade/:idunidadeProvedora',function(req,res){
     UnidadeController.visualizarPorId(req,res)
-  })
-
-  server.get('/arthurEntender',function (req,res){
-    res.sendFile("C:/Users/arthu/OneDrive/Área de Trabalho/git/Paginas_Essenciais/src/paginasHTML/telaUnidade.html")
-
   })
 
 

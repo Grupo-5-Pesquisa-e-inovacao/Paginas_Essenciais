@@ -1,28 +1,52 @@
 const connection = require('../db');
 const db = require('../db');
 
-function cadastrar(rua, numero, complemento, cep, nomeUnidade, representante, email, senha, fkProvedora) {
+const sql = require('mssql');
 
-    console.log("function cadastrar():", rua, numero, complemento, cep, nomeUnidade, representante, email, senha, fkProvedora);
-  
-    var instrucaoUsuario = `INSERT INTO unidadeProvedora (rua, numero, complemento, cep, nomeUnidade, representante, email, senha, fkProvedora) VALUES (?,?,?,?,?,?,?)`;
-  
-    console.log("Executando a instrução SQL:");
-  
-    return new Promise((resolve, reject) => {
-      connection.query(instrucaoUsuario, [rua, numero, complemento, cep, nomeUnidade, representante, email, senha, fkProvedora], (error, results) => {
-        if (error) {
-          console.log(error);
-          console.log("\nHouve um erro ao realizar o cadastro! Erro: ", error.sqlMessage);
-          reject(error);
-        } else {
-          const idUsuarioInserido = results.insertId;
-          console.log(`ID do usuário inserido: ${idUsuarioInserido}`);
-          resolve(results);
-        }
-      });
-    });
+
+
+
+async function cadastrar(rua, numero, complemento, cep, nomeUnidade, representante, email, senha, fkProvedora) {
+  console.log("function cadastrar():", rua, numero, complemento, cep, nomeUnidade, representante, email, senha, fkProvedora);
+
+  const instrucaoUsuario = `
+  INSERT INTO unidadeProvedora (rua, numero, complemento, cep, nomeUnidade, fkProvedora)
+    VALUES (@rua, @numero, @complemento, @cep, @nomeUnidade, @fkProvedora);
+    
+    INSERT INTO usuario (nome, email, senha, fkUnidade)
+    VALUES (@representante, @email, @senha, SCOPE_IDENTITY());
+`;
+
+  console.log("Executando a instrução SQL:");
+
+  try {
+    // Usar a pool de conexão já criada
+    const request = connection.request();
+
+    // Adicionar parâmetros à solicitação
+    request.input('rua', sql.VarChar, rua);
+    request.input('numero', sql.VarChar, numero);
+    request.input('complemento', sql.VarChar, complemento);
+    request.input('cep', sql.VarChar, cep);
+    request.input('nomeUnidade', sql.VarChar, nomeUnidade);
+    request.input('representante', sql.VarChar, representante);
+    request.input('email', sql.VarChar, email);
+    request.input('senha', sql.VarChar, senha);
+    request.input('fkProvedora', sql.Int, fkProvedora);
+
+    // Executar a instrução SQL
+    const resultado = await request.query(instrucaoUsuario);
+    console.log("Resultado:", resultado);
+
+    return resultado;
+  } catch (error) {
+    console.error('Erro ao executar a consulta:', error);
+    throw error; // Rejeitar a Promise para indicar falha
   }
+}
+
+
+
 
 
   
@@ -44,32 +68,37 @@ function cadastrar(rua, numero, complemento, cep, nomeUnidade, representante, em
     });
   }
 
-  function atualizar(idunidadeProvedora,nomeUnidade,cep,rua,complemento,numero,senha) {
-    console.log("function atualizar():", nomeUnidade,cep,rua,complemento,numero,senha, idunidadeProvedora,);
+  async function atualizar(idunidadeProvedora, nomeUnidade, cep, rua, complemento, numero, senha) {
+    console.log("function atualizar():", nomeUnidade, cep, rua, complemento, numero, senha, idunidadeProvedora);
   
-    var instrucaoUsuario = `
-      UPDATE unidadeprovedora
-      SET nomeUsuario = ?, cep = ?, rua = ?, complemento = ?, numero = ?, senha = ? 
-      WHERE idunidadeProvedora = ?;
+    const instrucaoUsuario = `
+      UPDATE unidadeProvedora
+      SET nomeUnidade = @nomeUnidade, cep = @cep, rua = @rua, complemento = @complemento, numero = @numero, senha = @senha
+      WHERE idunidadeProvedora = @idunidadeProvedora;
     `;
   
     console.log("Executando a instrução SQL:");
   
-    return new Promise((resolve, reject) => {
-      connection.query(instrucaoUsuario, [nomeUnidade,cep,rua,complemento,numero,senha,idunidadeProvedora ], (error, results) => {
-        if (error) {
-          console.log(error);
-          console.log("\nHouve um erro ao realizar a atualização! Erro: ", error.sqlMessage);
-          reject(error);
-        } else {
-          console.log(`Registro com ID ${idunidadeProvedora} atualizado com sucesso.`);
-          resolve(results);
-        }
-      });
-    });
+    try {
+      const request = connection.request();
+      request.input('nomeUnidade', sql.VarChar, nomeUnidade);
+      request.input('cep', sql.VarChar, cep);
+      request.input('rua', sql.VarChar, rua);
+      request.input('complemento', sql.VarChar, complemento);
+      request.input('numero', sql.VarChar, numero);
+      request.input('senha', sql.VarChar, senha);
+      request.input('idunidadeProvedora', sql.Int, idunidadeProvedora);
+  
+      const resultado = await request.query(instrucaoUsuario);
+      console.log(`Registro com ID ${idunidadeProvedora} atualizado com sucesso.`);
+      return resultado;
+    } catch (error) {
+      console.error('Erro ao executar a consulta:', error);
+      throw error;
+    }
   }
   
-  const sql = require('mssql');
+  
 
   function visualizarPorId(idunidadeProvedora) {
     var instrucao = `

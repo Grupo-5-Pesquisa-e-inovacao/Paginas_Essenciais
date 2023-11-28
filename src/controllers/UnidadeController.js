@@ -76,7 +76,7 @@ const UnidadeService = require('../services/UnidadeService');
 
 
 function visualizarPorId(req, res) {
-  var idunidadeProvedora = req.params.idunidadeProvedora; 
+  var idUnidadeProvedora = req.params.idUnidadeProvedora; 
 
   if (idunidadeProvedora == undefined) {
     res.status(400).send("O ID está indefinido!");

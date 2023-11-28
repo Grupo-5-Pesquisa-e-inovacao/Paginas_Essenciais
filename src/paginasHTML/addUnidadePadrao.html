@@ -293,32 +293,31 @@ function checkLogin(){
 
   checkLogin();
 
-function unidade1(){
-
-  
-
-  const idunidadeProvedora = 1;  //AQUI VAI RECUPERAR O LOCALSTORAGE DA PROVEDORA
-
-   fetch(`/visualizarUnidade/${idunidadeProvedora}`)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Erro de rede - ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    sessionStorage.setItem('idUnidade', data[0].idunidadeProvedora);
-
-  })
-  .catch(error => {
-    console.error('Erro na requisição:', error);
-  });
-
-
-
-
-  // window.location.href = "/telaUnidade"
+  function visualizarUnidade() {
+    
+  fetch(`/visualizarUnidade/${idProvedora}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Erro de rede - ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.length > 0) {
+        const idUnidade = data[0].idunidadeProvedora;
+    
+        
+        // Faça o redirecionamento aqui se necessário
+        // window.location.href = "/telaUnidade";
+      } else {
+        console.error('Nenhuma unidade encontrada para a provedora.');
+      }
+    })
+    .catch(error => {
+      console.error('Erro na requisição:', error);
+    });
 }
+
   
 function irParaDash() {
     window.location.href = "/dashboard";

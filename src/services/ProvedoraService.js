@@ -1,6 +1,9 @@
 const connection = require('../db');
 const db = require('../db');
 
+const sql = require('mssql');
+const dbConfig = require('../db');
+
 function cadastrar(razaoSocial, email, senha, cnpj) {
 
     console.log("function cadastrar():",  razaoSocial, email, senha, cnpj);
@@ -24,23 +27,57 @@ function cadastrar(razaoSocial, email, senha, cnpj) {
     });
   }
 
-  function entrar(email, senha) {
+
+
+  async function entrar(email, senha) {
     var instrucao = `
-        SELECT * FROM provedora WHERE email = ? AND senha = ?;
+      SELECT usuario.*, provedora.*
+      FROM usuario
+      JOIN provedora ON usuario.fkProvedora = provedora.idProvedora
+      WHERE usuario.email = @email AND usuario.senha = @senha;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
   
-    return new Promise((resolve, reject) => {
-      db.query(instrucao, [email, senha], (error, results, fields) => {
-        if (error) {
-          console.log(error);
-          reject(error);
-        } else {
-          resolve(results);
-        }
-      });
-    });
+    console.log("Executando a instrução SQL:\n" + instrucao);
+  
+
+
+    try {
+      const request = connection.request();
+        request.input('email', sql.VarChar, email)
+        request.input('senha', sql.VarChar, senha)
+        request.query(instrucao);
+
+        const result = await request.query(instrucao);
+    console.log("Resultado:", result);
+
+  
+      if (result.recordset.length > 0) {
+        const provedoraId = result.recordset[0].idProvedora;
+        const provedoraTipoUsuario = result.recordset[0].fkTipoUsuario;
+  
+        // Aqui você deve usar uma solução de gerenciamento de sessão do lado do servidor, como express-session
+        // No exemplo, apenas retornaremos as informações
+        return {
+          idProvedora: provedoraId,
+          fkTipoUsuario: provedoraTipoUsuario,
+          userData: result.recordset,
+        };
+      } else {
+        // Usuário não encontrado
+        throw new Error('Usuário não encontrado.');
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
+
+
+  
+  
+  
+  
+
   
   function excluir(id) {
     var instrucao = `
