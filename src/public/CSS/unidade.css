@@ -29,19 +29,6 @@ body::-webkit-scrollbar-thumb {
     margin-left: 20%;
 }
 
-.cabecalho{
-    width: 50%;
-    height: 5%;
-    display: flex;
-    justify-content: left;
-    align-items: center; 
-}
-
-.cabecalho h6{
-    color: white;
-    font-size: 1.5rem;
-    margin-top: 2%;
-}
 
 .endereco{
     width: 70%;
@@ -49,14 +36,15 @@ body::-webkit-scrollbar-thumb {
     justify-content: left;
     align-items: center;
     flex-direction: column;
-    margin-top: 16%;
+    padding-top: 10%;
 }
 
 
 .endereco h6{
     color: white;
     font-size: 1rem;
-    margin-right: 65%;
+    margin-right: 50%;
+    width: 50%;
 }
 
 

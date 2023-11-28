@@ -13,7 +13,6 @@ function entrar(req, res) {
       usuarioServices.entrar(email, senha)
         .then(
           function (resultado) {
-            console.log(`\nResultados encontrados: ${resultado.length}`);
             console.log(`Resultados: ${JSON.stringify(resultado)}`);
   
             if (resultado.length == 1) {

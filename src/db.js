@@ -1,35 +1,28 @@
-// configuração da conexão com o banco de dados
+const sql = require('mssql');
 
-const mysql = require('mysql2');
+const config = {
+  user: 'sa',
+  password: 'SASenha123',
+  server: '3.233.52.99',
+  port: 1433,
+  database: 'camelTech',
+  options: {
+    encrypt: false,
+    trustServerCertificate: true, // Desabilita a verificação do certificado
+  },
+};
 
+const pool = new sql.ConnectionPool(config);
+const connection = pool.connect();
 
-const connection = mysql.createConnection({
-    host: 'localhost' ,
-    user: 'aidmin',
-    password: 'aidmin',
-    database: 'camelTech'
+pool.on('error', err => {
+  console.error('Erro na pool de conexão:', err.message);
 });
 
-connection.connect((error) => {
-    if (error) {
-        console.error('Erro ao conectar ao banco de dados:', error.message);
-    } else {
-        console.log(`Conectado ao Banco de Dados: camelTech`);
-    }
+connection.then(() => {
+  console.log('Conectado ao Banco de Dados: camelTech');
+}).catch(error => {
+  console.error('Erro ao conectar ao banco de dados:', error.message);
 });
 
-module.exports = connection;
-
-// const mysql = require('mysql2');
-
-// const connection = mysql.createConnection('mysql://root:Utjrg0FbyRsc68BFOQC3@containers-us-west-156.railway.app:6470/railway');
-
-// connection.connect((error) => {
-//     if (error) {
-//         console.error('Erro ao conectar ao banco de dados:', error.message);
-//     } else {
-//         console.log(`Conectado ao Banco de Dados: ${process.env.DB_NAME}`);
-//     }
-// });
-
-// module.exports = connection;
+module.exports = pool;

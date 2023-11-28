@@ -171,9 +171,7 @@
 
 
     <div class="container-esquerda">
-      <div class="cabecalho">
-          <h6>Nome unidade</h6>
-      </div>
+  
       <div class="endereco">
           <h6>Rua</h6>
           <input class="info" disabled id="i1">
@@ -181,17 +179,19 @@
           <input class="info" disabled id="i2">
           <h6>Complemento</h6>
           <input class="info" disabled id="i3">
-      </div>
-      <div class="endereco">
-          <h6>Nome</h6>
+          <h6>CEP</h6>
           <input class="info" disabled id="i4">
-          <h6>Email</h6>
+          <h6>Nome</h6>
           <input class="info" disabled id="i5">
-          <h6>Senha</h6>
+          <h6>Representante</h6>
           <input class="info" disabled id="i6">
+          <h6>Email representante</h6>
+          <input class="info" disabled id="i7">
+          <h6>Senha</h6>
+          <input class="info" disabled id="i8">
           <button class="Btn" onclick="toggleEditar()">Edit
           </button>
-      </div>
+        </div>
   </div>
   
     <div class="container-direita">
@@ -220,7 +220,95 @@
 
   // tela de apagar unidade
 
+<script>
 
+  let isEditing = false;
+
+  function toggleEditar() {
+    const inputs = document.querySelectorAll('.info');
+    const btn = document.querySelector('.Btn');
+
+    isEditing = !isEditing;
+
+    if (isEditing) {
+        btn.textContent = 'Salvar';
+        btn.onclick = cadastrar; // Adicionando o evento de clique diretamente
+    } else {
+        btn.textContent = 'Edit';
+        btn.onclick = null; // Removendo o evento de clique
+    }
+
+    inputs.forEach(input => {
+        input.disabled = !isEditing;
+    });
+}
+
+
+async function cadastrar() {
+  const ruaVar = document.getElementById('i1').value;
+      const numeroVar = document.getElementById('i2').value;
+      const complementoVar = document.getElementById('i3').value;
+      const cepVar = document.getElementById('i4').value;
+      const nomeVar = document.getElementById('i5').value;
+      const representanteVar = document.getElementById('i6').value;
+      const emailVar = document.getElementById('i7').value;
+      const senhaVar = document.getElementById('i8').value;
+
+    // Validação dos campos
+    if (
+      ruaVar === "" ||
+      emailVar === "" ||
+      senhaVar === "" ||
+      complementoVar === "" ||
+      numeroVar === "" ||
+      nomeVar === ""
+    ) {
+      throw new Error("Preencha todos os campos para a realização do cadastro!");
+    }
+
+    if (emailVar.indexOf("@") === -1 || emailVar.indexOf(".com") === -1) {
+      throw new Error("Para o email, siga o seguinte exemplo: aaa@exemplo.com");
+    }
+
+    // Enviando o valor da nova input
+    fetch("/cadastrarUnidade", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        nomeUnidade: document.getElementById('i5').value,
+        senha: document.getElementById('i8').value,
+        cep: document.getElementById('i4').value,
+        rua: document.getElementById('i1').value,
+        complemento: document.getElementById('i3').value,
+        numero: document.getElementById('i2').value,
+        representante: document.getElementById('i6').value,
+        email: document.getElementById('i7').value,
+        fkProvedora: 1,
+    }),
+})
+.then(function (resposta) {
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {  // <-- Verifica se a resposta é bem-sucedida
+        return resposta.json();  // Continua para o próximo passo
+    } else {
+        throw new Error("Houve um erro ao tentar realizar o cadastro!");
+    }
+})
+.then(function (data) {
+    // Lida com os dados da resposta (se necessário)
+    console.log("data: ", data);
+})
+.catch(function (erro) {
+    console.log(`#ERRO: ${erro}`);
+});
+
+}
+  
+   
+</script>
 
 </body>
 
@@ -242,6 +330,8 @@
   </div>
 
 <script>
+
+  
   const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
 const maquinas = document.querySelector('.maquinas');
 const maedetodos = document.querySelector('.maedetodos');
@@ -357,24 +447,7 @@ function checkLogin(){
 
 
 
-let isEditing = false;
 
-function toggleEditar() {
-    const inputs = document.querySelectorAll('.info');
-    const btn = document.querySelector('.Btn');
-
-    isEditing = !isEditing;
-
-    if (isEditing) {
-        btn.textContent = 'Salvar';
-    } else {
-        btn.textContent = 'Edit';
-    }
-
-    inputs.forEach(input => {
-        input.disabled = !isEditing;
-    });
-}
 function apagarUnidade(){
   
   lixeira.style.display = 'block'
@@ -596,6 +669,11 @@ function addUnidade() {
     sessionStorage.clear();
     window.location.href = "/";
   }
+
+
   
+
+ 
+
 
 </script>

@@ -152,13 +152,13 @@
             <form class="form" style="margin-top: 7%;">
                 <span class="title">Cadastro de unidade</span>
                 <label for="CEP" class="label">CEP</label>
-                <input type="text" id="username" name="username" required="" class="input">
+                <input type="text" id="CEP" name="username" required="" class="input" placeholder="*****-***">
                 <label for="rua" class="label">Rua</label>
-                <input type="text" id="email" name="email" required="" class="input">
+                <input type="text" id="email" name="email" required="" class="input" placeholder="Rua">
                 <label for="numero" class="label">Número</label>
-                <input type="number" id="password" name="password" required="" class="input">
+                <input type="number" id="password" name="password" required="" class="input" placeholder="Número">
                 <label for="completo" class="label">Complemento</label>
-                <input type="text" id="email" name="email" required="" class="input">
+                <input type="text" id="email" name="email" required="" class="input" placeholder="Complemento">
                 <button class="btn-53" onclick="irParaDash()">
                     <div class="original">CADASTRAR</div>
                     <div class="letters">
@@ -177,17 +177,7 @@
                     Unidades cadastradas
                 </h6>
                 <div class="unidade" onclick="unidade1()">Unidade 1</div>
-                <div class="unidade">São Caetano</div>
-                <div class="unidade">Mauá</div>
-                <div class="unidade">Santo André</div>
-                <div class="unidade">São Paulo</div>
-                <div class="unidade">Belo horizonte</div>
-                <div class="unidade">Bragança</div>
-                <div class="unidade">Campinas</div>
-                <div class="unidade">Amapá</div>
-                <div class="unidade">DF</div>
-                <div class="unidade">Goiânia</div>
-                <div class="unidade">Manaus</div>
+             
 
             </div>
         </div>
@@ -303,9 +293,31 @@ function checkLogin(){
 
   checkLogin();
 
-function unidade1(){
-  window.location.href = "/telaUnidade"
+  function visualizarUnidade() {
+    
+  fetch(`/visualizarUnidade/${idProvedora}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Erro de rede - ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.length > 0) {
+        const idUnidade = data[0].idunidadeProvedora;
+    
+        
+        // Faça o redirecionamento aqui se necessário
+        // window.location.href = "/telaUnidade";
+      } else {
+        console.error('Nenhuma unidade encontrada para a provedora.');
+      }
+    })
+    .catch(error => {
+      console.error('Erro na requisição:', error);
+    });
 }
+
   
 function irParaDash() {
     window.location.href = "/dashboard";

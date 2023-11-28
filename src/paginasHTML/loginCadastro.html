@@ -209,21 +209,51 @@
 <script>
 
     function entrarDash(event) {
+        
 
+       
         event.preventDefault();
         // Restante do código para entrar na dash
-        window.location.href = "/dashboard"
-
-
-
-        var email = document.getElementById("emailInput").value
-        var senha = document.getElementById("senhaInput").value
-
-        sessionStorage.setItem('EMAIL', email);
-        sessionStorage.setItem('SENHA', senha);
-
-
+        logar();
     }
+
+    function logar() {
+      var email = document.getElementById("emailInput").value;
+        var senha = document.getElementById("senhaInput").value;
+
+        var data = {
+            email: email,
+            senha: senha
+        };
+
+        fetch('/logar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Usuário logado com sucesso:', data);
+                var idProvedora = data.idProvedora;
+                localStorage.setItem('provedoraId', idProvedora);
+                provedoraIdSalvo = localStorage.getItem('provedoraId');
+                console.log('provedoraId recuperado do localStorage:', provedoraIdSalvo);
+                alert("Logado");
+                window.location.href = "/dashboard";
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+       
+    }
+
 
 
     const hamburguer = document.querySelector(".navigation");
@@ -464,41 +494,7 @@
 
 
 
-    function logar() {
-        var email = document.getElementById("input_email").value;
-        var senha = document.getElementById("input_senha").value;
-
-        var data = {
-            email: email,
-            senha: senha
-        };
-
-        fetch('http://localhost:3300/logar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na solicitação.');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Usuário logado com sucesso:', data);
-                var idProvedora = data.idProvedora;
-                localStorage.setItem('provedoraId', idProvedora);
-                provedoraIdSalvo = localStorage.getItem('provedoraId');
-                console.log('provedoraId recuperado do localStorage:', provedoraIdSalvo);
-                alert("Logado");
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-            });
-        visualizarPorId()
-    }
+   
 
 
 
@@ -565,7 +561,7 @@
     }
 
 
-    const respostaDiv = document.getElementById("resposta");
+    
 
     function visualizarPorId() {
         console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -592,7 +588,7 @@
             })
             .catch((error) => {
                 console.error('Erro:', error);
-                respostaDiv.innerHTML = "Erro ao buscar os dados.";
+               
             });
     }
 </script>
