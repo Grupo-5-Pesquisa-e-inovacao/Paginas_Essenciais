@@ -72,46 +72,32 @@ function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, 
     });
 }
 function recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id) {
-    console.log("function update():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id);
+    console.log("function recuperar():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id);
 
     var instrucaoUsuario = `
-      UPDATE servidor
-      SET nomeResponsavel = ?, numeroRegistro = ?, frequenciaIdealProcessador = ?, capacidadeDisco = ?, maxUsoDisco = ?, capacidadeRam = ?, maxUsoRam = ?, velocidaDeRede = ?
+      SELECT * FROM servidor
       WHERE idServidor = ?;
     `;
 
-    // Converter os valores apropriados para números
-    var frequenciaIdealProcessadorNum = parseFloat(frequenciaIdealProcessador);
-    var velocidaDeRedeNum = parseFloat(velocidaDeRede);
-
-    const valores = [
-        nomeResponsavel, 
-        `SRV${numeroRegistro}`,        
-        frequenciaIdealProcessadorNum, 
-        capacidadeDisco,
-        maxUsoDisco,
-        capacidadeRam,
-        maxUsoRam, 
-        velocidaDeRedeNum,
-        id
-    ];
+    const valor = [id];
 
     console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
 
     return new Promise((resolve, reject) => {
-        connection.query(instrucaoUsuario, valores, (error, results) => {
+        connection.query(instrucaoUsuario, valor, (error, results) => {
             if (error) {
                 console.log(error);
-                console.log("\nHouve um erro ao realizar a atualização! Erro: ", error.sqlMessage);
+                console.log("\nHouve um erro ao recuperar os dados! Erro: ", error.sqlMessage);
                 reject(error);
             } else {
-                // Verifica se pelo menos uma linha foi afetada pela atualização
-                if (results.affectedRows > 0) {
-                    console.log(`Registro com responsável ${nomeResponsavel} atualizado com sucesso.`);
-                    resolve(true); // Atualização bem-sucedida
+                // Verifica se pelo menos uma linha foi retornada
+                if (results.length > 0) {
+                    const data = results[0]; // Assume que apenas um registro é retornado
+                    console.log("Dados recuperados:", data);
+                    resolve(data);
                 } else {
-                    console.log(`Registro com responsável ${nomeResponsavel} não encontrado.`);
-                    resolve(false); // Nenhum registro foi encontrado para atualizar
+                    console.log(`Registro com ID ${id} não encontrado.`);
+                    resolve(null);
                 }
             }
         });
