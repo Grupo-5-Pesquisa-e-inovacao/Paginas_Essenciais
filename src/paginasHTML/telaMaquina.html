@@ -311,12 +311,8 @@ function preencherValores(data) {
     }
 
     function carregarDadosDoBanco() {
-        // Aqui você deve realizar a chamada AJAX para recuperar os dados do banco de dados
-        // e chamar a função preencherValores() com os dados retornados
-
-        // Exemplo fictício de chamada AJAX
         const request = new XMLHttpRequest();
-        request.open('GET', 'http://localhost:3300/recuperar/2', true);
+        request.open('GET', 'http://localhost:3300/recuperar/1', true);
 
         request.onload = function() {
             if (request.status >= 200 && request.status < 400) {
@@ -346,9 +342,9 @@ function preencherValores(data) {
         isEditing = !isEditing;
 
         if (isEditing) {
-            btn.textContent = 'Salvar';
-        } else {
             btn.textContent = 'Edit';
+        } else {
+            btn.textContent = 'Salvar';
         }
 
         inputs.forEach(input => {
