@@ -2,7 +2,14 @@ const connection = require("../db");
 const db = require("../db");
 
 
+const sql = require('mssql');
+
 const mssql = require('mssql');
+
+
+
+
+
 
 
 
@@ -73,40 +80,17 @@ function cadastrarProvedora(razaoSocial, cnpj) {
 
 
 async function entrar(email, senha) {
-  var instrucao = `
-      SELECT usuario., provedora.
-      FROM usuario
-      JOIN provedora ON usuario.fkProvedora = provedora.idProvedora
-      WHERE usuario.email = @email AND usuario.senha = @senha;
-    `;
-
-  console.log("Executando a instrução SQL:\n" + instrucao);
-
   try {
+    const instrucao = 'SELECT usuario.*, provedora.*, unidadeProvedora.*  FROM usuario LEFT JOIN provedora ON usuario.fkProvedora = provedora.idProvedora LEFT JOIN unidadeProvedora ON usuario.fkUnidade = unidadeProvedora.idunidadeProvedora WHERE email = @email AND senha = @senha';
     const request = connection.request();
-    request.input("email", sql.VarChar, email);
-    request.input("senha", sql.VarChar, senha);
+    
+    request.input('email', mssql.VarChar, email);
+    request.input('senha', mssql.VarChar, senha);
 
-    const result = await request.query(instrucao);
-    console.log("Resultado:", result);
-
-    if (result.recordset.length > 0) {
-      const provedoraId = result.recordset[0].idProvedora;
-      const provedoraTipoUsuario = result.recordset[0].fkTipoUsuario;
-
-      // Aqui você deve usar uma solução de gerenciamento de sessão do lado do servidor, como express-session
-      // No exemplo, apenas retornaremos as informações
-      return {
-        idProvedora: provedoraId,
-        fkTipoUsuario: provedoraTipoUsuario,
-        userData: result.recordset
-      };
-    } else {
-      // Usuário não encontrado
-      throw new Error("Usuário não encontrado.");
-    }
+    const resultado = await request.query(instrucao);
+    return resultado.recordset;
   } catch (error) {
-    console.error(error);
+    console.error("Erro ao tentar entrar:", error);
     throw error;
   }
 }
