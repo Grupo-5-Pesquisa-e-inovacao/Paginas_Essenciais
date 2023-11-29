@@ -144,6 +144,11 @@ server.post("/logarUnidade", function (req, res) {
     UnidadeController.visualizarPorId(req,res)
   })
 
+  server.get('/visualizarUltimoUni',function(req,res){
+    UnidadeController.visualizarUltimo(req,res)
+  })
+
+
 
   server.listen(port, ()=>{
     console.log(`Servidor rodando em: http://localhost:${port}`);

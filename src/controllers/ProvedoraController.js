@@ -62,8 +62,6 @@ function entrar(req, res) {
     var cnpj = req.body.cnpj
     usuarioServices.cadastrarProvedora(razaoSocial, cnpj)
       .then(function (resultado) {
-        console.log(resultado);
-        console.log(idProvedora);
         res.status(201).json({ message: "Provedora cadastrada com sucesso.", idProvedora});
         
       })

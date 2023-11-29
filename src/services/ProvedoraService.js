@@ -186,7 +186,7 @@ function visualizarUltimo() {
     .then(result => {
       if (result.recordset.length > 0) {
         const ultimoIdProvedora = result.recordset[0].idProvedora;
-        console.log('Último ID da provedora:', ultimoIdProvedora);
+        console.log('Último ID daa provedora:', ultimoIdProvedora);
         return ultimoIdProvedora;
       } else {
         console.log('Nenhum registro encontrado na tabela provedora.');

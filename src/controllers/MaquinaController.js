@@ -81,9 +81,10 @@ function update(req, res) {
             res.status(500).json({ error: erro.sqlMessage });
         });
 }
-var id = req.params.id;
 
-MaquinaService.recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id)
+function recuperar(req,res){
+    var id = req.params.id;
+    MaquinaService.recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id)
     .then(function (resultado) {
         // Verifica se houve alguma linha afetada (indicando que o registro foi atualizado)
         if (resultado) {
@@ -97,6 +98,9 @@ MaquinaService.recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcess
         console.log("\nHouve um erro ao atualizar o registro! Erro: ", erro.sqlMessage);
         res.status(500).json({ error: erro.sqlMessage });
     });
+}
+
+
 function excluir(req, res) {
     var id = req.params.id; // Assumindo que o ID a ser excluído está presente nos parâmetros da requisição
 

@@ -49,6 +49,9 @@ async function cadastrar(rua, numero, complemento, cep, nomeUnidade, representan
 
 
 
+
+
+
   
   function excluir(idunidadeProvedora) {
     var instrucao = `
@@ -124,6 +127,31 @@ async function cadastrar(rua, numero, complemento, cep, nomeUnidade, representan
       });
     });
   }
+
+
+  function visualizarUltimo() {
+    var instrucao = `
+    SELECT TOP 1 idUnidadeProvedora FROM unidadeProvedora
+    ORDER BY idUnidadeProvedora DESC;
+    `;
+  
+    console.log("Executando a instrução SQL:");
+  
+    return new Promise((resolve, reject) => {
+      const request = connection.request();
+  
+      request.query(instrucao, (error, results) => {
+        if (error) {
+          console.log(error);
+          console.log("\nHouve um erro ao buscar os dados! Erro: ", error.sqlMessage);
+          reject(error);
+        } else {
+          resolve(results.recordset);
+        }
+      });
+    });
+  }
+  
   
   
 
@@ -133,5 +161,6 @@ async function cadastrar(rua, numero, complemento, cep, nomeUnidade, representan
      cadastrar,
      excluir,
      atualizar,
-     visualizarPorId
+     visualizarPorId,
+     visualizarUltimo
  }
