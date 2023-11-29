@@ -1,5 +1,9 @@
 const usuarioServices = require('../services/ProvedoraService');
 
+<<<<<<< HEAD
+=======
+const idProvedora = usuarioServices.idProvedora
+>>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
 
 function entrar(req, res) {
   var email = req.body.emailServer;
@@ -34,19 +38,24 @@ function entrar(req, res) {
               res.status(500).json(erro.sqlMessage);
           });
   }
+<<<<<<< HEAD
 }
   function cadastrar(req, res) {
     var razaoSocial = req.body.razaoSocial;
+=======
+  function cadastrarUser(req, res) {
+>>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
     var email = req.body.email;
     var senha = req.body.senha;
-    var cnpj = req.body.cnpj;
-//    var telefone = req.body.telefone;
+    var cpf = req.body.cpf;
+    var nome = req.body.nome;
+
   
     if (!email || !senha) {
       res.status(400).json({ error: "Email e senha são obrigatórios." });
       return;
     }
-    usuarioServices.cadastrar(razaoSocial,email, senha, cnpj)
+    usuarioServices.cadastrarUser(email,senha,cpf,nome)
       .then(function (resultado) {
         console.log("Usuário cadastrado com sucesso.");
         res.status(201).json({ message: "Usuário cadastrado com sucesso." });
@@ -56,6 +65,22 @@ function entrar(req, res) {
         res.status(500).json({ error: "Erro ao cadastrar o usuário." });
       });
   }
+  function cadastrarProvedora(req, res) {
+    var razaoSocial = req.body.razaoSocial;
+    var cnpj = req.body.cnpj
+    usuarioServices.cadastrarProvedora(razaoSocial, cnpj)
+      .then(function (resultado) {
+        res.status(201).json({ message: "Provedora cadastrada com sucesso.", idProvedora});
+        
+      })
+      .catch(function (erro) {
+        console.error("Erro ao cadastrar provedora:", erro);
+        res.status(500).json({ error: "Erro ao cadastrar provedora.", idProvedora });
+      });
+  }
+
+
+
   function excluir(req, res) {
     var id = req.params.id; // Assumindo que o ID a ser excluído está presente nos parâmetros da requisição
   
@@ -112,28 +137,49 @@ function visualizarPorId(req, res) {
     res.status(400).send("O ID está indefinido!");
   } else {
     usuarioServices.visualizarPorId(id)
-      .then(function (resultado) {
-        if (resultado.length > 0) {
-          res.status(200).json(resultado);
-        } else {
-          res.status(404).send("Registro não encontrado.");
-        }
-      })
-      .catch(function (erro) {
-        console.log(erro);
-        console.log("\nHouve um erro ao buscar os dados! Erro: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-      });
+  .then(function (resultado) {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(200).json({ message: "Nenhum registro encontrado para o ID fornecido." });
+    }
+  })
+  .catch(function (erro) {
+    console.log(erro);
+    console.log("\nHouve um erro ao buscar os dados! Erro: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+
   }
 }
+
+function visualizarUltimo(req, res) {
+  usuarioServices.visualizarUltimo()
+    .then(function (ultimoIdProvedora) {
+      if (ultimoIdProvedora !== null) {
+        res.status(200).json({ ultimoIdProvedora });
+      } else {
+        res.status(200).json({ message: "Nenhum registro encontrado na tabela provedora." });
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("\nHouve um erro ao buscar o último ID da provedora! Erro: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 
 
 
   
   module.exports = {
     entrar,
-    cadastrar,
+    cadastrarUser,
+    cadastrarProvedora,
     excluir,
     atualizar,
-    visualizarPorId
+    visualizarPorId,
+    visualizarUltimo
   }

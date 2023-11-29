@@ -16,7 +16,7 @@ const UnidadeService = require('../services/UnidadeService');
     UnidadeService.cadastrar(rua, numero, complemento, cep, nomeUnidade, representante, email, senha, fkProvedora)
       .then(function (resultado) {
         console.log("Usuário cadastrado com sucesso.");
-        res.status(201).json({ message: "Usuário cadastrado com sucesso." });
+        res.status(201).json({ message: "Usuário cadastrado com sucesso.", resultado });
       })
       .catch(function (erro) {
         console.error("Erro ao cadastrar o usuário:", erro);
@@ -54,11 +54,13 @@ const UnidadeService = require('../services/UnidadeService');
     var rua = req.body.rua;
     var complemento = req.body.complemento;
     var numero = req.body.numero;
+    var fkProvedora = req.body.fkProvedora
+
   
     if (idunidadeProvedora == undefined) {
       res.status(400).send("O ID está indefinido!");
     } else {
-      UnidadeService.atualizar(idunidadeProvedora,nomeUnidade,cep,rua,complemento,numero,senha) 
+      UnidadeService.atualizar(idunidadeProvedora,nomeUnidade,cep,rua,complemento,numero,senha,fkProvedora) 
         .then(function (resultado) {
           if (resultado.affectedRows > 0) {
             res.status(200).send("Registro atualizado com sucesso!");
@@ -97,6 +99,23 @@ function visualizarPorId(req, res) {
   }
 }
 
+function visualizarUltimo(req, res) {
+  UnidadeService.visualizarUltimo()
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        console.log("ultimo idUnidadeProvedora"+resultado)
+        res.status(200).json(resultado);
+      } else {
+        res.status(200).json({ message: "Nenhum registro encontrado na tabela unidadeProvedora." });
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("\nHouve um erro ao buscar os dados! Erro: ", erro.sqlMessage);
+      res.status(500).json({ error: "Erro ao buscar os dados da tabela unidadeProvedora." });
+    });
+}
+
 
 
   
@@ -104,5 +123,6 @@ function visualizarPorId(req, res) {
     cadastrar,
     excluir,
     atualizar,
-    visualizarPorId
+    visualizarPorId,
+    visualizarUltimo
   }

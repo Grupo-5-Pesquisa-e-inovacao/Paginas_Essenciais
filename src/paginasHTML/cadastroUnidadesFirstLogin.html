@@ -1,62 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/CSS/dash.css">
-        <link rel="stylesheet" href="/CSS/addUnidade.css">
-        <link rel="stylesheet" href="/CSS/loginCadastro.css">
-        <title>Document</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/dash.css">
+    <link rel="stylesheet" href="/CSS/addUnidade.css">
+    <link rel="stylesheet" href="/CSS/loginCadastro.css">
+    <title>Document</title>
+</head>
 
-    <body>
-        <div  class="maedetodos">
-            <nav class="nav-lateral">
-                <div class="logo">
-                    <a href="/"><img src="../assets/Logo-Camel (1).png" alt="" width="130vh"/></a>
-                </div>
-
-                <div class="container-mae">
-                    <div style="display: flex; text-align: center; flex-direction: column; font-size: 3rem; font-family: Arial, Helvetica, sans-serif; font-weight: 800; margin-top: 35%;">
-                        <h6>BEM</h6>
-                        <h6>VINDO!</h6>
-                    </div>
-
-                </div>
-                
-            </nav>
-            <div class="container-esquerda-add__primeiro-login">
-
-                <form class="form" style="margin-top: 7%;">
-                    <span class="title">Cadastro de unidade</span>
-                    <label for="CEP" class="label">CEP</label>
-                    <input type="text" id="username" name="username" required="" class="input">
-                    <label for="rua" class="label">Rua</label>
-                    <input type="text" id="email" name="email" required="" class="input">
-                    <label for="numero" class="label">Número</label>
-                    <input type="number" id="password" name="password" required="" class="input">
-                    <label for="completo" class="label">Complemento</label>
-                    <input type="text" id="email" name="email" required="" class="input">
-                    <button class="btn-53" onclick="irParaDash()">
-                        <div class="original">CADASTRAR</div>
-                        <div class="letters">
-
-                            <span>A</span>
-                            <span>D</span>
-                            <span>D</span>
-                        </div>
-                    </button>
-                </form>
+<body>
+    <div class="maedetodos">
+        <nav class="nav-lateral">
+            <div class="logo">
+                <a href="/"><img src="../assets/Logo-Camel (1).png" alt="" width="130vh" /></a>
             </div>
 
+            <div class="container-mae">
+                <div
+                    style="display: flex; text-align: center; flex-direction: column; font-size: 3rem; font-family: Arial, Helvetica, sans-serif; font-weight: 800; margin-top: 35%;">
+                    <h6>BEM</h6>
+                    <h6>VINDO!</h6>
+                </div>
+
+            </div>
+
+        </nav>
+        <div class="container-esquerda-add__primeiro-login">
+
+            <form class="form" style="margin-top: 7%;">
+                <span class="title">Cadastro de unidade</span>
+                <label for="CEP" class="label">CEP</label>
+                <input type="text" id="username" name="username" required="" class="input">
+                <label for="rua" class="label">Rua</label>
+                <input type="text" id="email" name="email" required="" class="input">
+                <label for="numero" class="label">Número</label>
+                <input type="number" id="password" name="password" required="" class="input">
+                <label for="completo" class="label">Complemento</label>
+                <input type="text" id="email" name="email" required="" class="input">
+                <button type="button" class="btn-53" onclick="irParaDash()">
+                    <div class="original">CADASTRAR</div>
+                    <div class="letters">
+
+                        <span>A</span>
+                        <span>D</span>
+                        <span>D</span>
+                    </div>
+                </button>
+            </form>
         </div>
-    </body>
+
+    </div>
+</body>
 
 </html>
 
 <script>
-    function irParaDash() {
-        window.location.href = "/dashboard";
-    }
+    const idProvedora = sessionStorage.getItem('IdProvedora');
+    console.log('Valor de idProvedora:', idProvedora);
+
+
+
+   function irParaDash() {
+  // Dados que você quer enviar no corpo da requisição
+  const fkProvedora = sessionStorage.getItem('idProvedora');
+  const cep = document.getElementById('username').value;
+  const rua = document.getElementById('email').value;
+  const numero = document.getElementById('password').value;
+  const complemento = document.getElementById('email').value; // Certifique-se de que este é o ID correto
+  const nomeUnidade = "testeChumbado";
+  const representante = "testeChumbado";
+  const email = "testeChumbado";
+  const senha = "testeChumbado";  // Confirmar se o input de senha está correto
+   // Substituir pelo valor adequado
+
+  // Criando o objeto data
+  const data = {
+    cep: cep,
+    rua: rua,
+    numero: numero,
+    complemento: complemento,
+    nomeUnidade: nomeUnidade,
+    representante: representante,
+    email: email,
+    senha: senha,
+    fkProvedora: idProvedora
+  };
+
+  // Configuração da requisição para cadastrarUnidade
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  };
+
+  // URL do endpoint para cadastrarUnidade
+  const urlCadastrarUnidade = '/cadastrarUnidade';
+
+  console.log(fkProvedora);
+
+  // Executando a requisição para cadastrarUnidade
+  fetch(urlCadastrarUnidade, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na solicitação de cadastro de unidade.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Unidade cadastrada com sucesso:', data);
+      console.log(data);
+
+      // Após cadastrar a unidade com sucesso, fazer a segunda requisição para visualizarUltimo
+      const requestOptions2 = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      // URL do endpoint para visualizarUltimo
+      const urlVisualizarUltimo = '/visualizarUltimoUni';
+
+      // Executando a requisição para visualizarUltimo
+      return fetch('/visualizarUltimoUni', requestOptions2);
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na solicitação para obter o último registro de unidades.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Último registro de unidades obtido:', data[0].idUnidadeProvedora);
+      sessionStorage.setItem('IdUnidade', data[0].idUnidadeProvedora);
+      window.location = '/dashboard'
+     
+    })
+    .catch(error => {
+      console.error('Erro durante a solicitação:', error);
+      alert('Erro ao cadastrar a unidade.');
+    });
+}
+
+
+
+
+        
+
 </script>

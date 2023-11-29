@@ -6,6 +6,7 @@ const server = express();
 const MaquinaController = require('./controllers/MaquinaController.js');
 const ProvedoraController = require('./controllers/ProvedoraController.js');
 const UnidadeController = require('./controllers/UnidadeController.js');
+const DashboardController = require('./controllers/DashboardController.js')
 const cors = require('cors');
 server.use(cors());
 const bodyParser = require('body-parser');
@@ -59,12 +60,17 @@ server.post("/logar", function (req, res) {
     ProvedoraController.entrar(req, res);
   });
 
-  server.post("/cadastrar", function (req, res) {
-    ProvedoraController.cadastrar(req, res);
+  server.post("/cadastrarUser", function (req, res) {
+    ProvedoraController.cadastrarUser(req, res);
   });  
 
-   server.get("/teste", function (req,res){
-     res.sendFile(__dirname + '/testeexecucao.html')
+  server.post("/cadastrarProvedora", function (req, res) {
+    ProvedoraController.cadastrarProvedora(req, res);
+  });  
+
+
+   server.get("/visualizarUltimo", function (req,res){
+     ProvedoraController.visualizarUltimo(req,res)
    });
 
 // cadastro de maquina na unidade
@@ -76,6 +82,9 @@ server.post("/logar", function (req, res) {
   })
   server.post("/update/:id", function(req,res){
     MaquinaController.update(req, res);
+  })
+  server.post("/recuperar/:id", function(req,res){
+    MaquinaController.recuperar(req, res);
   })
 // Fim do cadastro maquina na unidade
   server.delete('/deletar/:id', function (req,res){
@@ -96,6 +105,8 @@ const arquivoExe = '/home/ubuntu/testeServer/CamelLooca.exe';
 server.get('/downloads/CamelLooca.exe', (req, res) => {
     res.download(arquivoExe);
 });
+
+
 
 
 // funções de plot no grafico
@@ -135,6 +146,17 @@ server.post("/logarUnidade", function (req, res) {
   server.get('/visualizarUnidade/:idunidadeProvedora',function(req,res){
     UnidadeController.visualizarPorId(req,res)
   })
+
+  server.get('/visualizarUltimoUni',function(req,res){
+    UnidadeController.visualizarUltimo(req,res)
+  })
+
+  // Dashboard 
+
+  server.get('/obterDadosCapturados/:servidorId', function(req,res){
+    DashboardController.obterDadosCapturados(req,res)
+  })
+
 
 
   server.listen(port, ()=>{

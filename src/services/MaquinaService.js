@@ -5,7 +5,7 @@ function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, 
 
     console.log("function cadastrar():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede);
   
-    var instrucaoUsuario = `INSERT INTO servidor (nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeRam,maxUsoRam, capacidadeDisco,maxUsoDisco, velocidaDeRede,fkUnidade) VALUES (?,?,?,?,?,?,?,?,?)`;
+    var instrucaoUsuario = `INSERT INTO servidor (nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeRam,maxUsoRam, capacidadeDisco,maxUsoDisco, velocidaDeRede,fkUsuario) VALUES (?,?,?,?,?,?,?,?,?)`;
     
   
     console.log("Executando a instrução SQL:");
@@ -32,19 +32,23 @@ function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, 
       UPDATE servidor
       SET nomeResponsavel = ?, numeroRegistro = ?, frequenciaIdealProcessador = ?, capacidadeDisco = ?, maxUsoDisco = ?, capacidadeRam = ?, maxUsoRam = ?, velocidaDeRede = ?
       WHERE idServidor = ?;
-    `
+    `;
+
+    // Converter os valores apropriados para números
+    var frequenciaIdealProcessadorNum = parseFloat(frequenciaIdealProcessador);
+    var velocidaDeRedeNum = parseFloat(velocidaDeRede);
+
     const valores = [
         nomeResponsavel, 
         `SRV${numeroRegistro}`,        
-        `${frequenciaIdealProcessador} GHz`, 
-        `${capacidadeDisco}GB`,
-        `${maxUsoDisco}%`,
-        `${capacidadeRam}GB`,
-        `${maxUsoRam}%`, 
-        `${velocidaDeRede} Gbps`, // Adicionando '%' antes e depois da variável velocidaDeRede
+        frequenciaIdealProcessadorNum, 
+        capacidadeDisco,
+        maxUsoDisco,
+        capacidadeRam,
+        maxUsoRam, 
+        velocidaDeRedeNum,
         id
     ];
-
 
     console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
 
@@ -67,7 +71,38 @@ function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, 
         });
     });
 }
+function recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id) {
+    console.log("function recuperar():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id);
 
+    var instrucaoUsuario = `
+      SELECT * FROM servidor
+      WHERE idServidor = ?;
+    `;
+
+    const valor = [id];
+
+    console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
+
+    return new Promise((resolve, reject) => {
+        connection.query(instrucaoUsuario, valor, (error, results) => {
+            if (error) {
+                console.log(error);
+                console.log("\nHouve um erro ao recuperar os dados! Erro: ", error.sqlMessage);
+                reject(error);
+            } else {
+                // Verifica se pelo menos uma linha foi retornada
+                if (results.length > 0) {
+                    const data = results[0]; // Assume que apenas um registro é retornado
+                    console.log("Dados recuperados:", data);
+                    resolve(data);
+                } else {
+                    console.log(`Registro com ID ${id} não encontrado.`);
+                    resolve(null);
+                }
+            }
+        });
+    });
+}
 function excluir(id) {
     var instrucao = `DELETE FROM servidor WHERE idServidor = ?`;
     console.log("Executando a instrução SQL:\n" + instrucao);
@@ -95,6 +130,7 @@ function excluir(id) {
 module.exports = {
     cadastrar,
     update,
+    recuperar,
     excluir,
     buscarTudo: (codigo) => {
         return new Promise((resolver, reject) => {
