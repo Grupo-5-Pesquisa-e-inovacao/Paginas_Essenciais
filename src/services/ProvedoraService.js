@@ -6,50 +6,6 @@ const mssql = require('mssql');
 
 
 
-<<<<<<< HEAD
-function cadastrar(razaoSocial, email, senha, cnpj) {
-  console.log("function cadastrar():", razaoSocial, email, senha, cnpj);
-
-  var instrucaoUsuario = `INSERT INTO provedora (razaoSocial,email,senha,cnpj) VALUES (?,?,?,?)`;
-
-  console.log("Executando a instrução SQL:");
-
-  return new Promise((resolve, reject) => {
-    connection.query(
-      instrucaoUsuario,
-      [razaoSocial, email, senha, cnpj],
-      (error, results) => {
-        if (error) {
-          console.log(error);
-          console.log(
-            "\nHouve um erro ao realizar o cadastro! Erro: ",
-            error.sqlMessage
-          );
-          reject(error);
-        } else {
-          const idUsuarioInserido = results.insertId;
-          console.log(`ID do usuário inserido: ${idUsuarioInserido}`);
-          resolve(results);
-        }
-      }
-    );
-  });
-}
-
-
-async function entrar(email, senha) {
-  try {
-    const instrucao = 'SELECT usuario.*, provedora.*, unidadeProvedora.*  FROM usuario LEFT JOIN provedora ON usuario.fkProvedora = provedora.idProvedora LEFT JOIN unidadeProvedora ON usuario.fkUnidade = unidadeProvedora.idunidadeProvedora WHERE email = @email AND senha = @senha';
-    const request = connection.request();
-    
-    request.input('email', mssql.VarChar, email);
-    request.input('senha', mssql.VarChar, senha);
-
-    const resultado = await request.query(instrucao);
-    return resultado.recordset;
-  } catch (error) {
-    console.error("Erro ao tentar entrar:", error);
-=======
 
 
 function cadastrarUser(email, senha, cpf, nome) {
@@ -151,7 +107,6 @@ async function entrar(email, senha) {
     }
   } catch (error) {
     console.error(error);
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
     throw error;
   }
 }
@@ -212,42 +167,6 @@ function atualizar(id, email, senha, nomeFantasia, razaoSocial) {
           console.log(`Registro com ID ${id} atualizado com sucesso.`);
           resolve(results);
         }
-<<<<<<< HEAD
-      }
-    );
-  });
-}
-function visualizarPorId(id) {
-  var instrucao = `
-      SELECT * FROM provedora WHERE idProvedora = ?;
-    `;
-
-  console.log("Executando a instrução SQL:");
-
-  return new Promise((resolve, reject) => {
-    connection.query(instrucao, [id], (error, results) => {
-      if (error) {
-        console.log(error);
-        console.log(
-          "\nHouve um erro ao buscar os dados! Erro: ",
-          error.sqlMessage
-        );
-        reject(error);
-      } else {
-        resolve(results);
-      }
-    });
-  });
-}
-
-module.exports = {
-  cadastrar,
-  entrar,
-  excluir,
-  atualizar,
-  visualizarPorId,
-};
-=======
       });
     });
   }
@@ -307,4 +226,3 @@ function visualizarUltimo() {
     atualizar,
     visualizarPorId,
     visualizarUltimo}
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a

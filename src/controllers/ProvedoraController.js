@@ -1,9 +1,7 @@
 const usuarioServices = require('../services/ProvedoraService');
 
-<<<<<<< HEAD
-=======
+
 const idProvedora = usuarioServices.idProvedora
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
 
 function entrar(req, res) {
   var email = req.body.emailServer;
@@ -38,13 +36,11 @@ function entrar(req, res) {
               res.status(500).json(erro.sqlMessage);
           });
   }
-<<<<<<< HEAD
+
 }
-  function cadastrar(req, res) {
-    var razaoSocial = req.body.razaoSocial;
-=======
+
   function cadastrarUser(req, res) {
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
+
     var email = req.body.email;
     var senha = req.body.senha;
     var cpf = req.body.cpf;
