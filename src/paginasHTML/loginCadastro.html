@@ -29,22 +29,6 @@
       </nav>
     </header>
     <main id="main">
-<<<<<<< HEAD
-      <div class="bem-vindo">
-        <h1>Venha fazer parte da nossa solução!</h1>
-        <p>
-          Cadastre-se agora e seja mais ágil na identificação de problemas, que
-          podem causar grandes prejuízos
-        </p>
-      </div>
-      <div class="container">
-        <div class="flip-container">
-          <div class="flipper">
-            <div class="front">
-              <form class="formulario">
-                <div class="cabecalhoLogin">
-                  <h1>Login</h1>
-=======
         <div class="bem-vindo">
             <h1>Venha fazer parte da nossa solução!</h1>
             <p>
@@ -205,7 +189,6 @@
 
 
                     </div>
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
                 </div>
                 <span class="tipo_campo">Email</span>
                 <div class="container-icon">
@@ -415,7 +398,6 @@
   function entrarDash(event) {
     event.preventDefault();
 
-<<<<<<< HEAD
     
    entrar()
   }
@@ -424,20 +406,6 @@
     var emailVar = document.getElementById("emailInput").value;
     var senhaVar = document.getElementById("senhaInput").value;
 
-=======
-    function entrarDash(event) {
-
-
-
-        event.preventDefault();
-        // Restante do código para entrar na dash
-        logar();
-    }
-
-    function logar() {
-        var email = document.getElementById("emailInput").value;
-        var senha = document.getElementById("senhaInput").value;
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
 
         if (emailVar == "" || senhaVar == "") {
           alert("Preencha os campos para logar");
@@ -458,31 +426,8 @@
             senhaServer: senhaVar,
           }),
         })
-<<<<<<< HEAD
           .then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!");
-=======
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na solicitação.');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Usuário logado com sucesso:', data);
-                var idProvedora = data.idProvedora;
-                localStorage.setItem('provedoraId', idProvedora);
-                provedoraIdSalvo = localStorage.getItem('provedoraId');
-                console.log('provedoraId recuperado do localStorage:', provedoraIdSalvo);
-                alert("Logado");
-                window.location.href = "/dashboard";
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-            });
-
-    }
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
 
             if (resposta.ok) {
               console.log(resposta);
@@ -592,9 +537,6 @@
     cnpjGlobal = cnpj;
     telefoneGlobal = telefone;
 
-<<<<<<< HEAD
-    middle.innerHTML = `
-=======
     const middle = document.querySelector('.middle');
 
     var idProvedora;
@@ -731,7 +673,6 @@
         telefoneGlobal = telefone
 
         middle.innerHTML = `
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
                         <form class="formulario">
                             <div class="cabecalhoLogin">
                                 <h1>Cadastro</h1>
@@ -928,20 +869,6 @@
       });
   }
 
-<<<<<<< HEAD
-  function visualizarPorId() {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-    fetch(`http://localhost:3300/visualizar/${provedoraIdSalvo}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Erro na solicitação.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.length > 0) {
-          const htmlContent = `
-=======
     var provedoraIdSalvo = localStorage.getItem('provedoraId');
 
 
@@ -1036,13 +963,11 @@
             .then((data) => {
                 if (data.length > 0) {
                     const htmlContent = `
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
                     <p>ID: ${data[0].idProvedora}</p>
                     <p>Razão Social: ${data[0].razaoSocial}</p>
                     <p>CNPJ: ${data[0].cnpj}</p>
                     <p>Email: ${data[0].email}</p>
                     
-<<<<<<< HEAD
                     `;
           respostaDiv.innerHTML = htmlContent;
         } else {
@@ -1053,18 +978,5 @@
         console.error("Erro:", error);
       });
   }
+  }
 </script>
-=======
-                    `
-                    respostaDiv.innerHTML = htmlContent;
-                } else {
-                    respostaDiv.innerHTML = "Registro não encontrado.";
-                }
-            })
-            .catch((error) => {
-                console.error('Erro:', error);
-
-            });
-    }
-</script>
->>>>>>> 051039170d32a78b596d60b9e69f8774cc06c47a
