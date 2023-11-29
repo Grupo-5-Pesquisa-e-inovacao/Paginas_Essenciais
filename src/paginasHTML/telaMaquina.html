@@ -1271,6 +1271,38 @@ function preencherValores(data) {
         window.location.href = "/";
     }
 
+    // Configuração da requisição
+const requestOptions = {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
+// URL do endpoint (substitua pela URL correta)
+const url = '/obterDadosCapturados'; // Substitua SEU_PORTA pela porta correta
+
+// Executando a requisição
+fetch(url, requestOptions)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro na solicitação.');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Dados vindos do BD', data);
+
+    // Faça algo com os dados, como atualizar a interface do usuário
+  })
+  .catch(error => {
+    console.error('Erro durante a solicitação:', error);
+    // Faça algo para lidar com o erro, como exibir uma mensagem de erro
+  });
+
+
+
+
 
 
 

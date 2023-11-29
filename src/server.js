@@ -6,6 +6,7 @@ const server = express();
 const MaquinaController = require('./controllers/MaquinaController.js');
 const ProvedoraController = require('./controllers/ProvedoraController.js');
 const UnidadeController = require('./controllers/UnidadeController.js');
+const DashboardController = require('./controllers/DashboardController.js')
 const cors = require('cors');
 server.use(cors());
 const bodyParser = require('body-parser');
@@ -106,6 +107,8 @@ server.get('/downloads/CamelLooca.exe', (req, res) => {
 });
 
 
+
+
 // funções de plot no grafico
 server.get('/dadosMaquina/:codigo',MaquinaController.buscarTudo);
 
@@ -146,6 +149,12 @@ server.post("/logarUnidade", function (req, res) {
 
   server.get('/visualizarUltimoUni',function(req,res){
     UnidadeController.visualizarUltimo(req,res)
+  })
+
+  // Dashboard 
+
+  server.get('/obterDadosCapturados/:servidorId', function(req,res){
+    DashboardController.obterDadosCapturados(req,res)
   })
 
 
