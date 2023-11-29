@@ -59,12 +59,17 @@ server.post("/logar", function (req, res) {
     ProvedoraController.entrar(req, res);
   });
 
-  server.post("/cadastrar", function (req, res) {
-    ProvedoraController.cadastrar(req, res);
+  server.post("/cadastrarUser", function (req, res) {
+    ProvedoraController.cadastrarUser(req, res);
   });  
 
-   server.get("/teste", function (req,res){
-     res.sendFile(__dirname + '/testeexecucao.html')
+  server.post("/cadastrarProvedora", function (req, res) {
+    ProvedoraController.cadastrarProvedora(req, res);
+  });  
+
+
+   server.get("/visualizarUltimo", function (req,res){
+     ProvedoraController.visualizarUltimo(req,res)
    });
 
 // cadastro de maquina na unidade

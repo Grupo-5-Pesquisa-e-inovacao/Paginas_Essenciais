@@ -140,7 +140,8 @@
                                     <div class="seta"></div>
 
                                 </div>
-                                <input class="razaoSocial_input" id="razaoSocial_input" type="text" placeholder="Nome da Empresa" maxlength="30">
+                                <input class="razaoSocial_input" id="razaoSocial_input" type="text"
+                                    placeholder="Nome da Empresa" maxlength="30">
 
                             </div>
 
@@ -209,16 +210,16 @@
 <script>
 
     function entrarDash(event) {
-        
 
-       
+
+
         event.preventDefault();
         // Restante do código para entrar na dash
         logar();
     }
 
     function logar() {
-      var email = document.getElementById("emailInput").value;
+        var email = document.getElementById("emailInput").value;
         var senha = document.getElementById("senhaInput").value;
 
         var data = {
@@ -251,7 +252,7 @@
             .catch(error => {
                 console.error('Erro:', error);
             });
-       
+
     }
 
 
@@ -282,28 +283,14 @@
 
     const middle = document.querySelector('.middle');
 
-    function cadastrar() {
-        console.log("Entrei na função de cadastro!");
-        var email = document.getElementById("input_email").value;
-        var senha = document.getElementById("input_senha").value;
-        // var razaoSocial = document.querySelectorAll("#razaoSocial_input").value;
-        // var cnpj = document.querySelectorAll("#cnpj_input").value;
-        // var telefone = document.querySelectorAll("#telefone_input").value;
-        
-        var data = {
-            email: email,
-            senha: senha,
-            razaoSocial: razaoSocialGlobal,
-            cnpj: cnpjGlobal,
-            telefone: telefoneGlobal
-        };
+    var idProvedora;
 
-        fetch('http://localhost:3300/cadastrar', {
-            method: 'POST',
+    function salvarSession() {
+        fetch('http://localhost:3300/visualizarUltimo', {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            }
         })
             .then(response => {
                 if (!response.ok) {
@@ -312,14 +299,107 @@
                 return response.json();
             })
             .then(data => {
-                console.log('Usuário cadastrado com sucesso:', data);
-                alert("Cadastro realizado");
+                const ultimoIdProvedora = data.ultimoIdProvedora;
+
+                // Salvar o último ID da provedora em sessionStorage
+                sessionStorage.setItem('IdProvedora', ultimoIdProvedora);
+
+
+                console.log('Último ID da provedora salvo em sessionStorage:', ultimoIdProvedora);
             })
             .catch(error => {
-                console.error('Erro:', error);
-                alert("Erro ao realizar cadastro");
+                console.error('Erro ao obter o último ID da provedora:', error);
             });
     }
+
+
+    function cadastrar() {
+
+        console.log("Entrei na função de cadastro!");
+        var email = document.getElementById("input_email").value;
+        var senha = document.getElementById("input_senha").value;
+        var razaoSocial = document.querySelectorAll("#razaoSocial_input").value;
+        var cnpj = document.querySelectorAll("#cnpj_input").value;
+        var telefone = document.querySelectorAll("#telefone_input").value;
+        var nome = "Agnaldo" // aqui vai o input do front da brenda
+        var cpf = "123.456.789.10" // aqui vai o input do front da brenda
+
+
+        var dataProvedora = {
+            razaoSocial: razaoSocialGlobal,
+            cnpj: cnpjGlobal,
+        }
+
+
+
+        var dataUser = {
+            nome: nome,
+            cpf: cpf,
+            email: email,
+            senha: senha,
+        };
+
+        function createError(message, response) {
+            const error = new Error(message);
+            error.response = response;
+            return error;
+        }
+
+        fetch('http://localhost:3300/cadastrarProvedora', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataProvedora)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw createError('Erro na solicitação.', response);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Usuário cadastrado com sucesso:', data);
+                salvarSession()
+            })
+            .catch(error => {
+            });
+
+        fetch('http://localhost:3300/cadastrarUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataUser)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação.');
+
+                }
+
+                return response.json();
+            })
+            .then(data => {
+                console.log('Usuário cadastrado com sucesso:', data);
+
+                // Salvar o provedoraId em sessionStorage
+                idProvedora = data.provedoraId
+
+                
+                window.location = '/cadastroUnidadesFirtLogin'
+            })
+            .catch(error => {
+
+            });
+
+
+    }
+
+
+
+
+
 
 
     var razaoSocialGlobal;
@@ -332,9 +412,9 @@
         var cnpj = document.getElementById("cnpj_input").value;
         var telefone = document.getElementById("telefone_input").value;
 
-        razaoSocialGlobal=razaoSocial
-        cnpjGlobal=cnpj
-        telefoneGlobal=telefone
+        razaoSocialGlobal = razaoSocial
+        cnpjGlobal = cnpj
+        telefoneGlobal = telefone
 
         middle.innerHTML = `
                         <form class="formulario">
@@ -376,7 +456,7 @@
                             
 
 
-                            <button class="btn-53" onclick="cadastrar()">
+                            <button type="button" class="btn-53" onclick="cadastrar()">
                                 <div class="original" id="btnCadastroFlip">CADASTRE-SE</div>
                                 <div class="letters">
                                   
@@ -494,7 +574,7 @@
 
 
 
-   
+
 
 
 
@@ -561,7 +641,7 @@
     }
 
 
-    
+
 
     function visualizarPorId() {
         console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -588,7 +668,7 @@
             })
             .catch((error) => {
                 console.error('Erro:', error);
-               
+
             });
     }
 </script>
