@@ -377,28 +377,29 @@
             inputs.forEach(input => {
                 input.removeAttribute('disabled'); // Habilita a edição
             });
-            
+
         }
     }
     function recuperarValoresDoBancoDeDados(data) {
-    const inputs = document.querySelectorAll('.info');
+        const inputs = document.querySelectorAll('.info');
 
-    if (data && typeof data === 'object') {
-        inputs.forEach(input => {
-            if (data.hasOwnProperty(input.id)) {
-                input.value = data[input.id];
-            } else {
-                console.error(`Propriedade '${input.id}' não encontrada nos dados.`);
-            }
-        });
-    } else {
-        console.error('Os dados recuperados não são válidos.');
+        if (data && typeof data === 'object') {
+            inputs.forEach(input => {
+                if (data.hasOwnProperty(input.id)) {
+                    input.value = data[input.id];
+                } else {
+                    console.error(`Propriedade '${input.id}' não encontrada nos dados.`);
+                }
+            });
+        } else {
+            console.error('Os dados recuperados não são válidos.');
+        }
     }
-}
 
-    
+
     function carregarDadosDoBanco() {
-        const url =`http://localhost:3300/recuperarValoresDoBancoDeDados/${idUnidade}`;
+        const idUnidade = sessionStorage.getItem('FK_UNIDADE')
+        const url = `http://localhost:3300/recuperarValoresDoBancoDeDados/${idUnidade}`;
 
         fetch(url)
             .then(response => {
@@ -444,6 +445,7 @@
 
 
     function update() {
+        const idUnidade = sessionStorage.getItem('FK_UNIDADE')
         var nomeResponsavel = document.getElementById("nomeResponsavel").value;
         var numeroRegistro = document.getElementById("numeroRegistro").value;
         var frequenciaIdealProcessador = parseFloat(document.getElementById("frequenciaIdealProcessador").value);
@@ -490,31 +492,31 @@
     // Pegando as funções de cima e executando no BUTTON que tem o ID = atualizar
     document.getElementById('atualizar').onclick = function () {
         toggleEditar();
-       
+
         update();
     };
 
     function excluir() {
-    fetch(`http://localhost:3300/excluir/${idUnidade}`, {
-      method: 'DELETE',
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        } else if (response.status === 404) {
-          throw new Error('Registro não encontrado.');
-        } else {
-          throw new Error('Erro ao excluir o registro.');
-        }
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Erro:', error.message);
-      });
+        fetch(`http://localhost:3300/excluir/${idUnidade}`, {
+            method: 'DELETE',
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.text();
+                } else if (response.status === 404) {
+                    throw new Error('Registro não encontrado.');
+                } else {
+                    throw new Error('Erro ao excluir o registro.');
+                }
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Erro:', error.message);
+            });
 
-  };
+    };
 
     function checkLogin() {
         var email = sessionStorage.getItem('EMAIL');
@@ -909,7 +911,7 @@
 
                 const ctx = document.getElementById('myChart');
 
-                
+
 
 
 
@@ -1059,9 +1061,9 @@
                     ]
                 };
 
-               
+
                 // Cria o gráfico de pizza
-                
+
                 setInterval(function () {
                     location.reload();
                 }, 35000); // 35 segundos em milissegundos
@@ -1327,320 +1329,320 @@
     }
 
     // Configuração da requisição
-  
 
-    function gerarGraficos(){
-        var idUnidade = sessionStorage.getItem('IdUnidade')
+
+    function gerarGraficos() {
+        var idUnidade = sessionStorage.getItem('FK_UNIDADE')
         const requestOptions = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
 
-    // URL do endpoint (substitua pela URL correta)
-    const url = '/obterDadosCapturados/3'; // Substitua SEU_PORTA pela porta correta
+        // URL do endpoint (substitua pela URL correta)
+        const url = '/obterDadosCapturados/3'; // Substitua SEU_PORTA pela porta correta
 
-    // Executando a requisição
-    fetch(url, requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na solicitação.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            var ctx1 = document.getElementById('myChart2')
-            console.log("TESTESTETESTE", data[0].ValorCapturado);
-            console.log('Dados vindos do BD', data);
-
-            
-
-
-
-            // RAM
-            emUsoRam1 = data[0].ValorCapturado
-            emUsoRam2 = data[4].ValorCapturado
-            emUsoRam3 = data[8].ValorCapturado
-            emUsoRam4 = data[12].ValorCapturado
-            emUsoRam5 = data[16].ValorCapturado
-            emUsoRam6 = data[20].ValorCapturado
-            emUsoRam7 = data[24].ValorCapturado
-
-            hremUsoRam1 = data[0].DataHoraCaptura
-            hremUsoRam2 = data[4].DataHoraCaptura
-            hremUsoRam3 = data[8].DataHoraCaptura
-            hremUsoRam4 = data[12].DataHoraCaptura
-            hremUsoRam5 = data[16].DataHoraCaptura
-            hremUsoRam6 = data[20].DataHoraCaptura
-            hremUsoRam7 = data[24].DataHoraCaptura
-
-
-
-            console.log(emUsoRam1);
-            console.log(emUsoRam2);
-            console.log(emUsoRam3);
-            console.log(emUsoRam4);
-            console.log(emUsoRam5);
-            console.log(emUsoRam6);
-            console.log(emUsoRam7);
+        // Executando a requisição
+        fetch(url, requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                var ctx1 = document.getElementById('myChart2')
+                console.log("TESTESTETESTE", data[0].ValorCapturado);
+                console.log('Dados vindos do BD', data);
 
 
 
 
 
+                // RAM
+                emUsoRam1 = data[0].ValorCapturado
+                emUsoRam2 = data[4].ValorCapturado
+                emUsoRam3 = data[8].ValorCapturado
+                emUsoRam4 = data[12].ValorCapturado
+                emUsoRam5 = data[16].ValorCapturado
+                emUsoRam6 = data[20].ValorCapturado
+                emUsoRam7 = data[24].ValorCapturado
 
-            new Chart(ctx1, {
-                type: 'line',
-                label: '%',
-                data: {
-                    labels: [
-                        hremUsoRam1,
-                        hremUsoRam2,
-                        hremUsoRam3,
-                        hremUsoRam4,
-                        hremUsoRam5,
-                        hremUsoRam6,
-                        hremUsoRam7,
+                hremUsoRam1 = data[0].DataHoraCaptura
+                hremUsoRam2 = data[4].DataHoraCaptura
+                hremUsoRam3 = data[8].DataHoraCaptura
+                hremUsoRam4 = data[12].DataHoraCaptura
+                hremUsoRam5 = data[16].DataHoraCaptura
+                hremUsoRam6 = data[20].DataHoraCaptura
+                hremUsoRam7 = data[24].DataHoraCaptura
 
-                    ], // Rótulos de tempo
-                    datasets: [
-                        {
-                            label: '',
-                            data: [emUsoRam7, emUsoRam6, emUsoRam5, emUsoRam4, emUsoRam3, emUsoRam2, emUsoRam1], // Uso da RAM ao longo do tempo
-                            borderWidth: 2,
-                            borderColor: '#7900c5', // Cor da linha
-                            fill: true, // Preencher a área sob a linha
-                            backgroundColor: 'rgba(121, 0, 197, 0.5)'
-                        }
-                    ]
-                },
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Uso da RAM',
-                            color: 'white' // Define a cor do título do gráfico
-                        }
+
+
+                console.log(emUsoRam1);
+                console.log(emUsoRam2);
+                console.log(emUsoRam3);
+                console.log(emUsoRam4);
+                console.log(emUsoRam5);
+                console.log(emUsoRam6);
+                console.log(emUsoRam7);
+
+
+
+
+
+
+                new Chart(ctx1, {
+                    type: 'line',
+                    label: '%',
+                    data: {
+                        labels: [
+                            hremUsoRam1,
+                            hremUsoRam2,
+                            hremUsoRam3,
+                            hremUsoRam4,
+                            hremUsoRam5,
+                            hremUsoRam6,
+                            hremUsoRam7,
+
+                        ], // Rótulos de tempo
+                        datasets: [
+                            {
+                                label: '',
+                                data: [emUsoRam7, emUsoRam6, emUsoRam5, emUsoRam4, emUsoRam3, emUsoRam2, emUsoRam1], // Uso da RAM ao longo do tempo
+                                borderWidth: 2,
+                                borderColor: '#7900c5', // Cor da linha
+                                fill: true, // Preencher a área sob a linha
+                                backgroundColor: 'rgba(121, 0, 197, 0.5)'
+                            }
+                        ]
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 16,
-                            stepSize: 5,
-                            ticks: {
-                                //    callback: function (value) {
-                                //        return value + '%';
-                                //    }
-                            },
-                            grid: {
-                                color: 'white'
-                            },
-                            ticks: {
-                                color: 'white'
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Uso da RAM',
+                                color: 'white' // Define a cor do título do gráfico
                             }
                         },
-                        x: {
-                            grid: {
-                                color: 'white'
-                            },
-                            ticks: {
-                                color: 'white'
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Rede
-
-            rede1 = data[3].ValorCapturado
-            rede2 = data[7].ValorCapturado
-            rede3 = data[11].ValorCapturado
-            rede4 = data[15].ValorCapturado
-            rede5 = data[19].ValorCapturado
-            rede6 = data[23].ValorCapturado
-            rede7 = data[27].ValorCapturado
-
-            hrrede1 = data[3].DataHoraCaptura
-            hrrede2 = data[7].DataHoraCaptura
-            hrrede3 = data[11].DataHoraCaptura
-            hrrede4 = data[15].DataHoraCaptura
-            hrrede5 = data[19].DataHoraCaptura
-            hrrede6 = data[23].DataHoraCaptura
-            hrrede7 = data[27].DataHoraCaptura
-
-            var ctx = document.getElementById('myChart')
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [
-                        hrrede1,
-                        hrrede2,
-                        hrrede3,
-                        hrrede4,
-                        hrrede5,
-                        hrrede6,
-                        hrrede7,
-
-
-                    ], // Rótulos de tempo
-                    datasets: [
-                        {
-                            label: '%',
-                            data: [rede1, rede2, rede3, rede4, rede5, rede6, rede7], // Uso da Rede ao longo do tempo
-                            borderWidth: 2,
-                            borderColor: '#7900c5', // Cor da linha
-                            fill: true, // Preencher a área sob a linha
-                            backgroundColor: 'rgba(121, 0, 197, 0.5)'
-                        }
-                    ]
-                },
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Uso da Rede',
-                            color: 'white' // Define a cor do título do gráfico
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: rede7, // isso é a barra lateral que mostra a porcentagem
-                            stepSize: 5,
-                            ticks: {
-                                callback: function (value) {
-                                    return value + '%'; // pra mostrar p dado em porcentagem
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 16,
+                                stepSize: 5,
+                                ticks: {
+                                    //    callback: function (value) {
+                                    //        return value + '%';
+                                    //    }
+                                },
+                                grid: {
+                                    color: 'white'
+                                },
+                                ticks: {
+                                    color: 'white'
                                 }
                             },
-                            grid: {
-                                color: 'white'
-                            },
-                            ticks: {
-                                color: 'white'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: 'white'
-                            },
-                            ticks: {
-                                color: 'white'
+                            x: {
+                                grid: {
+                                    color: 'white'
+                                },
+                                ticks: {
+                                    color: 'white'
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
+
+                // Rede
+
+                rede1 = data[3].ValorCapturado
+                rede2 = data[7].ValorCapturado
+                rede3 = data[11].ValorCapturado
+                rede4 = data[15].ValorCapturado
+                rede5 = data[19].ValorCapturado
+                rede6 = data[23].ValorCapturado
+                rede7 = data[27].ValorCapturado
+
+                hrrede1 = data[3].DataHoraCaptura
+                hrrede2 = data[7].DataHoraCaptura
+                hrrede3 = data[11].DataHoraCaptura
+                hrrede4 = data[15].DataHoraCaptura
+                hrrede5 = data[19].DataHoraCaptura
+                hrrede6 = data[23].DataHoraCaptura
+                hrrede7 = data[27].DataHoraCaptura
+
+                var ctx = document.getElementById('myChart')
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [
+                            hrrede1,
+                            hrrede2,
+                            hrrede3,
+                            hrrede4,
+                            hrrede5,
+                            hrrede6,
+                            hrrede7,
 
 
-            // DISCO
-
-            usoDisco1 = data[1].ValorCapturado
-            usoDisco2 = data[5].ValorCapturado 
-            usoDisco3 = data[9].ValorCapturado
-            usoDisco4 = data[13].ValorCapturado
-            usoDisco5 = data[17].ValorCapturado
-            usoDisco6 = data[21].ValorCapturado
-            usoDisco7 = data[25].ValorCapturado
-
-            hrusoDisco1 = data[1].DataHoraCaptura
-            hrusoDisco2 = data[5].DataHoraCaptura 
-            hrusoDisco3 = data[9].DataHoraCaptura
-            hrusoDisco4 = data[13].DataHoraCaptura
-            hrusoDisco5 = data[17].DataHoraCaptura
-            hrusoDisco6 = data[21].DataHoraCaptura
-            hrusoDisco7 = data[25].DataHoraCaptura
-
-            var ctx2 = document.getElementById('myPieChart')
-
-            new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    labels: [
-                    hrusoDisco1,
-                    hrusoDisco2,
-                    hrusoDisco3,
-                    hrusoDisco4,
-                    hrusoDisco5,
-                    hrusoDisco6,
-                    hrusoDisco7,
-                    ], // Rótulos de tempo
-                    datasets: [
-                        {
-                            label: '%',
-                            data: [usoDisco1,usoDisco2,usoDisco3,usoDisco4,usoDisco5,usoDisco6,usoDisco7], // Uso da Rede ao longo do tempo
-                            borderWidth: 2,
-                            borderColor: '#7900c5', // Cor da linha
-                            fill: true, // Preencher a área sob a linha
-                            backgroundColor: 'rgba(121, 0, 197, 0.5)'
-                        }
-                    ]
-                },
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Uso de Disco',
-                            color: 'white' // Define a cor do título do gráfico
-                        }
+                        ], // Rótulos de tempo
+                        datasets: [
+                            {
+                                label: '%',
+                                data: [rede1, rede2, rede3, rede4, rede5, rede6, rede7], // Uso da Rede ao longo do tempo
+                                borderWidth: 2,
+                                borderColor: '#7900c5', // Cor da linha
+                                fill: true, // Preencher a área sob a linha
+                                backgroundColor: 'rgba(121, 0, 197, 0.5)'
+                            }
+                        ]
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: usoDisco1, // isso é a barra lateral que mostra a porcentagem
-                            stepSize: 5,
-                            ticks: {
-                                callback: function (value) {
-                                    return value + '%'; // pra mostrar p dado em porcentagem
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Uso da Rede',
+                                color: 'white' // Define a cor do título do gráfico
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: rede7, // isso é a barra lateral que mostra a porcentagem
+                                stepSize: 5,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + '%'; // pra mostrar p dado em porcentagem
+                                    }
+                                },
+                                grid: {
+                                    color: 'white'
+                                },
+                                ticks: {
+                                    color: 'white'
                                 }
                             },
-                            grid: {
-                                color: 'white'
-                            },
-                            ticks: {
-                                color: 'white'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: 'white'
-                            },
-                            ticks: {
-                                color: 'white'
+                            x: {
+                                grid: {
+                                    color: 'white'
+                                },
+                                ticks: {
+                                    color: 'white'
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
 
 
-            // CPU
+                // DISCO
 
-            frequencia1 = data[2].ValorCapturado
-            frequencia2 = data[6].ValorCapturado
-            frequencia3 = data[10].ValorCapturado
-            frequencia4 = data[14].ValorCapturado
-            frequencia5 = data[18].ValorCapturado
-            frequencia6 = data[22].ValorCapturado
-            frequencia7 = data[26].ValorCapturado
+                usoDisco1 = data[1].ValorCapturado
+                usoDisco2 = data[5].ValorCapturado
+                usoDisco3 = data[9].ValorCapturado
+                usoDisco4 = data[13].ValorCapturado
+                usoDisco5 = data[17].ValorCapturado
+                usoDisco6 = data[21].ValorCapturado
+                usoDisco7 = data[25].ValorCapturado
 
-            hrfrequencia1 = data[2].DataHoraCaptura
-            hrfrequencia2 = data[6].DataHoraCaptura
-            hrfrequencia3 = data[10].DataHoraCaptura
-            hrfrequencia4 = data[14].DataHoraCaptura
-            hrfrequencia5 = data[18].DataHoraCaptura
-            hrfrequencia6 = data[22].DataHoraCaptura
-            hrfrequencia7 = data[26].DataHoraCaptura
+                hrusoDisco1 = data[1].DataHoraCaptura
+                hrusoDisco2 = data[5].DataHoraCaptura
+                hrusoDisco3 = data[9].DataHoraCaptura
+                hrusoDisco4 = data[13].DataHoraCaptura
+                hrusoDisco5 = data[17].DataHoraCaptura
+                hrusoDisco6 = data[21].DataHoraCaptura
+                hrusoDisco7 = data[25].DataHoraCaptura
+
+                var ctx2 = document.getElementById('myPieChart')
+
+                new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: [
+                            hrusoDisco1,
+                            hrusoDisco2,
+                            hrusoDisco3,
+                            hrusoDisco4,
+                            hrusoDisco5,
+                            hrusoDisco6,
+                            hrusoDisco7,
+                        ], // Rótulos de tempo
+                        datasets: [
+                            {
+                                label: '%',
+                                data: [usoDisco1, usoDisco2, usoDisco3, usoDisco4, usoDisco5, usoDisco6, usoDisco7], // Uso da Rede ao longo do tempo
+                                borderWidth: 2,
+                                borderColor: '#7900c5', // Cor da linha
+                                fill: true, // Preencher a área sob a linha
+                                backgroundColor: 'rgba(121, 0, 197, 0.5)'
+                            }
+                        ]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Uso de Disco',
+                                color: 'white' // Define a cor do título do gráfico
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: usoDisco1, // isso é a barra lateral que mostra a porcentagem
+                                stepSize: 5,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + '%'; // pra mostrar p dado em porcentagem
+                                    }
+                                },
+                                grid: {
+                                    color: 'white'
+                                },
+                                ticks: {
+                                    color: 'white'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    color: 'white'
+                                },
+                                ticks: {
+                                    color: 'white'
+                                }
+                            }
+                        }
+                    }
+                });
 
 
-            const ctx3 = document.getElementById('myChart4');
+                // CPU
+
+                frequencia1 = data[2].ValorCapturado
+                frequencia2 = data[6].ValorCapturado
+                frequencia3 = data[10].ValorCapturado
+                frequencia4 = data[14].ValorCapturado
+                frequencia5 = data[18].ValorCapturado
+                frequencia6 = data[22].ValorCapturado
+                frequencia7 = data[26].ValorCapturado
+
+                hrfrequencia1 = data[2].DataHoraCaptura
+                hrfrequencia2 = data[6].DataHoraCaptura
+                hrfrequencia3 = data[10].DataHoraCaptura
+                hrfrequencia4 = data[14].DataHoraCaptura
+                hrfrequencia5 = data[18].DataHoraCaptura
+                hrfrequencia6 = data[22].DataHoraCaptura
+                hrfrequencia7 = data[26].DataHoraCaptura
+
+
+                const ctx3 = document.getElementById('myChart4');
 
 
 
 
-            new Chart(ctx3, {
+                new Chart(ctx3, {
                     type: 'line',
                     data: {
                         labels: [
@@ -1656,7 +1658,7 @@
                         datasets: [
                             {
                                 label: 'Hertz',
-                                data: [frequencia1,frequencia2,frequencia3,frequencia4,frequencia5,frequencia6,frequencia7], // Uso da CPU ao longo do tempo
+                                data: [frequencia1, frequencia2, frequencia3, frequencia4, frequencia5, frequencia6, frequencia7], // Uso da CPU ao longo do tempo
                                 borderWidth: 2,
                                 borderColor: '#7900c5', // Cor da linha
                                 fill: true, // Preencher a área sob a linha
@@ -1702,25 +1704,27 @@
                 });
 
 
-                setInterval(window.reload(), 35000); 
+                setInterval(function () {
+                    location.reload();
+                }, 35000);
 
                 console.log("gerou");
 
 
-            // Faça algo com os dados, como atualizar a interface do usuário
-        })
-        .catch(error => {
-            console.error('Erro durante a solicitação:', error);
-            // Faça algo para lidar com o erro, como exibir uma mensagem de erro
+                // Faça algo com os dados, como atualizar a interface do usuário
+            })
+            .catch(error => {
+                console.error('Erro durante a solicitação:', error);
+                // Faça algo para lidar com o erro, como exibir uma mensagem de erro
 
-        });
+            });
 
     }
 
     // 35 segundos em milissegundos
 
-// Chame a função imediatamente quando a página carregar
-gerarGraficos();
+    // Chame a função imediatamente quando a página carregar
+    gerarGraficos();
 
 
 
