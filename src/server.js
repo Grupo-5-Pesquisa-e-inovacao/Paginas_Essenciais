@@ -83,8 +83,8 @@ server.post("/logar", function (req, res) {
   server.post("/update/:id", function(req,res){
     MaquinaController.update(req, res);
   })
-  server.post("/recuperar/:id", function(req,res){
-    MaquinaController.recuperar(req, res);
+  server.get("/recuperarValoresDoBancoDeDados/:id", function(req,res){
+    MaquinaController.recuperarValoresDoBancoDeDados(req, res);
   })
 // Fim do cadastro maquina na unidade
   server.delete('/deletar/:id', function (req,res){
@@ -99,6 +99,8 @@ server.post("/logar", function (req, res) {
     ProvedoraController.visualizarPorId(req,res)
   });
 
+
+    
 
 const arquivoExe = '/home/ubuntu/testeServer/CamelLooca.exe';
 
@@ -143,12 +145,16 @@ server.post("/logarUnidade", function (req, res) {
     UnidadeController.atualizar(req,res)
   })
 
-  server.get('/visualizarUnidade/:idunidadeProvedora',function(req,res){
-    UnidadeController.visualizarPorId(req,res)
+  server.get('/visualizarUnidade/:idUnidadeClick',function(req,res){
+    UnidadeController.visualizarUnidade(req,res)
   })
 
   server.get('/visualizarUltimoUni',function(req,res){
     UnidadeController.visualizarUltimo(req,res)
+  })
+
+  server.get('/visualizarUnidades/:id',function(req,res){
+    UnidadeController.listarUnidades(req, res)
   })
 
   // Dashboard 

@@ -1,136 +1,161 @@
 const db = require('../db');
 const connection = require('../db');
+const pool = require('../db');
 
-function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede, id ) {
-
-    console.log("function cadastrar():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede);
+async function cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidadeDeRede) {
+    try {
+      const pool = db.require('./suaConexaoPool'); // Caminho para o módulo que exporta a conexão
   
-    var instrucaoUsuario = `INSERT INTO servidor (nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeRam,maxUsoRam, capacidadeDisco,maxUsoDisco, velocidaDeRede,fkUsuario) VALUES (?,?,?,?,?,?,?,?,?)`;
-    
+      console.log("function cadastrar():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidadeDeRede);
   
-    console.log("Executando a instrução SQL:");
+      const request = pool.request();
+      const query = `INSERT INTO servidor (nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeRam,maxUsoRam, capacidadeDisco,maxUsoDisco, velocidadeDeRede,fkUsuario) VALUES (@nomeResponsavel, @numeroRegistro, @frequenciaIdealProcessador, @capacidadeRam,@maxUsoRam, @capacidadeDisco,@maxUsoDisco, @velocidadeDeRede)`;
   
-    return new Promise((resolve, reject) => {
-      connection.query(instrucaoUsuario, [nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco,maxUsoDisco,capacidadeRam,maxUsoRam, velocidaDeRede,1], (error, results) => {
-        if (error) {
-          console.log(error);
-          console.log("\nHouve um erro ao realizar o cadastro! Erro: ", error.sqlMessage);
-          reject(error);
-        } else {
-          const idUsuarioInserido = results.insertId;
-          console.log(`ID do usuário inserido: ${idUsuarioInserido}`);
-          resolve(results);
-        }
-      });
-    });
+      request.input('nomeResponsavel', nomeResponsavel);
+      request.input('numeroRegistro', numeroRegistro);
+      request.input('frequenciaIdealProcessador', frequenciaIdealProcessador);
+      request.input('capacidadeDisco', capacidadeDisco);
+      request.input('maxUsoDisco', maxUsoDisco);
+      request.input('capacidadeRam', capacidadeRam);
+      request.input('maxUsoRam', maxUsoRam);
+      request.input('velocidadeDeRede', velocidadeDeRede);
+  
+      const result = await request.query(query);
+      console.log(`ID do usuário inserido: ${result.recordset[0].id}`); 
+  
+      return result;
+    } catch (error) {
+      console.error('Houve um erro ao realizar o cadastro!', error.message);
+      throw error;
+    }
   }
+  
 
-  function update(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id) {
-    console.log("function update():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id);
-
+async function update(
+    nomeResponsavel,
+    numeroRegistro,
+    frequenciaIdealProcessador,
+    capacidadeDisco,
+    maxUsoDisco,
+    capacidadeRam,
+    maxUsoRam,
+    velocidadeDeRede,
+    id,
+    pool
+  ) {
+    console.log(
+      "function update():",
+      nomeResponsavel,
+      numeroRegistro,
+      frequenciaIdealProcessador,
+      capacidadeDisco,
+      maxUsoDisco,
+      capacidadeRam,
+      maxUsoRam,
+      velocidadeDeRede,
+      id
+    );
+  
     var instrucaoUsuario = `
       UPDATE servidor
-      SET nomeResponsavel = ?, numeroRegistro = ?, frequenciaIdealProcessador = ?, capacidadeDisco = ?, maxUsoDisco = ?, capacidadeRam = ?, maxUsoRam = ?, velocidaDeRede = ?
-      WHERE idServidor = ?;
+      SET nomeResponsavel = @nomeResponsavel, numeroRegistro = @numeroRegistro, frequenciaIdealProcessador = @frequenciaIdealProcessador, capacidadeDisco = @capacidadeDisco, maxUsoDisco = @maxUsoDisco, capacidadeRam = @capacidadeRam, maxUsoRam = @maxUsoRam, velocidadeDeRede = @velocidadeDeRede
+      WHERE idServidor = @id;
     `;
-
-    // Converter os valores apropriados para números
-    var frequenciaIdealProcessadorNum = parseFloat(frequenciaIdealProcessador);
-    var velocidaDeRedeNum = parseFloat(velocidaDeRede);
-
-    const valores = [
-        nomeResponsavel, 
-        `SRV${numeroRegistro}`,        
-        frequenciaIdealProcessadorNum, 
-        capacidadeDisco,
-        maxUsoDisco,
-        capacidadeRam,
-        maxUsoRam, 
-        velocidaDeRedeNum,
-        id
-    ];
-
+  
+    const request = db.request();
+    request.input("nomeResponsavel", nomeResponsavel);
+    request.input("numeroRegistro", numeroRegistro);
+    request.input("frequenciaIdealProcessador", frequenciaIdealProcessador);
+    request.input("capacidadeDisco", capacidadeDisco);
+    request.input("maxUsoDisco", maxUsoDisco);
+    request.input("capacidadeRam", capacidadeRam);
+    request.input("maxUsoRam", maxUsoRam);
+    request.input("velocidadeDeRede", velocidadeDeRede); // Corrigindo o nome da coluna
+    request.input("id", id);
+  
     console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
+  
+    try {
+      const result = await request.query(instrucaoUsuario);
+      if (result.rowsAffected[0] > 0) {
+        console.log(`Registro com responsável ${nomeResponsavel} atualizado com sucesso.`);
+        return true;
+      } else {
+        console.log(`Registro com responsável ${nomeResponsavel} não encontrado.`);
+        return false;
+      }
+    } catch (error) {
+      console.error("\nHouve um erro ao realizar a atualização! Erro: ", error.message);
+      throw error;
+    }
+  }
+  
+  module.exports = update;
+  
+  
 
-    return new Promise((resolve, reject) => {
-        connection.query(instrucaoUsuario, valores, (error, results) => {
-            if (error) {
-                console.log(error);
-                console.log("\nHouve um erro ao realizar a atualização! Erro: ", error.sqlMessage);
-                reject(error);
+const sql = require('mssql');
+function recuperarValoresDoBancoDeDados(id) {
+    return new Promise(function (resolve, reject) {
+        if (!id) {
+            reject(new Error("ID não fornecido."));
+            return;
+        }
+
+        const valor = id;
+        const instrucaoUsuario = `
+            SELECT * FROM servidor
+            WHERE idServidor = @id;
+        `;
+
+        console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
+
+        pool.connect().then(() => {
+            return pool.request()
+                .input('id', sql.Int, valor) // Verifique esta linha para garantir que 'sql' esteja definido corretamente
+                .query(instrucaoUsuario);
+        }).then(result => {
+            const resultado = result.recordset;
+
+            if (resultado && resultado.length > 0) {
+                resolve(resultado);
             } else {
-                // Verifica se pelo menos uma linha foi afetada pela atualização
-                if (results.affectedRows > 0) {
-                    console.log(`Registro com responsável ${nomeResponsavel} atualizado com sucesso.`);
-                    resolve(true); // Atualização bem-sucedida
-                } else {
-                    console.log(`Registro com responsável ${nomeResponsavel} não encontrado.`);
-                    resolve(false); // Nenhum registro foi encontrado para atualizar
-                }
+                reject(new Error("Registro não encontrado."));
             }
+        }).catch(err => {
+            reject(err);
         });
     });
 }
-function recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id) {
-    console.log("function recuperar():", nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id);
 
-    var instrucaoUsuario = `
-      SELECT * FROM servidor
-      WHERE idServidor = ?;
-    `;
-
-    const valor = [id];
-
-    console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
-
-    return new Promise((resolve, reject) => {
-        connection.query(instrucaoUsuario, valor, (error, results) => {
-            if (error) {
-                console.log(error);
-                console.log("\nHouve um erro ao recuperar os dados! Erro: ", error.sqlMessage);
-                reject(error);
-            } else {
-                // Verifica se pelo menos uma linha foi retornada
-                if (results.length > 0) {
-                    const data = results[0]; // Assume que apenas um registro é retornado
-                    console.log("Dados recuperados:", data);
-                    resolve(data);
-                } else {
-                    console.log(`Registro com ID ${id} não encontrado.`);
-                    resolve(null);
-                }
-            }
-        });
-    });
-}
 function excluir(id) {
     var instrucao = `DELETE FROM servidor WHERE idServidor = ?`;
     console.log("Executando a instrução SQL:\n" + instrucao);
-  
+
     return new Promise((resolve, reject) => {
-      db.query(instrucao, [id], (error, results, fields) => {
-        if (error) {
-          console.error("Erro ao excluir o registro:", error);
-          reject("Erro ao excluir o registro: " + error.message);
-        } else {
-          if (results.affectedRows > 0) {
-            console.log("Registro excluído com sucesso.");
-            resolve("Registro excluído com sucesso.");
-          } else {
-            console.log("Nenhum registro encontrado para exclusão.");
-            reject("Nenhum registro encontrado para exclusão.");
-          }
-        }
-      });
+        db.query(instrucao, [id], (error, results, fields) => {
+            if (error) {
+                console.error("Erro ao excluir o registro:", error);
+                reject("Erro ao excluir o registro: " + error.message);
+            } else {
+                if (results.affectedRows > 0) {
+                    console.log("Registro excluído com sucesso.");
+                    resolve("Registro excluído com sucesso.");
+                } else {
+                    console.log("Nenhum registro encontrado para exclusão.");
+                    reject("Nenhum registro encontrado para exclusão.");
+                }
+            }
+        });
     });
-  }
-  
+}
+
 
 
 module.exports = {
     cadastrar,
     update,
-    recuperar,
+    recuperarValoresDoBancoDeDados,
     excluir,
     buscarTudo: (codigo) => {
         return new Promise((resolver, reject) => {
