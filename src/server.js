@@ -1,7 +1,7 @@
 require('dotenv').config({path:'variaveis.env'})
 
 const express = require('express');
-const port = process.env.PORT || 3330;
+const port = process.env.PORT || 3300;
 const server = express();
 const MaquinaController = require('./controllers/MaquinaController.js');
 const ProvedoraController = require('./controllers/ProvedoraController.js');
