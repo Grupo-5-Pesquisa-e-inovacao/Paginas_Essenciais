@@ -29,26 +29,66 @@
         </nav>
         <div class="container-esquerda-add__primeiro-login">
 
-            <form class="form" style="margin-top: 7%;">
-                <span class="title">Cadastro de unidade</span>
-                <label for="CEP" class="label">CEP</label>
-                <input type="text" id="username" name="username" required="" class="input">
-                <label for="rua" class="label">Rua</label>
-                <input type="text" id="email" name="email" required="" class="input">
-                <label for="numero" class="label">Número</label>
-                <input type="number" id="password" name="password" required="" class="input">
-                <label for="completo" class="label">Complemento</label>
-                <input type="text" id="email" name="email" required="" class="input">
-                <button type="button" class="btn-53" onclick="irParaDash()">
-                    <div class="original">CADASTRAR</div>
-                    <div class="letters">
+          <div class="container_bolinhas">
+            <div>
+              <h6>Unidade</h6>
+            </div>
+            <label class="switch">
+              <input type="checkbox" class="checkbox">
+              <div class="slider">
+                
+              </div>
+          </label>
+          <div>
+            <h6>Representante</h6>
+          </div>
+          </div>
+          
+         
 
-                        <span>A</span>
-                        <span>D</span>
-                        <span>D</span>
-                    </div>
-                </button>
-            </form>
+          <form class="formulario" style="margin: 0;">
+            <p class="title">Unidade</p>
+            <p class="message">Cadastre sua primeira unidade!</p>
+            <label>
+              <input class="input" type="text" placeholder="" required="" id="ipt-rua">
+              <span>Rua</span>
+          </label> 
+                    
+            <label>
+                <input class="input" type="number" placeholder="" required="" id="ipt-numero">
+                <span>Número</span>
+            </label> 
+                
+            <label>
+                <input class="input" type="text" placeholder="" required="" id="ipt-complemento">
+                <span>Complemento</span>
+            </label>
+            <label>
+                <input class="input" type="text" placeholder="" required="" id="ipt-cep">
+                <span>CEP</span>
+            </label>
+            <label>
+              <input class="input" type="text" placeholder="" required="" id="ipt-nome-unidade">
+              <span>Nome unidade</span>
+          </label>
+            <button type="button" class="btn-53" onclick="prosseguir()">
+              <div class="original">PROSSEGUIR</div>
+              <div class="letters">
+
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                      <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                    </svg>
+                  </span>
+  
+              </div>
+          </button>
+        </form>
+            
+              
+             
+            
         </div>
 
     </div>
@@ -61,30 +101,191 @@
     console.log('Valor de idProvedora:', idProvedora);
 
 
+  var nomeGlobal = "";
+  var cpfGlobal = "";
+  var emailGlobal = "";
+  var senhaGlobal = "";
+  var nomeUnidadeGlobal = "";
+  var ruaGlobal = "";
+  var numeroGlobal = "";
+  var complementoGlobal = "";
+  var cepGlobal = "";
+
+
+
+    const form = document.querySelector('form');
+
+    const toggle = document.querySelector('.checkbox');
+
+    toggle.addEventListener('click', () => {
+      if(toggle.checked){
+
+        nomeUnidadeGlobal = document.getElementById('ipt-nome-unidade').value;
+        ruaGlobal = document.getElementById('ipt-rua').value;
+        numeroGlobal = document.getElementById('ipt-numero').value;
+        complementoGlobal = document.getElementById('ipt-complemento').value;
+        cepGlobal = document.getElementById('ipt-cep').value;
+
+        form.innerHTML = `
+        <p class="title">Representante</p>
+            <p class="message">Cadastre o responsável pela unidade!</p>
+            <label>
+              <input class="input" type="text" placeholder="" required="" id="ipt-nome">
+              <span>Nome</span>
+          </label> 
+                    
+            <label>
+                <input class="input" type="text" placeholder="" required="" id="ipt-cpf">
+                <span>CPF</span>
+            </label> 
+                
+            <label>
+                <input class="input" type="email" placeholder="" required="" id="ipt-email">
+                <span>E-mail</span>
+            </label>
+            <label>
+                <input class="input" type="password" placeholder="" required="" id="ipt-senha">
+                <span>Senha</span>
+            </label>
+            <button type="button" class="btn-53" onclick="irParaDash()">
+              <div class="original">CADASTRAR</div>
+              <div class="letters">
+
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+
+                      `
+
+                      document.getElementById('ipt-nome').value = nomeGlobal;
+                      document.getElementById('ipt-cpf').value = cpfGlobal;
+                      document.getElementById('ipt-email').value = emailGlobal;
+                      document.getElementById('ipt-senha').value = senhaGlobal;
+
+
+                    }
+                    else{
+
+                      nomeGlobal = document.getElementById('ipt-nome').value;
+                      cpfGlobal = document.getElementById('ipt-cpf').value;
+                      emailGlobal = document.getElementById('ipt-email').value;
+                      senhaGlobal = document.getElementById('ipt-senha').value;
+
+                      form.innerHTML = `
+                      <p class="title">Unidade</p>
+            <p class="message">Cadastre sua primeira unidade!</p>
+            <label>
+              <input class="input" type="text" placeholder="" required="" id="ipt-rua">
+              <span>Rua</span>
+          </label> 
+                    
+            <label>
+                <input class="input" type="number" placeholder="" required="" id="ipt-numero">
+                <span>Número</span>
+            </label> 
+                
+            <label>
+                <input class="input" type="text" placeholder="" required="" id="ipt-complemento">
+                <span>Complemento</span>
+            </label>
+            <label>
+                <input class="input" type="text" placeholder="" required="" id="ipt-cep">
+                <span>CEP</span>
+            </label>
+            <label>
+                <input class="input" type="text" placeholder="" required="" id="ipt-nome-unidade">
+                <span>Nome unidade</span>
+            </label>
+            <button type="button" class="btn-53" onclick="prosseguir()">
+              <div class="original">PROSSEGUIR</div>
+              <div class="letters">
+
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                      <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                    </svg>
+                  </span>
+  
+              </div>
+          </button>
+                      `
+
+
+                     ;
+
+                      document.getElementById('ipt-rua').value = ruaGlobal;
+                      document.getElementById('ipt-numero').value = numeroGlobal;
+                      document.getElementById('ipt-complemento').value = complementoGlobal;
+                      document.getElementById('ipt-cep').value = cepGlobal;
+                      document.getElementById('ipt-nome-unidade').value = nomeUnidadeGlobal;
+                    }
+                  }
+                );
+    
+    function prosseguir(){
+      toggle.checked = true;
+      nomeUnidadeGlobal = document.getElementById('ipt-nome-unidade').value;
+        ruaGlobal = document.getElementById('ipt-rua').value;
+        numeroGlobal = document.getElementById('ipt-numero').value;
+        complementoGlobal = document.getElementById('ipt-complemento').value;
+        cepGlobal = document.getElementById('ipt-cep').value;
+
+        form.innerHTML = `
+        <p class="title">Representante</p>
+            <p class="message">Cadastre o responsável pela unidade!</p>
+            <label>
+              <input class="input" type="text" placeholder="" required="" id="ipt-nome">
+              <span>Nome</span>
+          </label> 
+                    
+            <label>
+                <input class="input" type="text" placeholder="" required="" id="ipt-cpf">
+                <span>CPF</span>
+            </label> 
+                
+            <label>
+                <input class="input" type="email" placeholder="" required="" id="ipt-email">
+                <span>E-mail</span>
+            </label>
+            <label>
+                <input class="input" type="password" placeholder="" required="" id="ipt-senha">
+                <span>Senha</span>
+            </label>
+            <button type="button" class="btn-53" onclick="irParaDash()">
+              <div class="original">CADASTRAR</div>
+              <div class="letters">
+
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+
+                      `
+
+                      document.getElementById('ipt-nome').value = nomeGlobal;
+                      document.getElementById('ipt-cpf').value = cpfGlobal;
+                      document.getElementById('ipt-email').value = emailGlobal;
+                      document.getElementById('ipt-senha').value = senhaGlobal;
+
+        
+      }
+    
+
 
    function irParaDash() {
   // Dados que você quer enviar no corpo da requisição
   const fkProvedora = sessionStorage.getItem('idProvedora');
-  const cep = document.getElementById('username').value;
-  const rua = document.getElementById('email').value;
-  const numero = document.getElementById('password').value;
-  const complemento = document.getElementById('email').value; // Certifique-se de que este é o ID correto
-  const nomeUnidade = "testeChumbado";
-  const representante = "testeChumbado";
-  const email = "testeChumbado";
-  const senha = "testeChumbado";  // Confirmar se o input de senha está correto
-   // Substituir pelo valor adequado
+ 
+   
 
   // Criando o objeto data
   const data = {
-    cep: cep,
-    rua: rua,
-    numero: numero,
-    complemento: complemento,
-    nomeUnidade: nomeUnidade,
-    representante: representante,
-    email: email,
-    senha: senha,
+    cep: cepGlobal,
+    rua: ruaGlobal,
+    numero: numeroGlobal,
+    complemento: complementoGlobal,
+    nomeUnidade: nomeUnidadeGlobal,
+    representante: nomeGlobal,
+    email: emailGlobal,
+    senha: senhaGlobal,
     fkProvedora: idProvedora
   };
 

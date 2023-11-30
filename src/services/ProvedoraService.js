@@ -1,8 +1,17 @@
-const connection = require('../db');
-const db = require('../db');
+const connection = require("../db");
+const db = require("../db");
+
 
 const sql = require('mssql');
-const dbConfig = require('../db');
+
+const mssql = require('mssql');
+
+
+
+
+
+
+
 
 
 
@@ -35,7 +44,7 @@ function cadastrarUser(email, senha, cpf, nome) {
     })
     .then(result => {
       // Incluir o provedoraId no resultado para retornar ao cliente
-
+      
       idProvedora = provedoraId
       return { provedoraId, result };
 
@@ -52,18 +61,18 @@ function cadastrarUser(email, senha, cpf, nome) {
 
 function cadastrarProvedora(razaoSocial, cnpj) {
   return db.connect()
-    .then(() => {
-      var request = new sql.Request(db);
-      request.input('razaoSocial', sql.VarChar, razaoSocial);
-      request.input('cnpj', sql.VarChar, cnpj);
+      .then(() => {
+          var request = new sql.Request(db);
+          request.input('razaoSocial', sql.VarChar, razaoSocial);
+          request.input('cnpj', sql.VarChar, cnpj);
 
-      return request.query('INSERT INTO provedora (razaoSocial, cnpj) VALUES (@razaoSocial, @cnpj)');
-    })
-    .catch(erro => {
-      console.error('Erro ao cadastrar a provedora:', erro);
-      console.log(erro);
-      throw erro;
-    });
+          return request.query('INSERT INTO provedora (razaoSocial, cnpj) VALUES (@razaoSocial, @cnpj)');
+      })
+      .catch(erro => {
+          console.error('Erro ao cadastrar a provedora:', erro);
+          console.log(erro);
+          throw erro;
+      });
 }
 
 
@@ -71,46 +80,20 @@ function cadastrarProvedora(razaoSocial, cnpj) {
 
 
 async function entrar(email, senha) {
-  var instrucao = `
-      SELECT usuario., provedora.
-      FROM usuario
-      JOIN provedora ON usuario.fkProvedora = provedora.idProvedora
-      WHERE usuario.email = @email AND usuario.senha = @senha;
-    `;
-
-  console.log("Executando a instrução SQL:\n" + instrucao);
-
   try {
+    const instrucao = 'SELECT usuario.*, provedora.*, unidadeProvedora.*  FROM usuario LEFT JOIN provedora ON usuario.fkProvedora = provedora.idProvedora LEFT JOIN unidadeProvedora ON usuario.fkUnidade = unidadeProvedora.idunidadeProvedora WHERE email = @email AND senha = @senha';
     const request = connection.request();
-    request.input("email", sql.VarChar, email);
-    request.input("senha", sql.VarChar, senha);
+    
+    request.input('email', mssql.VarChar, email);
+    request.input('senha', mssql.VarChar, senha);
 
-    const result = await request.query(instrucao);
-    console.log("Resultado:", result);
-
-    if (result.recordset.length > 0) {
-      const provedoraId = result.recordset[0].idProvedora;
-      const provedoraTipoUsuario = result.recordset[0].fkTipoUsuario;
-
-      // Aqui você deve usar uma solução de gerenciamento de sessão do lado do servidor, como express-session
-      // No exemplo, apenas retornaremos as informações
-      return {
-        idProvedora: provedoraId,
-        fkTipoUsuario: provedoraTipoUsuario,
-        userData: result.recordset
-      };
-    } else {
-      // Usuário não encontrado
-      throw new Error("Usuário não encontrado.");
-    }
+    const resultado = await request.query(instrucao);
+    return resultado.recordset;
   } catch (error) {
-    console.error(error);
+    console.error("Erro ao tentar entrar:", error);
     throw error;
   }
 }
-
-
-
 
 
 
@@ -135,7 +118,14 @@ function excluir(id) {
 }
 
 function atualizar(id, email, senha, nomeFantasia, razaoSocial) {
-  console.log("function atualizar():", id, email, senha, nomeFantasia, razaoSocial);
+  console.log(
+    "function atualizar():",
+    id,
+    email,
+    senha,
+    nomeFantasia,
+    razaoSocial
+  );
 
   var instrucaoUsuario = `
       UPDATE provedora
@@ -146,33 +136,39 @@ function atualizar(id, email, senha, nomeFantasia, razaoSocial) {
   console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
 
   return new Promise((resolve, reject) => {
-    connection.query(instrucaoUsuario, [email, senha, nomeFantasia, razaoSocial, id], (error, results) => {
-      if (error) {
-        console.log(error);
-        console.log("\nHouve um erro ao realizar a atualização! Erro: ", error.sqlMessage);
-        reject(error);
-      } else {
-        console.log(`Registro com ID ${id} atualizado com sucesso.`);
-        resolve(results);
-      }
+    connection.query(
+      instrucaoUsuario,
+      [email, senha, nomeFantasia, razaoSocial, id],
+      (error, results) => {
+        if (error) {
+          console.log(error);
+          console.log(
+            "\nHouve um erro ao realizar a atualização! Erro: ",
+            error.sqlMessage
+          );
+          reject(error);
+        } else {
+          console.log(`Registro com ID ${id} atualizado com sucesso.`);
+          resolve(results);
+        }
+      });
     });
-  });
-}
-function visualizarPorId(id) {
-  return db.connect()
-    .then(() => {
-      var request = new sql.Request(db);
-      request.input('idProvedora', sql.Int, id);
-      console.log('ID recebido:', id);
+  }
+  function visualizarPorId(id) {
+    return db.connect()
+        .then(() => {
+            var request = new sql.Request(db);
+            request.input('idProvedora', sql.Int, id);
+            console.log('ID recebido:', id);
 
 
-      return request.query('SELECT * FROM provedora WHERE idProvedora = @idProvedora');
-    })
-    .catch(erro => {
-      console.error('Erro ao trazer dados da provedora:', erro);
-      console.log(erro);
-      throw erro;
-    });
+            return request.query('SELECT * FROM provedora WHERE idProvedora = @idProvedora');
+        })
+        .catch(erro => {
+            console.error('Erro ao trazer dados da provedora:', erro);
+            console.log(erro);
+            throw erro;
+        });
 }
 
 
@@ -200,18 +196,17 @@ function visualizarUltimo() {
 }
 
 
+  
+  
+  
 
+  
 
-
-
-
-
-module.exports = {
-  cadastrarUser,
-  cadastrarProvedora,
-  entrar,
-  excluir,
-  atualizar,
-  visualizarPorId,
-  visualizarUltimo
-}
+  module.exports = {
+    cadastrarUser,
+    cadastrarProvedora,
+    entrar,
+    excluir,
+    atualizar,
+    visualizarPorId,
+    visualizarUltimo}
