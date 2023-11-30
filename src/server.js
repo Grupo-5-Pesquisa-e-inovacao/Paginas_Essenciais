@@ -1,7 +1,7 @@
 require('dotenv').config({path:'variaveis.env'})
 
 const express = require('express');
-const port = process.env.PORT || 3330;
+const port = process.env.PORT || 3300;
 const server = express();
 const MaquinaController = require('./controllers/MaquinaController.js');
 const ProvedoraController = require('./controllers/ProvedoraController.js');
@@ -100,6 +100,8 @@ server.post("/logar", function (req, res) {
   });
 
 
+    
+
 const arquivoExe = '/home/ubuntu/testeServer/CamelLooca.exe';
 
 server.get('/downloads/CamelLooca.exe', (req, res) => {
@@ -143,12 +145,16 @@ server.post("/logarUnidade", function (req, res) {
     UnidadeController.atualizar(req,res)
   })
 
-  server.get('/visualizarUnidade/:idunidadeProvedora',function(req,res){
-    UnidadeController.visualizarPorId(req,res)
+  server.get('/visualizarUnidade/:idUnidadeClick',function(req,res){
+    UnidadeController.visualizarUnidade(req,res)
   })
 
   server.get('/visualizarUltimoUni',function(req,res){
     UnidadeController.visualizarUltimo(req,res)
+  })
+
+  server.get('/visualizarUnidades/:id',function(req,res){
+    UnidadeController.listarUnidades(req, res)
   })
 
   // Dashboard 

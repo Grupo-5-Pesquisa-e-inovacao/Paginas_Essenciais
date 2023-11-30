@@ -633,7 +633,7 @@ main {
 }
 
 input {
-    margin: 5px 0 15px 0;
+    margin: 5px -6px 0 ;
     border: 1px solid #000000;
     padding: 1.5vh;
     border-radius: 12px;

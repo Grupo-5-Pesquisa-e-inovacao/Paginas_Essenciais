@@ -45,6 +45,21 @@ const UnidadeService = require('../services/UnidadeService');
     }
   }
 
+  function listarUnidades(req, res) {
+    const idProvedora = req.params.id;
+    UnidadeService.listarUnidades(idProvedora)
+      .then(function (resultado) {
+        console.log(resultado);
+  
+        res.status(200).json(resultado);
+      })
+      .catch(function (erro) {
+        console.error("Erro ao listar unidades:", erro);
+        res.status(500).json({ erro: "Erro interno ao processar a requisição." });
+      });
+  }
+  
+
 
   function atualizar(req, res) {
     var idunidadeProvedora = req.params.idunidadeProvedora; 
@@ -77,26 +92,18 @@ const UnidadeService = require('../services/UnidadeService');
   }
 
 
-function visualizarPorId(req, res) {
-  var idUnidadeProvedora = req.params.idUnidadeProvedora; 
+function visualizarUnidade(req, res) {
+  const idUnidade = req.params.idUnidadeClick;
+  UnidadeService.visualizarUnidade(idUnidade)
+    .then(function (resultado) {
+      console.log(resultado);
 
-  if (idunidadeProvedora == undefined) {
-    res.status(400).send("O ID está indefinido!");
-  } else {
-    UnidadeService.visualizarPorId(idunidadeProvedora)
-      .then(function (resultado) {
-        if (resultado.length > 0) {
-          res.status(200).json(resultado);
-        } else {
-          res.status(404).send("Registro não encontrado.");
-        }
-      })
-      .catch(function (erro) {
-        console.log(erro);
-        console.log("\nHouve um erro ao buscar os dados! Erro: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-      });
-  }
+      res.status(200).json(resultado);
+    })
+    .catch(function (erro) {
+      console.error("Erro ao buscar unidade:", erro);
+      res.status(500).json({ erro: "Erro interno ao processar a requisição." });
+    });
 }
 
 function visualizarUltimo(req, res) {
@@ -123,6 +130,7 @@ function visualizarUltimo(req, res) {
     cadastrar,
     excluir,
     atualizar,
-    visualizarPorId,
-    visualizarUltimo
+    visualizarUnidade,
+    visualizarUltimo,
+    listarUnidades
   }

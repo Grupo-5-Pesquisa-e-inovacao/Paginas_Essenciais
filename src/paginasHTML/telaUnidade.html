@@ -221,97 +221,7 @@
 
   // tela de apagar unidade
 
-<script>
 
-  let isEditing = false;
-
-  function toggleEditar() {
-    const inputs = document.querySelectorAll('.info');
-    const btn = document.querySelector('.Btn');
-
-    isEditing = !isEditing;
-
-    if (isEditing) {
-        btn.textContent = 'Salvar';
-        btn.onclick = cadastrar; // Adicionando o evento de clique diretamente
-    } else {
-        btn.textContent = 'Edit';
-        btn.onclick = null; // Removendo o evento de clique
-    }
-
-    inputs.forEach(input => {
-        input.disabled = !isEditing;
-    });
-}
-
-
-async function cadastrar() {
-  const ruaVar = document.getElementById('i1').value;
-      const numeroVar = document.getElementById('i2').value;
-      const complementoVar = document.getElementById('i3').value;
-      const cepVar = document.getElementById('i4').value;
-      const nomeVar = document.getElementById('i5').value;
-      const representanteVar = document.getElementById('i6').value;
-      const emailVar = document.getElementById('i7').value;
-      const senhaVar = document.getElementById('i8').value;
-
-    // Validação dos campos
-    if (
-      ruaVar === "" ||
-      emailVar === "" ||
-      senhaVar === "" ||
-      complementoVar === "" ||
-      numeroVar === "" ||
-      nomeVar === ""
-    ) {
-      throw new Error("Preencha todos os campos para a realização do cadastro!");
-    }
-
-    if (emailVar.indexOf("@") === -1 || emailVar.indexOf(".com") === -1) {
-      throw new Error("Para o email, siga o seguinte exemplo: aaa@exemplo.com");
-    }
-
-    // Enviando o valor da nova input
-    fetch("/cadastrarUnidade", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        nomeUnidade: document.getElementById('i5').value,
-        senha: document.getElementById('i8').value,
-        cep: document.getElementById('i4').value,
-        rua: document.getElementById('i1').value,
-        complemento: document.getElementById('i3').value,
-        numero: document.getElementById('i2').value,
-        representante: document.getElementById('i6').value,
-        email: document.getElementById('i7').value,
-        fkProvedora: 1,
-    }),
-})
-.then(function (resposta) {
-    console.log("resposta: ", resposta);
-
-    if (resposta.ok) {  // <-- Verifica se a resposta é bem-sucedida
-        return resposta.json();  // Continua para o próximo passo
-    } else {
-        throw new Error("Houve um erro ao tentar realizar o cadastro!");
-    }
-})
-.then(function (data) {
-    // Lida com os dados da resposta (se necessário)
-    console.log("data: ", data);
-})
-.catch(function (erro) {
-    console.log(`#ERRO: ${erro}`);
-});
-
-}
-  
-   
-</script>
-
-</body>
 
 <div class="cardLixeira">
   <div class="headerLixeira">
@@ -330,7 +240,131 @@ async function cadastrar() {
   </div>
   </div>
 
+
+
+</body>
+
+
+
 <script>
+
+let idUnidadeClick = sessionStorage.getItem('idUnidadeClicada')
+
+function buscarDadosUnidade(){
+
+  console.log(idUnidadeClick);
+  fetch("/visualizarUnidade/" + idUnidadeClick, {
+    method: "GET",
+  }).then(async function (resposta) {
+   const dados = await resposta.json();
+   console.log(dados)
+   document.getElementById('i1').value = dados[0].rua
+   document.getElementById('i2').value = dados[0].numero
+   document.getElementById('i3').value = dados[0].complemento
+   document.getElementById('i4').value = dados[0].cep
+   document.getElementById('i5').value = dados[0].nomeUnidade
+   document.getElementById('i6').value = dados[0].nome
+   document.getElementById('i7').value = dados[0].email
+   document.getElementById('i8').value = dados[0].senha;
+
+  })
+  .catch(function (erro) {
+      console.error("Erro ao buscar os dados da unidade:", erro);
+    });
+  
+}
+
+
+buscarDadosUnidade();
+
+
+let idProvedora = sessionStorage.getItem('FK_PROVEDORA')
+  let idTratado = idProvedora.replace(/\D/g, '');
+  let id = parseInt(idTratado);
+
+
+let isEditing = false;
+
+function toggleEditar() {
+    const inputs = document.querySelectorAll('.info');
+    const btn = document.querySelector('.Btn');
+
+    isEditing = !isEditing;
+
+    if (isEditing) {
+        btn.textContent = 'Salvar';
+        btn.onclick = salvar; 
+    } else {
+        btn.textContent = 'Edit';
+        btn.onclick = toggleEditar; 
+    }
+
+    inputs.forEach(input => {
+        input.disabled = !isEditing;
+    });
+}
+
+// Função para salvar as alterações
+function salvar() {
+    
+    toggleEditar();
+}
+
+
+async function cadastrar() {
+  const ruaVar = document.getElementById('i1').value;
+      const numeroVar = document.getElementById('i2').value;
+      const complementoVar = document.getElementById('i3').value;
+      const cepVar = document.getElementById('i4').value;
+      const nomeVar = document.getElementById('i5').value;
+      const representanteVar = document.getElementById('i6').value;
+      const emailVar = document.getElementById('i7').value;
+      const senhaVar = document.getElementById('i8').value;
+
+ 
+
+    if (emailVar.indexOf("@") === -1 || emailVar.indexOf(".com") === -1) {
+      throw new Error("Para o email, siga o seguinte exemplo: aaa@exemplo.com");
+    }
+
+    // Enviando o valor da nova input
+    fetch("/atualizarUnidade", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        nomeUnidade: document.getElementById('i5').value,
+        senha: document.getElementById('i8').value,
+        cep: document.getElementById('i4').value,
+        rua: document.getElementById('i1').value,
+        complemento: document.getElementById('i3').value,
+        numero: document.getElementById('i2').value,
+        representante: document.getElementById('i6').value,
+        email: document.getElementById('i7').value,
+        fkProvedora: id,
+    }),
+})
+.then(function (resposta) {
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {  // <-- Verifica se a resposta é bem-sucedida
+        return resposta.json();  // Continua para o próximo passo
+    } else {
+        throw new Error("Houve um erro ao tentar atualizar!");
+    }
+})
+.then(function (data) {
+    // Lida com os dados da resposta (se necessário)
+    console.log("data: ", data);
+})
+.catch(function (erro) {
+    console.log(`#ERRO: ${erro}`);
+});
+
+}
+  
+
 
   
   const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
@@ -340,7 +374,6 @@ const lixeira = document.querySelector('.cardLixeira')
 
 
 
-  checkLogin();
 
 
 
