@@ -23,36 +23,43 @@ function visualizarPorId(id) {
 }
 
 
-function cadastrar(req, res) {
-    var nomeResponsavel = req.body.nomeResponsavel;
-    var numeroRegistro = req.body.numeroRegistro;
-    var frequenciaIdealProcessador = req.body.frequenciaIdealProcessador;
-    var capacidadeDisco = req.body.capacidadeDisco;
-    var maxUsoDisco = req.body.maxUsoDisco;
-    var capacidadeRam = req.body.capacidadeRam
-    var maxUsoRam = req.body.maxUsoRam;
-    var velocidaDeRede = req.body.velocidaDeRede;
+async function cadastrar(req, res) {
+    try {
+        var nomeResponsavel = req.body.nomeResponsavel;
+        var numeroRegistro = req.body.numeroRegistro;
+        var frequenciaIdealProcessador = req.body.frequenciaIdealProcessador;
+        var capacidadeDisco = req.body.capacidadeDisco;
+        var maxUsoDisco = req.body.maxUsoDisco;
+        var capacidadeRam = req.body.capacidadeRam;
+        var maxUsoRam = req.body.maxUsoRam;
+        var velocidadeDeRede = req.body.velocidadeDeRede;
 
+        // Chame o serviço para cadastrar a máquina
+        const result = await MaquinaService.cadastrar(
+            nomeResponsavel,
+            numeroRegistro,
+            frequenciaIdealProcessador,
+            capacidadeDisco,
+            maxUsoDisco,
+            capacidadeRam,
+            maxUsoRam,
+            velocidadeDeRede
+        );
 
+        console.log("Máquina cadastrada com sucesso.");
+        res.status(201).json({ message: "Máquina cadastrada com sucesso.", result });
+    } catch (error) {
+        console.error("Erro ao cadastrar a máquina:", error);
 
-    // Chame o serviço para cadastrar a máquina
-    MaquinaService.cadastrar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede)
-
-        .then(function (resultado) {
-            console.log("Máquina cadastrada com sucesso.");
-            res.status(201).json({ message: "Máquina cadastrada com sucesso." });
-        })
-        .catch(function (erro) {
-            console.error("Erro ao cadastrar a máquina:", erro);
-
-            // Verifique se o erro é uma instância de Error para obter detalhes
-            if (erro instanceof Error) {
-                res.status(500).json({ error: `Erro ao cadastrar a máquina. Detalhes: ${erro.message}` });
-            } else {
-                res.status(500).json({ error: "Erro ao cadastrar a máquina. Detalhes indisponíveis." });
-            }
-        });
+        // Verifique se o erro é uma instância de Error para obter detalhes
+        if (error instanceof Error) {
+            res.status(500).json({ error: `Erro ao cadastrar a máquina. Detalhes: ${error.message}` });
+        } else {
+            res.status(500).json({ error: "Erro ao cadastrar a máquina. Detalhes indisponíveis." });
+        }
+    }
 }
+
 
 function update(req, res) {
     var nomeResponsavel = req.body.nomeResponsavel;
@@ -62,11 +69,11 @@ function update(req, res) {
     var maxUsoDisco = req.body.maxUsoDisco;
     var capacidadeRam = req.body.capacidadeRam;
     var maxUsoRam = req.body.maxUsoRam;
-    var velocidaDeRede = parseFloat(req.body.velocidaDeRede);
+    var velocidadeDeRede = parseFloat(req.body.velocidadeDeRede);
 
     var id = req.params.id;
 
-    MaquinaService.update(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id)
+    MaquinaService.update(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidadeDeRede, id)
         .then(function (resultado) {
             // Verifica se houve alguma linha afetada (indicando que o registro foi atualizado)
             if (resultado) {
@@ -82,22 +89,31 @@ function update(req, res) {
         });
 }
 
-function recuperar(req,res){
+function recuperarValoresDoBancoDeDados(req, res) {
     var id = req.params.id;
-    MaquinaService.recuperar(nomeResponsavel, numeroRegistro, frequenciaIdealProcessador, capacidadeDisco, maxUsoDisco, capacidadeRam, maxUsoRam, velocidaDeRede, id)
-    .then(function (resultado) {
-        // Verifica se houve alguma linha afetada (indicando que o registro foi atualizado)
-        if (resultado) {
-            res.status(200).send("Registro atualizado com sucesso!");
-        } else {
-            res.status(404).send("Registro não encontrado.");
-        }
-    })
-    .catch(function (erro) {
-        console.log(erro);
-        console.log("\nHouve um erro ao atualizar o registro! Erro: ", erro.sqlMessage);
-        res.status(500).json({ error: erro.sqlMessage });
-    });
+
+    if (!id) {
+        res.status(400).send("ID não fornecido.");
+        return;
+    }
+
+    console.log("function recuperar():", id);
+
+    MaquinaService.recuperarValoresDoBancoDeDados(id) 
+        .then(function (resultado) {
+            if (resultado && resultado.length > 0) {
+                var valoresDoBancoDeDados = resultado[0]; 
+
+                res.status(200).json(valoresDoBancoDeDados);
+            } else {
+                res.status(404).send("Registro não encontrado.");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao recuperar os valores do banco de dados! Erro: ", erro.message);
+            res.status(500).json({ error: erro.message });
+        });
 }
 
 
@@ -127,7 +143,7 @@ function excluir(req, res) {
 module.exports = {
     cadastrar,
     update,
-    recuperar,
+    recuperarValoresDoBancoDeDados,
     excluir,
     buscarTudo: async (req, res) => {
         try {
@@ -144,7 +160,7 @@ module.exports = {
                     usoDisco: maquina.usoDisco,
                     tamanhoDisco: maquina.tamanhoDisco,
                     nomeDisco: maquina.nomeDisco,
-                    velocidaDeRede: maquina.velocidaDeRede,
+                    velocidadeDeRede: maquina.velocidadeDeRede,
                     qtdEmUso: maquina.qtdEmUso,
                     frequencia: maquina.frequencia,
                     hostName: maquina.hostName,
@@ -175,7 +191,7 @@ module.exports = {
                     usoDisco: maquina.usoDisco,
                     tamanhoDisco: maquina.tamanhoDisco,
                     nomeDisco: maquina.nomeDisco,
-                    velocidaDeRede: maquina.velocidaDeRede,
+                    velocidadeDeRede: maquina.velocidadeDeRede,
                     qtdEmUso: maquina.qtdEmUso,
                     frequencia: maquina.frequencia,
                     hostName: maquina.hostName,

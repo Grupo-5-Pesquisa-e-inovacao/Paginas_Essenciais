@@ -192,17 +192,41 @@
         <div class="graficos">
             <div class="cabecalhoMaquinaCima">
                 <div class="arrumando">
-                    <input class="info" type="text" name="" id="nameResponsavel">
-                    <input class="info info" type="text" name="" id="numeroRegistro">
-                    <input class="info" type="text" name="" id="frequenciaIdealProcessador">
-                    <input class="info" type="text" name="" id="maxUsoDisco">
+                    <div class="ajustando">
+                        <span>Responsavel</span>
+                        <input disabled class="info" type="text" name="" id="nomeResponsavel">
+                    </div>
+                    <div class="ajustando">
+                        <span>Maquina</span>
+                        <input disabled class="info" type="text" name="" id="numeroRegistro">
+                    </div>
+                    <div class="ajustando">
+                        <span>Frequencia Processador</span>
+                        <input disabled class="info" type="text" name="" id="frequenciaIdealProcessador">
+                    </div>
+                    <div class="ajustando">
+                        <span>Disco</span>
+                        <input disabled class="info" type="text" name="" id="maxUsoDisco">
+                    </div>
                     <button class="Btn" id="atualizar">Edit</button>
                 </div>
-                <div class="arrumando">
-                    <input class="info" type="text" name="" id="capacidadeDisco">
-                    <input class="info" type="text" name="" id="MaxUsoRam">
-                    <input class="info" type="text" name="" id="capacidadeRam">
-                    <input class="info" type="text" name="" id="velocidadeDeRede">
+                <div class="arrumando2">
+                    <div class="ajustando">
+                        <span>Capacidade Disco</span>
+                        <input disabled class="info" type="text" name="" id="capacidadeDisco">
+                    </div>
+                    <div class="ajustando">
+                        <span>Memoria RAM</span>
+                        <input disabled class="info" type="text" name="" id="maxUsoRam">
+                    </div>
+                    <div class="ajustando">
+                        <span>Capacimadade RAM</span>
+                        <input disabled class="info" type="text" name="" id="capacidadeRam">
+                    </div>
+                    <div class="ajustando">
+                        <span>Internet</span>
+                        <input disabled class="info" type="text" name="" id="velocidadeDeRede">
+                    </div>
                     <div class="apagarUnidade" onclick="apagarUnidade()" style="margin: 0; margin-bottom: 2%;">
                         <button class="btn">
                             <svg viewBox="0 0 15 17.5" height="17.5" width="15" fill="white"
@@ -287,7 +311,7 @@
                     permanentemente. Essa ação não pode ser desfeita.</p>
             </div>
             <div class="actions">
-                <button class="desactivate" type="button" onclick="desativar()">Desativar</button>
+                <button class="desactivate" type="button" onclick="excluir()">Desativar</button>
                 <button class="cancel" type="button" onclick="cancelarLixeira()">Cancelar</button>
             </div>
         </div>
@@ -301,37 +325,8 @@
 </body>
 
 <script>
-
-function preencherValores(data) {
-        const inputs = document.querySelectorAll('.info');
-
-        inputs.forEach(input => {
-            input.value = data[input.id];
-        });
-    }
-
-    function carregarDadosDoBanco() {
-        const request = new XMLHttpRequest();
-        request.open('GET', 'http://localhost:3300/recuperar/1', true);
-
-        request.onload = function() {
-            if (request.status >= 200 && request.status < 400) {
-                const response = JSON.parse(request.responseText);
-                preencherValores(response);
-            } else {
-                console.error('Erro ao recuperar os dados do banco de dados.');
-            }
-        };
-
-        request.onerror = function() {
-            console.error('Erro de conexão.');
-        };
-
-        request.send();
-    }
-
-    carregarDadosDoBanco();
-
+    const idUnidade = sessionStorage.getItem('IdUnidade');
+    console.log('Valor de idUnidade:', idUnidade);
 
     let isEditing = false;
 
@@ -343,14 +338,55 @@ function preencherValores(data) {
 
         if (isEditing) {
             btn.textContent = 'Edit';
+            inputs.forEach(input => {
+                input.setAttribute('disabled', true); // Desabilita a edição
+            });
         } else {
             btn.textContent = 'Salvar';
+            inputs.forEach(input => {
+                input.removeAttribute('disabled'); // Habilita a edição
+            });
+            
         }
-
-        inputs.forEach(input => {
-            input.disabled = !isEditing;
-        });
     }
+    function recuperarValoresDoBancoDeDados(data) {
+    const inputs = document.querySelectorAll('.info');
+
+    if (data && typeof data === 'object') {
+        inputs.forEach(input => {
+            if (data.hasOwnProperty(input.id)) {
+                input.value = data[input.id];
+            } else {
+                console.error(`Propriedade '${input.id}' não encontrada nos dados.`);
+            }
+        });
+    } else {
+        console.error('Os dados recuperados não são válidos.');
+    }
+}
+
+    
+    function carregarDadosDoBanco() {
+        const url =`http://localhost:3300/recuperarValoresDoBancoDeDados/${idUnidade}`;
+
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro ao recuperar os dados do banco de dados.');
+                }
+            })
+            .then(data => {
+                recuperarValoresDoBancoDeDados(data);
+                console.log(data)
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    carregarDadosDoBanco();
 
     function salvarValores() {
         const inputs = document.querySelectorAll('.info');
@@ -377,14 +413,14 @@ function preencherValores(data) {
 
 
     function update() {
-        var nomeResponsavel = document.getElementById("nameResponsavel").value;
+        var nomeResponsavel = document.getElementById("nomeResponsavel").value;
         var numeroRegistro = document.getElementById("numeroRegistro").value;
         var frequenciaIdealProcessador = parseFloat(document.getElementById("frequenciaIdealProcessador").value);
         var maxUsoDisco = document.getElementById("maxUsoDisco").value;
         var capacidadeDisco = document.getElementById("capacidadeDisco").value;
-        var maxUsoRam = document.getElementById("MaxUsoRam").value;
+        var maxUsoRam = document.getElementById("maxUsoRam").value;
         var capacidadeRam = document.getElementById("capacidadeRam").value;
-        var velocidaDeRede = document.getElementById("velocidadeDeRede").value;
+        var velocidadeDeRede = document.getElementById("velocidadeDeRede").value;
 
         const dadosAtualizacao = {
             nomeResponsavel: nomeResponsavel,
@@ -394,9 +430,9 @@ function preencherValores(data) {
             capacidadeDisco: capacidadeDisco,
             maxUsoRam: maxUsoRam,
             capacidadeRam: capacidadeRam,
-            velocidaDeRede: velocidaDeRede
+            velocidadeDeRede: velocidadeDeRede
         };
-        fetch(`http://localhost:3300/update/2`, {
+        fetch(`http://localhost:3300/update/${idUnidade}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -423,10 +459,31 @@ function preencherValores(data) {
     // Pegando as funções de cima e executando no BUTTON que tem o ID = atualizar
     document.getElementById('atualizar').onclick = function () {
         toggleEditar();
-        salvarValores();
+       
         update();
     };
 
+    function excluir() {
+    fetch(`http://localhost:3300/excluir/${idUnidade}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.text();
+        } else if (response.status === 404) {
+          throw new Error('Registro não encontrado.');
+        } else {
+          throw new Error('Erro ao excluir o registro.');
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Erro:', error.message);
+      });
+
+  };
 
     function checkLogin() {
         var email = sessionStorage.getItem('EMAIL');
@@ -1272,33 +1329,33 @@ function preencherValores(data) {
     }
 
     // Configuração da requisição
-const requestOptions = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
 
-// URL do endpoint (substitua pela URL correta)
-const url = '/obterDadosCapturados'; // Substitua SEU_PORTA pela porta correta
+    // URL do endpoint (substitua pela URL correta)
+    const url = '/obterDadosCapturados'; // Substitua SEU_PORTA pela porta correta
 
-// Executando a requisição
-fetch(url, requestOptions)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Erro na solicitação.');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Dados vindos do BD', data);
+    // Executando a requisição
+    fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na solicitação.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dados vindos do BD', data);
 
-    // Faça algo com os dados, como atualizar a interface do usuário
-  })
-  .catch(error => {
-    console.error('Erro durante a solicitação:', error);
-    // Faça algo para lidar com o erro, como exibir uma mensagem de erro
-  });
+            // Faça algo com os dados, como atualizar a interface do usuário
+        })
+        .catch(error => {
+            console.error('Erro durante a solicitação:', error);
+            // Faça algo para lidar com o erro, como exibir uma mensagem de erro
+        });
 
 
 

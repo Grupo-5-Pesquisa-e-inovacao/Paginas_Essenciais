@@ -211,7 +211,8 @@
 
             <p>Niveis de Alerta Processador</p>
             <div class="informacao">
-              <input class="processador" type="text" name="" id="frequenciaIdealProcessador" placeholder="Frequência Ideal em GHz">
+              <input class="processador" type="text" name="" id="frequenciaIdealProcessador"
+                placeholder="Frequência Ideal em GHz">
             </div>
 
 
@@ -233,7 +234,7 @@
 
             <span>Velocidade de Rede</span>
             <div class="informacao">
-              <input class="processador" type="text" name="" id="velocidaDeRede" placeholder="Velocidade em GBs">
+              <input class="processador" type="text" name="" id="velocidadeDeRede" placeholder="Velocidade em GBs">
             </div>
 
           </div>
@@ -242,7 +243,7 @@
 
 
         <div class="btnAdd">
-          <button class="btn-53" onclick="excluir()">
+          <button class="btn-53" onclick="realizarCadastro()">
             <div class="original">CADASTRAR</div>
             <div class="letters">
 
@@ -264,7 +265,7 @@
 </html>
 <script>
 
-
+ 
 
   const opcoes_escondidas = document.querySelector('.opcoes_escondidas');
   const maquinas = document.querySelector('.maquinas');
@@ -591,25 +592,42 @@
     });
   });
 
-  function excluir() {
-    fetch(`http://localhost:3300/excluir/3`, {
-      method: 'DELETE',
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        } else if (response.status === 404) {
-          throw new Error('Registro não encontrado.');
-        } else {
-          throw new Error('Erro ao excluir o registro.');
-        }
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Erro:', error.message);
-      });
+  // Esta linha obtém o idUnidade da sessionStorage
+  const idUnidade = sessionStorage.getItem('IdUnidade');
+console.log('Valor de idUnidade:', idUnidade);
 
-  };
+// Renomeie a função para evitar conflitos com o serviço de cadastro
+async function realizarCadastro() {
+    try {
+        var nomeResponsavel = document.getElementById("nomeResponsavel").value;
+        var numeroRegistro = document.getElementById("numeroRegistro").value;
+        var frequenciaIdealProcessador = parseFloat(document.getElementById("frequenciaIdealProcessador").value);
+        var maxUsoDisco = document.getElementById("maxUsoDisco").value;
+        var capacidadeDisco = document.getElementById("capacidadeDisco").value;
+        var maxUsoRam = document.getElementById("maxUsoRam").value;
+        var capacidadeRam = document.getElementById("capacidadeRam").value;
+        var velocidadeDeRede = document.getElementById("velocidadeDeRede").value;
+
+        const idUnidade = 1; // Defina o id da unidade ou obtenha-o de alguma forma
+
+        const result = await realizarCadastro( // Renomeie para a função correta
+            nomeResponsavel,
+            numeroRegistro,
+            frequenciaIdealProcessador,
+            capacidadeDisco,
+            maxUsoDisco,
+            capacidadeRam,
+            maxUsoRam,
+            velocidadeDeRede,
+            idUnidade
+        );
+
+        console.log("Máquina cadastrada com sucesso!", result);
+    } catch (error) {
+        console.error('Erro ao cadastrar a máquina:', error.message);
+    }
+}
+
+
+
 </script>

@@ -83,8 +83,8 @@ server.post("/logar", function (req, res) {
   server.post("/update/:id", function(req,res){
     MaquinaController.update(req, res);
   })
-  server.post("/recuperar/:id", function(req,res){
-    MaquinaController.recuperar(req, res);
+  server.get("/recuperarValoresDoBancoDeDados/:id", function(req,res){
+    MaquinaController.recuperarValoresDoBancoDeDados(req, res);
   })
 // Fim do cadastro maquina na unidade
   server.delete('/deletar/:id', function (req,res){

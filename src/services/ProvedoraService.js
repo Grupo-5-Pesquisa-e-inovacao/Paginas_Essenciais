@@ -35,7 +35,7 @@ function cadastrarUser(email, senha, cpf, nome) {
     })
     .then(result => {
       // Incluir o provedoraId no resultado para retornar ao cliente
-      
+
       idProvedora = provedoraId
       return { provedoraId, result };
 
@@ -52,18 +52,18 @@ function cadastrarUser(email, senha, cpf, nome) {
 
 function cadastrarProvedora(razaoSocial, cnpj) {
   return db.connect()
-      .then(() => {
-          var request = new sql.Request(db);
-          request.input('razaoSocial', sql.VarChar, razaoSocial);
-          request.input('cnpj', sql.VarChar, cnpj);
+    .then(() => {
+      var request = new sql.Request(db);
+      request.input('razaoSocial', sql.VarChar, razaoSocial);
+      request.input('cnpj', sql.VarChar, cnpj);
 
-          return request.query('INSERT INTO provedora (razaoSocial, cnpj) VALUES (@razaoSocial, @cnpj)');
-      })
-      .catch(erro => {
-          console.error('Erro ao cadastrar a provedora:', erro);
-          console.log(erro);
-          throw erro;
-      });
+      return request.query('INSERT INTO provedora (razaoSocial, cnpj) VALUES (@razaoSocial, @cnpj)');
+    })
+    .catch(erro => {
+      console.error('Erro ao cadastrar a provedora:', erro);
+      console.log(erro);
+      throw erro;
+    });
 }
 
 
@@ -110,69 +110,69 @@ async function entrar(email, senha) {
 }
 
 
-  
-  
-  
-  
 
-  
-  function excluir(id) {
-    var instrucao = `
+
+
+
+
+
+function excluir(id) {
+  var instrucao = `
       DELETE FROM provedora WHERE idProvedora = ?;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-  
-    return new Promise((resolve, reject) => {
-      db.query(instrucao, [id], (error, results, fields) => {
-        if (error) {
-          console.log(error);
-          reject(error);
-        } else {
-          resolve(results);
-        }
-      });
-    });
-  }
+  console.log("Executando a instrução SQL: \n" + instrucao);
 
-  function atualizar(id, email, senha, nomeFantasia, razaoSocial) {
-    console.log("function atualizar():", id, email, senha, nomeFantasia, razaoSocial);
-  
-    var instrucaoUsuario = `
+  return new Promise((resolve, reject) => {
+    db.query(instrucao, [id], (error, results, fields) => {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+}
+
+function atualizar(id, email, senha, nomeFantasia, razaoSocial) {
+  console.log("function atualizar():", id, email, senha, nomeFantasia, razaoSocial);
+
+  var instrucaoUsuario = `
       UPDATE provedora
       SET email = ?, senha = ?, nomeFantasia = ?, razaoSocial = ?
       WHERE idProvedora = ?;
     `;
-  
-    console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
-  
-    return new Promise((resolve, reject) => {
-      connection.query(instrucaoUsuario, [email, senha, nomeFantasia, razaoSocial, id], (error, results) => {
-        if (error) {
-          console.log(error);
-          console.log("\nHouve um erro ao realizar a atualização! Erro: ", error.sqlMessage);
-          reject(error);
-        } else {
-          console.log(`Registro com ID ${id} atualizado com sucesso.`);
-          resolve(results);
-        }
-      });
+
+  console.log("Executando a instrução SQL: \n" + instrucaoUsuario);
+
+  return new Promise((resolve, reject) => {
+    connection.query(instrucaoUsuario, [email, senha, nomeFantasia, razaoSocial, id], (error, results) => {
+      if (error) {
+        console.log(error);
+        console.log("\nHouve um erro ao realizar a atualização! Erro: ", error.sqlMessage);
+        reject(error);
+      } else {
+        console.log(`Registro com ID ${id} atualizado com sucesso.`);
+        resolve(results);
+      }
     });
-  }
-  function visualizarPorId(id) {
-    return db.connect()
-        .then(() => {
-            var request = new sql.Request(db);
-            request.input('idProvedora', sql.Int, id);
-            console.log('ID recebido:', id);
+  });
+}
+function visualizarPorId(id) {
+  return db.connect()
+    .then(() => {
+      var request = new sql.Request(db);
+      request.input('idProvedora', sql.Int, id);
+      console.log('ID recebido:', id);
 
 
-            return request.query('SELECT * FROM provedora WHERE idProvedora = @idProvedora');
-        })
-        .catch(erro => {
-            console.error('Erro ao trazer dados da provedora:', erro);
-            console.log(erro);
-            throw erro;
-        });
+      return request.query('SELECT * FROM provedora WHERE idProvedora = @idProvedora');
+    })
+    .catch(erro => {
+      console.error('Erro ao trazer dados da provedora:', erro);
+      console.log(erro);
+      throw erro;
+    });
 }
 
 
@@ -200,17 +200,18 @@ function visualizarUltimo() {
 }
 
 
-  
-  
-  
 
-  
 
-  module.exports = {
-    cadastrarUser,
-    cadastrarProvedora,
-    entrar,
-    excluir,
-    atualizar,
-    visualizarPorId,
-    visualizarUltimo}
+
+
+
+
+module.exports = {
+  cadastrarUser,
+  cadastrarProvedora,
+  entrar,
+  excluir,
+  atualizar,
+  visualizarPorId,
+  visualizarUltimo
+}
