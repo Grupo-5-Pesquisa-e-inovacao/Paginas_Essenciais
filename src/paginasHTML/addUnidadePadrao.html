@@ -282,6 +282,7 @@
   var complementoGlobal = "";
   var cepGlobal = "";
 
+
   let idProvedora = sessionStorage.getItem('FK_PROVEDORA')
   let idTratado = idProvedora.replace(/\D/g, '');
   let id = parseInt(idTratado);
@@ -456,11 +457,10 @@
     numero: numeroGlobal,
     complemento: complementoGlobal,
     nomeUnidade: nomeUnidadeGlobal,
-    representante: nomeGlobal,
-    email: emailGlobal,
-    senha: senhaGlobal,
     fkProvedora: id
   };
+
+
 
   // Configuração da requisição para cadastrarUnidade
   const requestOptions = {
@@ -520,6 +520,11 @@
     });
 }
 
+
+function criarUser(nome, email, senha){
+  
+}
+
   const containerList = document.querySelector('.container-direita-visu');
   let idUnidade = "";
   let nomeUnidade = "";
@@ -564,6 +569,7 @@ function salvarIdUnidade(idUnidade) {
 }
 
 visualizarUnidades();
+
 
 
 

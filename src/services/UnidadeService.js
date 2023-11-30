@@ -13,8 +13,8 @@ async function cadastrar(rua, numero, complemento, cep, nomeUnidade, representan
   INSERT INTO unidadeProvedora (rua, numero, complemento, cep, nomeUnidade, fkProvedora)
     VALUES (@rua, @numero, @complemento, @cep, @nomeUnidade, @fkProvedora);
     
-    INSERT INTO usuario (nome, email, senha, fkUnidade)
-    VALUES (@representante, @email, @senha, SCOPE_IDENTITY());
+    INSERT INTO usuario (nome, email, senha, fkTipoUsuario, fkUnidade)
+    VALUES (@representante, @email, @senha, 2, SCOPE_IDENTITY());
 `;
 
   console.log("Executando a instrução SQL:");

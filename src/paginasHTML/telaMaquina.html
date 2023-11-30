@@ -194,19 +194,19 @@
             <div class="cabecalhoMaquinaCima">
                 <div class="arrumando">
                     <div class="ajustando">
-                        <span>Responsavel</span>
+                        <span>Responsável</span>
                         <input disabled class="info" type="text" name="" id="nomeResponsavel">
                     </div>
                     <div class="ajustando">
-                        <span>Maquina</span>
+                        <span>Máquina</span>
                         <input disabled class="info" type="text" name="" id="numeroRegistro">
                     </div>
                     <div class="ajustando">
-                        <span>Frequencia Processador</span>
+                        <span>Frequência Processador</span>
                         <input disabled class="info" type="text" name="" id="frequenciaIdealProcessador">
                     </div>
                     <div class="ajustando">
-                        <span>Disco</span>
+                        <span>MAX Disco</span>
                         <input disabled class="info" type="text" name="" id="maxUsoDisco">
                     </div>
                     <button class="Btn" id="atualizar">Edit</button>
@@ -217,15 +217,15 @@
                         <input disabled class="info" type="text" name="" id="capacidadeDisco">
                     </div>
                     <div class="ajustando">
-                        <span>Memoria RAM</span>
+                        <span>MAX uso RAM</span>
                         <input disabled class="info" type="text" name="" id="maxUsoRam">
                     </div>
                     <div class="ajustando">
-                        <span>Capacimadade RAM</span>
+                        <span>Total RAM</span>
                         <input disabled class="info" type="text" name="" id="capacidadeRam">
                     </div>
                     <div class="ajustando">
-                        <span>Internet</span>
+                        <span>Velocidade rede</span>
                         <input disabled class="info" type="text" name="" id="velocidadeDeRede">
                     </div>
                     <div class="apagarUnidade" onclick="apagarUnidade()" style="margin: 0; margin-bottom: 2%;">
@@ -266,7 +266,7 @@
                 </div>
             </div>
 
-            <div class="graficos_container_baixo">
+            <div class="graficos_container_baixo" >
                 <div class="containerDash">
                     <div>
                         <h1 style="color: white;">Disco</h1>
@@ -953,7 +953,7 @@
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                max: totalRam,
+                                max: 100,
                                 stepSize: 5,
                                 ticks: {
                                     //    callback: function (value) {
@@ -1332,6 +1332,8 @@
 
 
     function gerarGraficos() {
+        console.log("chamou");
+
         var idUnidade = sessionStorage.getItem('FK_UNIDADE')
         const requestOptions = {
             method: 'GET',
@@ -1345,6 +1347,7 @@
 
         // Executando a requisição
         fetch(url, requestOptions)
+
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Erro na solicitação.');
@@ -1353,21 +1356,28 @@
             })
             .then(data => {
                 var ctx1 = document.getElementById('myChart2')
+
+
+                console.log("Antes do log TESTESTETESTE", data[0]);
+
+
                 console.log("TESTESTETESTE", data[0].ValorCapturado);
                 console.log('Dados vindos do BD', data);
+
+                console.log("Depois do log TESTESTETESTE");
 
 
 
 
 
                 // RAM
-                emUsoRam1 = data[0].ValorCapturado
-                emUsoRam2 = data[4].ValorCapturado
-                emUsoRam3 = data[8].ValorCapturado
-                emUsoRam4 = data[12].ValorCapturado
-                emUsoRam5 = data[16].ValorCapturado
-                emUsoRam6 = data[20].ValorCapturado
-                emUsoRam7 = data[24].ValorCapturado
+                emUsoRam1 = data[3].ValorCapturado
+                emUsoRam2 = data[7].ValorCapturado
+                emUsoRam3 = data[11].ValorCapturado
+                emUsoRam4 = data[15].ValorCapturado
+                emUsoRam5 = data[19].ValorCapturado
+                emUsoRam6 = data[23].ValorCapturado
+                emUsoRam7 = data[27].ValorCapturado
 
                 hremUsoRam1 = data[0].DataHoraCaptura
                 hremUsoRam2 = data[4].DataHoraCaptura
@@ -1428,7 +1438,7 @@
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                max: 16,
+                                max: 20,
                                 stepSize: 5,
                                 ticks: {
                                     //    callback: function (value) {
@@ -1456,13 +1466,13 @@
 
                 // Rede
 
-                rede1 = data[3].ValorCapturado
-                rede2 = data[7].ValorCapturado
-                rede3 = data[11].ValorCapturado
-                rede4 = data[15].ValorCapturado
-                rede5 = data[19].ValorCapturado
-                rede6 = data[23].ValorCapturado
-                rede7 = data[27].ValorCapturado
+                rede1 = data[0].ValorCapturado
+                rede2 = data[4].ValorCapturado
+                rede3 = data[8].ValorCapturado
+                rede4 = data[12].ValorCapturado
+                rede5 = data[16].ValorCapturado
+                rede6 = data[20].ValorCapturado
+                rede7 = data[24].ValorCapturado
 
                 hrrede1 = data[3].DataHoraCaptura
                 hrrede2 = data[7].DataHoraCaptura
@@ -1510,8 +1520,8 @@
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                max: rede7, // isso é a barra lateral que mostra a porcentagem
-                                stepSize: 5,
+                                max: 100000000, // isso é a barra lateral que mostra a porcentagem
+                                stepSize: 100,
                                 ticks: {
                                     callback: function (value) {
                                         return value + '%'; // pra mostrar p dado em porcentagem
@@ -1539,21 +1549,21 @@
 
                 // DISCO
 
-                usoDisco1 = data[1].ValorCapturado
-                usoDisco2 = data[5].ValorCapturado
-                usoDisco3 = data[9].ValorCapturado
-                usoDisco4 = data[13].ValorCapturado
-                usoDisco5 = data[17].ValorCapturado
-                usoDisco6 = data[21].ValorCapturado
-                usoDisco7 = data[25].ValorCapturado
+                usoDisco1 = Math.abs(data[2].ValorCapturado);
+                usoDisco2 = Math.abs(data[6].ValorCapturado);
+                usoDisco3 = Math.abs(data[10].ValorCapturado);
+                usoDisco4 = Math.abs(data[14].ValorCapturado);
+                usoDisco5 = Math.abs(data[18].ValorCapturado);
+                usoDisco6 = Math.abs(data[22].ValorCapturado);
+                usoDisco7 = Math.abs(data[26].ValorCapturado);
 
-                hrusoDisco1 = data[1].DataHoraCaptura
-                hrusoDisco2 = data[5].DataHoraCaptura
-                hrusoDisco3 = data[9].DataHoraCaptura
-                hrusoDisco4 = data[13].DataHoraCaptura
-                hrusoDisco5 = data[17].DataHoraCaptura
-                hrusoDisco6 = data[21].DataHoraCaptura
-                hrusoDisco7 = data[25].DataHoraCaptura
+                hrusoDisco1 = data[2].DataHoraCaptura
+                hrusoDisco2 = data[6].DataHoraCaptura
+                hrusoDisco3 = data[10].DataHoraCaptura
+                hrusoDisco4 = data[14].DataHoraCaptura
+                hrusoDisco5 = data[18].DataHoraCaptura
+                hrusoDisco6 = data[22].DataHoraCaptura
+                hrusoDisco7 = data[26].DataHoraCaptura
 
                 var ctx2 = document.getElementById('myPieChart')
 
@@ -1591,7 +1601,7 @@
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                max: usoDisco1, // isso é a barra lateral que mostra a porcentagem
+                                max: 1000, // isso é a barra lateral que mostra a porcentagem
                                 stepSize: 5,
                                 ticks: {
                                     callback: function (value) {
@@ -1620,21 +1630,21 @@
 
                 // CPU
 
-                frequencia1 = data[2].ValorCapturado
-                frequencia2 = data[6].ValorCapturado
-                frequencia3 = data[10].ValorCapturado
-                frequencia4 = data[14].ValorCapturado
-                frequencia5 = data[18].ValorCapturado
-                frequencia6 = data[22].ValorCapturado
-                frequencia7 = data[26].ValorCapturado
+                frequencia1 = data[1].ValorCapturado
+                frequencia2 = data[5].ValorCapturado
+                frequencia3 = data[9].ValorCapturado
+                frequencia4 = data[13].ValorCapturado
+                frequencia5 = data[17].ValorCapturado
+                frequencia6 = data[21].ValorCapturado
+                frequencia7 = data[25].ValorCapturado
 
-                hrfrequencia1 = data[2].DataHoraCaptura
-                hrfrequencia2 = data[6].DataHoraCaptura
-                hrfrequencia3 = data[10].DataHoraCaptura
-                hrfrequencia4 = data[14].DataHoraCaptura
-                hrfrequencia5 = data[18].DataHoraCaptura
-                hrfrequencia6 = data[22].DataHoraCaptura
-                hrfrequencia7 = data[26].DataHoraCaptura
+                hrfrequencia1 = data[1].DataHoraCaptura
+                hrfrequencia2 = data[5].DataHoraCaptura
+                hrfrequencia3 = data[9].DataHoraCaptura
+                hrfrequencia4 = data[13].DataHoraCaptura
+                hrfrequencia5 = data[17].DataHoraCaptura
+                hrfrequencia6 = data[21].DataHoraCaptura
+                hrfrequencia7 = data[25].DataHoraCaptura
 
 
                 const ctx3 = document.getElementById('myChart4');
@@ -1677,7 +1687,7 @@
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                max: 5, // isso é a barra lateral que mostra a porcentagem
+                                max: 10, // isso é a barra lateral que mostra a porcentagem
                                 stepSize: 1,
                                 ticks: {
                                     callback: function (value) {

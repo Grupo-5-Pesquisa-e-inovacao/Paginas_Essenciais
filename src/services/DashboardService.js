@@ -14,7 +14,9 @@ INNER JOIN configuracao ON dadosCapturados.fkConfiguracao = configuracao.idConfi
 INNER JOIN tipoDado ON dadosCapturados.fkTipoDado = tipoDado.idtipoDado
 INNER JOIN tipoComponente ON configuracao.fktipoComponente = tipoComponente.idtipoComponente
 INNER JOIN servidor ON configuracao.fkServidor = servidor.idServidor
-WHERE servidor.idServidor = @servidorId;
+WHERE servidor.idServidor = 3
+ORDER BY DataHoraCaptura DESC;
+
 
   `;
 

@@ -315,6 +315,11 @@
       console.log('Unidade cadastrada com sucesso:', data);
       console.log(data);
 
+      
+     
+            sessionStorage.setItem("FK_PROVEDORA", idProvedora);
+            
+
       // Após cadastrar a unidade com sucesso, fazer a segunda requisição para visualizarUltimo
       const requestOptions2 = {
         method: 'GET',
