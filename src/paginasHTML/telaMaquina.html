@@ -1244,6 +1244,7 @@
   
 
     function gerarGraficos(){
+        var idUnidade = sessionStorage.getItem('IdUnidade')
         const requestOptions = {
         method: 'GET',
         headers: {
@@ -1615,7 +1616,7 @@
                 });
 
 
-                setInterval(gerarGraficos, 35000); 
+                setInterval(window.reload(), 35000); 
 
                 console.log("gerou");
 
